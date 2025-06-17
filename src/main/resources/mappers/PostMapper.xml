@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fy.schoolwall.post.repository.PostMapper">
+
+    <resultMap id="BaseResultMap" type="com.fy.schoolwall.post.model.Post">
+        <id column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="content" property="content" />
+        <result column="slug" property="slug" />
+        <result column="author_id" property="authorId" />
+        <result column="author_username" property="authorUsername" />
+        <result column="status" property="status" />
+        <result column="category" property="category" />
+        <result column="tags" property="tags" />
+        <result column="cover_image" property="coverImage" />
+        <result column="view_count" property="viewCount" />
+        <result column="comment_count" property="commentCount" />
+        <result column="is_top" property="isTop" />
+        <result column="is_recommended" property="isRecommended" />
+        <result column="created_at" property="createdAt" />
+        <result column="updated_at" property="updatedAt" />
+        <result column="published_at" property="publishedAt" />
+    </resultMap>
+
+    <!-- 基础查询 -->
+    <select id="findById" resultMap="BaseResultMap"> SELECT * FROM posts WHERE id = #{id} </select>
+
+    <select id="findBySlug" resultMap="BaseResultMap"> SELECT * FROM posts WHERE slug = #{slug} </select>
+
+    <select id="findByAuthorId" resultMap="BaseResultMap"> SELECT * FROM posts WHERE author_id =
+        #{authorId} ORDER BY created_at DESC </select>
+
+    <!-- 插入 - 移除了like_count字段 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id"> INSERT INTO posts ( title,
+        content, slug, author_id, author_username, status, category, tags, cover_image, view_count,
+        comment_count, is_top, is_recommended, created_at, updated_at, published_at ) VALUES (
+        #{title}, #{content}, #{slug}, #{authorId}, #{authorUsername}, #{status}, #{category},
+        #{tags}, #{coverImage}, #{viewCount}, #{commentCount}, #{isTop}, #{isRecommended},
+        #{createdAt}, #{updatedAt}, #{publishedAt} ) </insert>
+
+    <!-- 更新 -->
+    <update id="update"> UPDATE posts <set>
+            <if test="title != null">title = #{title},</if>
+            <if test="content != null">content =
+        #{content},</if>
+            <if test="slug != null">slug = #{slug},</if>
+            <if test="status != null">status
+        = #{status},</if>
+            <if test="category != null">category = #{category},</if>
+            <if
+                test="tags != null">tags = #{tags},</if>
+            <if test="coverImage != null">cover_image =
+        #{coverImage},</if>
+            <if test="publishedAt != null">published_at = #{publishedAt},</if>
+        updated_at = #{updatedAt} </set> WHERE id = #{id} </update>
+
+    <update id="updateCommentCount"> UPDATE posts SET comment_count = comment_count + <if
+            test="increment">1</if><if test="!increment">-1</if> WHERE id = #{id} </update>
+
+    <!-- 删除 -->
+    <delete id="deleteById"> DELETE FROM posts WHERE id = #{id} </delete>
+
+    <!-- 状态更新 -->
+    <update id="updateStatus"> UPDATE posts SET status = #{status}, updated_at = NOW() WHERE id =
+        #{id} </update>
+
+    <update id="updateViewCount"> UPDATE posts SET view_count = view_count + 1 WHERE id = #{id} </update>
+
+    <!-- 查询已发布的帖子 -->
+    <select id="findPublishedPosts" resultMap="BaseResultMap"> SELECT * FROM posts WHERE status =
+        'PUBLISHED' ORDER BY is_top DESC, published_at DESC LIMIT #{limit} OFFSET #{offset} </select>
+
+    <!-- 按分类查询 -->
+    <select id="findPostsByCategory" resultMap="BaseResultMap"> SELECT * FROM posts WHERE category =
+        #{category} AND status = 'PUBLISHED' ORDER BY published_at DESC LIMIT #{limit} OFFSET
+        #{offset} </select>
+
+    <!-- 按状态查询 -->
+    <select id="findPostsByStatus" resultMap="BaseResultMap"> SELECT * FROM posts WHERE status =
+        #{status} ORDER BY created_at DESC LIMIT #{limit} OFFSET #{offset} </select>
+
+    <!-- 置顶帖子 -->
+    <select id="findTopPosts" resultMap="BaseResultMap"> SELECT * FROM posts WHERE is_top = true AND
+        status = 'PUBLISHED' ORDER BY published_at DESC LIMIT #{limit} </select>
+
+    <!-- 推荐帖子 -->
+    <select id="findRecommendedPosts" resultMap="BaseResultMap"> SELECT * FROM posts WHERE
+        is_recommended = true AND status = 'PUBLISHED' ORDER BY published_at DESC LIMIT #{limit} </select>
+
+    <!-- 搜索帖子 -->
+    <select id="searchPosts" resultMap="BaseResultMap"> SELECT * FROM posts WHERE (title LIKE
+        CONCAT('%', #{keyword}, '%') OR content LIKE CONCAT('%', #{keyword}, '%')) AND status =
+        'PUBLISHED' ORDER BY published_at DESC LIMIT #{limit} OFFSET #{offset} </select>
+
+    <!-- 统计查询 -->
+    <select id="countByStatus" resultType="long"> SELECT COUNT(*) FROM posts WHERE status =
+        #{status} </select>
+
+    <select id="countByAuthorId" resultType="long"> SELECT COUNT(*) FROM posts WHERE author_id =
+        #{authorId} </select>
+
+    <select id="countByCategory" resultType="long"> SELECT COUNT(*) FROM posts WHERE category =
+        #{category} AND status = 'PUBLISHED' </select>
+
+    <!-- 管理员查询 -->
+    <select id="findAllPosts" resultMap="BaseResultMap"> SELECT * FROM posts ORDER BY created_at
+        DESC LIMIT #{limit} OFFSET #{offset} </select>
+
+    <select id="findPostsForReview" resultMap="BaseResultMap"> SELECT * FROM posts WHERE status IN
+        ('DRAFT', 'PUBLISHED') ORDER BY created_at DESC LIMIT #{limit} OFFSET #{offset} </select>
+
+    <!-- 管理员状态设置 -->
+    <update id="setTopStatus"> UPDATE posts SET is_top = #{isTop}, updated_at = NOW() WHERE id =
+        #{id} </update>
+
+    <update id="setRecommendedStatus"> UPDATE posts SET is_recommended = #{isRecommended},
+        updated_at = NOW() WHERE id = #{id} </update>
+
+</mapper>

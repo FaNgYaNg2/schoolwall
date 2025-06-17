@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fy.schoolwall.user.repository.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.fy.schoolwall.user.model.User">
+        <id column="id" property="id" />
+        <result column="username" property="username" />
+        <result column="email" property="email" />
+        <result column="password_hash" property="passwordHash" />
+        <result column="role" property="role" />
+        <result column="avatar_url" property="avatarUrl" />
+        <result column="bio" property="bio" />
+        <result column="created_at" property="createdAt" />
+        <result column="updated_at" property="updatedAt" />
+        <result column="is_enabled" property="isEnabled" />
+        <result column="is_locked" property="isLocked" />
+    </resultMap>
+
+    <select id="findById" resultMap="BaseResultMap"> SELECT id, username, email, password_hash,
+        role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE id =
+        #{id} </select>
+
+    <select id="findByUsername" resultMap="BaseResultMap"> SELECT id, username, email,
+        password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM
+        users WHERE username = #{username} </select>
+
+    <select id="findByEmail" resultMap="BaseResultMap"> SELECT id, username, email, password_hash,
+        role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE email
+        = #{email} </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id"> INSERT INTO users (username,
+        email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked)
+        VALUES (#{username}, #{email}, #{passwordHash}, #{role}, #{avatarUrl}, #{bio}, #{createdAt},
+        #{updatedAt}, #{isEnabled}, #{isLocked}) </insert>
+
+    <update id="update"> UPDATE users <set>
+            <if test="email != null">email = #{email},</if>
+            <if test="avatarUrl != null">avatar_url =
+        #{avatarUrl},</if>
+            <if test="bio != null">bio = #{bio},</if> updated_at = #{updatedAt} </set>
+        WHERE id = #{id} </update>
+
+    <update id="updatePassword"> UPDATE users SET password_hash = #{passwordHash}, updated_at =
+        NOW() WHERE id = #{userId} </update>
+
+    <!-- 硬删除用户 -->
+    <delete id="deleteById"> DELETE FROM users WHERE id = #{id} </delete>
+
+    <!-- 软删除用户（设置为禁用状态） -->
+    <update id="softDeleteById"> UPDATE users SET is_enabled = false, updated_at = NOW() WHERE id =
+        #{id} </update>
+
+    <!-- 更新用户状态 -->
+    <update id="updateUserStatus"> UPDATE users SET is_enabled = #{enabled}, updated_at = NOW()
+        WHERE id = #{userId} </update>
+
+    <!-- 查找所有用户 -->
+    <select id="findAllUsers" resultMap="BaseResultMap"> SELECT id, username, email, password_hash,
+        role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users ORDER BY
+        created_at DESC </select>
+
+    <!-- 根据状态查找用户 -->
+    <select id="findUsersByStatus" resultMap="BaseResultMap"> SELECT id, username, email,
+        password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM
+        users WHERE is_enabled = #{enabled} ORDER BY created_at DESC </select>
+
+</mapper>

@@ -7762,3 +7762,792 @@ Caused by: org.xml.sax.SAXParseException: 文档中根元素后面的标记必�
 2025-06-18 04:54:38.006 [http-nio-8080-exec-1] DEBUG c.f.s.p.repository.PostMapper.insert - ==>  Preparing: INSERT INTO posts ( title, content, slug, author_id, author_username, status, category, tags, cover_image, view_count, comment_count, is_top, is_recommended, created_at, updated_at, published_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
 2025-06-18 04:54:38.007 [http-nio-8080-exec-1] DEBUG c.f.s.p.repository.PostMapper.insert - ==> Parameters: 测试帖子(String), 这是一个测试帖子(String), ceshitiezi-1750193678005(String), 1(Long), testuser(String), PUBLISHED(String), 技术(String), null, null, 0(Integer), 0(Integer), false(Boolean), false(Boolean), 2025-06-18T04:54:38.003551500(LocalDateTime), 2025-06-18T04:54:38.003551500(LocalDateTime), 2025-06-18T04:54:38.006315600(LocalDateTime)
 2025-06-18 04:54:38.013 [http-nio-8080-exec-1] DEBUG c.f.s.p.repository.PostMapper.insert - <==    Updates: 1
+2025-06-18 14:47:09.295 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-06-18 14:47:09.350 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Starting SchoolwallApplication using Java 22.0.1 with PID 34844 (D:\Repos\schoolwall\target\classes started by Dr.Y in D:\Repos\schoolwall)
+2025-06-18 14:47:09.351 [restartedMain] DEBUG c.f.schoolwall.SchoolwallApplication - Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-06-18 14:47:09.352 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-18 14:47:09.410 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-06-18 14:47:09.411 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-06-18 14:47:10.467 [restartedMain] DEBUG o.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2025-06-18 14:47:11.061 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-18 14:47:11.085 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-06-18 14:47:11.090 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-18 14:47:11.091 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-06-18 14:47:11.138 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-18 14:47:11.140 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1728 ms
+2025-06-18 14:47:11.501 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminCommentController' defined in file [D:\Repos\schoolwall\target\classes\com\fy\schoolwall\admin\controller\AdminCommentController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'adminCommentService' defined in file [D:\Repos\schoolwall\target\classes\com\fy\schoolwall\admin\service\AdminCommentService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'commentMapper' defined in file [D:\Repos\schoolwall\target\classes\com\fy\schoolwall\comment\repository\CommentMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: PostCategory
+2025-06-18 14:47:11.504 [restartedMain] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2025-06-18 14:47:11.518 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-06-18 14:47:11.541 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminCommentController' defined in file [D:\Repos\schoolwall\target\classes\com\fy\schoolwall\admin\controller\AdminCommentController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'adminCommentService' defined in file [D:\Repos\schoolwall\target\classes\com\fy\schoolwall\admin\service\AdminCommentService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'commentMapper' defined in file [D:\Repos\schoolwall\target\classes\com\fy\schoolwall\comment\repository\CommentMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: PostCategory
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1188)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1123)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1362)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1351)
+	at com.fy.schoolwall.SchoolwallApplication.main(SchoolwallApplication.java:14)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminCommentService' defined in file [D:\Repos\schoolwall\target\classes\com\fy\schoolwall\admin\service\AdminCommentService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'commentMapper' defined in file [D:\Repos\schoolwall\target\classes\com\fy\schoolwall\comment\repository\CommentMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: PostCategory
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1682)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1628)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 24 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'commentMapper' defined in file [D:\Repos\schoolwall\target\classes\com\fy\schoolwall\comment\repository\CommentMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: PostCategory
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireByType(AbstractAutowireCapableBeanFactory.java:1556)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1450)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:606)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1682)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1628)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 37 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: PostCategory
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:657)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1375)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1205)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1740)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireByType(AbstractAutowireCapableBeanFactory.java:1541)
+	... 48 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: PostCategory
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:199)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:88)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:168)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	... 61 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: PostCategory
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method)
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3601)
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2686)
+	at org.apache.ibatis.reflection.Reflector.getClassMethods(Reflector.java:292)
+	at org.apache.ibatis.reflection.Reflector.<init>(Reflector.java:71)
+	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1710)
+	at org.apache.ibatis.util.MapUtil.computeIfAbsent(MapUtil.java:36)
+	at org.apache.ibatis.reflection.DefaultReflectorFactory.findForClass(DefaultReflectorFactory.java:44)
+	at org.apache.ibatis.reflection.MetaClass.<init>(MetaClass.java:39)
+	at org.apache.ibatis.reflection.MetaClass.forClass(MetaClass.java:43)
+	at org.apache.ibatis.builder.MapperBuilderAssistant.resolveResultJavaType(MapperBuilderAssistant.java:439)
+	at org.apache.ibatis.builder.MapperBuilderAssistant.buildResultMapping(MapperBuilderAssistant.java:339)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildResultMappingFromContext(XMLMapperBuilder.java:403)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:286)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:261)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElements(XMLMapperBuilder.java:253)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:123)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:100)
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:698)
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:577)
+	at org.mybatis.spring.SqlSessionFactoryBean.getObject(SqlSessionFactoryBean.java:720)
+	at org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration.sqlSessionFactory(MybatisAutoConfiguration.java:189)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:171)
+	... 64 common frames omitted
+Caused by: java.lang.ClassNotFoundException: PostCategory
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:529)
+	at java.base/java.lang.Class.forName(Class.java:508)
+	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:121)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	... 89 common frames omitted
+2025-06-18 14:50:25.228 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-06-18 14:50:25.283 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Starting SchoolwallApplication using Java 22.0.1 with PID 28456 (D:\Repos\schoolwall\target\classes started by Dr.Y in D:\Repos\schoolwall)
+2025-06-18 14:50:25.285 [restartedMain] DEBUG c.f.schoolwall.SchoolwallApplication - Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-06-18 14:50:25.285 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-18 14:50:25.342 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-06-18 14:50:25.342 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-06-18 14:50:26.302 [restartedMain] DEBUG o.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2025-06-18 14:50:26.930 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-18 14:50:26.963 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-06-18 14:50:26.969 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-18 14:50:26.969 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-06-18 14:50:27.017 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-18 14:50:27.019 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1675 ms
+2025-06-18 14:50:27.680 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/callback' ...
+2025-06-18 14:50:27.680 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/callback using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@23804f ...
+2025-06-18 14:50:27.682 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Unable to resolve location classpath:db/callback.
+2025-06-18 14:50:27.682 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/migration' ...
+2025-06-18 14:50:27.682 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/migration using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@23804f ...
+2025-06-18 14:50:27.682 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning URL: file:/D:/Repos/schoolwall/target/classes/db/migration
+2025-06-18 14:50:27.682 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning starting at classpath root in filesystem: D:\Repos\schoolwall\target\classes\
+2025-06-18 14:50:27.683 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning for resources in path: D:\Repos\schoolwall\target\classes\db\migration (db/migration)
+2025-06-18 14:50:27.683 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V1__initial_schema.sql
+2025-06-18 14:50:27.683 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V2__add_index_to_posts.sql
+2025-06-18 14:50:27.683 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classes at classpath:db/migration
+2025-06-18 14:50:27.685 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-06-18 14:50:27.831 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7f61890d
+2025-06-18 14:50:27.833 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-06-18 14:50:27.862 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V2__add_index_to_posts.sql
+2025-06-18 14:50:27.864 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V1__initial_schema.sql
+2025-06-18 14:50:27.872 [restartedMain] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:mysql://localhost:3306/schoolwall?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&useUnicode=true (MySQL 8.4)
+2025-06-18 14:50:27.872 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Database Type: MySQL
+2025-06-18 14:50:27.872 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Driver: MySQL Connector/J mysql-connector-j-9.2.0 (Revision: a3909bfeb62d5a517ab444bb88ba7ecf26100297)
+2025-06-18 14:50:27.872 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - DDL Transactions Supported: false
+2025-06-18 14:50:27.874 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Schemas: 
+2025-06-18 14:50:27.874 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Default schema: null
+2025-06-18 14:50:27.883 [restartedMain] WARN  o.f.c.i.database.base.Database - Flyway upgrade recommended: MySQL 8.4 is newer than this version of Flyway and support has not been tested. The latest supported version of MySQL is 8.1.
+2025-06-18 14:50:27.884 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Scanning for script callbacks ...
+2025-06-18 14:50:27.886 [restartedMain] DEBUG o.f.c.i.c.SqlScriptCallbackFactory - Scanning for SQL callbacks ...
+2025-06-18 14:50:27.891 [restartedMain] DEBUG o.f.core.internal.command.DbValidate - Validating migrations ...
+2025-06-18 14:50:27.893 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 14:50:27.899 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 14:50:27.899 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 14:50:27.900 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 14:50:27.900 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 14:50:27.900 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 14:50:27.900 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 14:50:27.902 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 14:50:27.902 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 14:50:27.918 [restartedMain] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.025s)
+2025-06-18 14:50:27.921 [restartedMain] DEBUG o.f.core.internal.command.DbSchemas - Skipping creation of existing schema: `schoolwall`
+2025-06-18 14:50:27.928 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 14:50:27.931 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Current version of schema `schoolwall`: 2
+2025-06-18 14:50:27.933 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Schema `schoolwall` is up to date. No migration necessary.
+2025-06-18 14:50:27.940 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Memory usage: 33 of 68M
+2025-06-18 14:50:28.376 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-06-18 14:50:28.505 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, DefaultResourcesFilter, DefaultLoginPageGeneratingFilter, DefaultLogoutPageGeneratingFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-18 14:50:28.776 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-06-18 14:50:28.783 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-06-18 14:50:28.795 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-18 14:50:28.800 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Started SchoolwallApplication in 4.139 seconds (process running for 4.433)
+2025-06-18 14:50:49.741 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-18 14:50:49.741 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-06-18 14:50:49.742 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-06-18 14:50:49.757 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /login
+2025-06-18 14:50:49.844 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 14:50:49.861 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: testuser(String)
+2025-06-18 14:50:49.878 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 14:50:49.938 [http-nio-8080-exec-1] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+2025-06-18 14:50:49.950 [http-nio-8080-exec-1] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=testuser, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@4132bff6]
+2025-06-18 14:50:49.951 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.UsernamePasswordAuthenticationFilter - Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=testuser, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_USER]]
+2025-06-18 14:50:53.363 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing POST /posts
+2025-06-18 14:50:53.369 [http-nio-8080-exec-4] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=testuser, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2025-06-18 14:50:53.370 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured POST /posts
+2025-06-18 14:50:53.456 [http-nio-8080-exec-4] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 14:50:53.457 [http-nio-8080-exec-4] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: testuser(String)
+2025-06-18 14:50:53.458 [http-nio-8080-exec-4] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 14:50:53.541 [http-nio-8080-exec-4] DEBUG c.f.s.p.repository.PostMapper.insert - ==>  Preparing: INSERT INTO posts ( title, content, slug, author_id, author_username, status, category, tags, cover_image, view_count, comment_count, is_top, is_recommended, created_at, updated_at, published_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+2025-06-18 14:50:53.557 [http-nio-8080-exec-4] DEBUG c.f.s.p.repository.PostMapper.insert - ==> Parameters: 测试帖子(String), 这是一个测试帖子(String), ceshitiezi-1750229453535(String), 1(Long), testuser(String), PUBLISHED(String), academic(String), null, null, 0(Integer), 0(Integer), false(Boolean), false(Boolean), 2025-06-18T14:50:53.459482700(LocalDateTime), 2025-06-18T14:50:53.459482700(LocalDateTime), 2025-06-18T14:50:53.540484800(LocalDateTime)
+2025-06-18 14:50:53.566 [http-nio-8080-exec-4] DEBUG c.f.s.p.repository.PostMapper.insert - <==    Updates: 1
+2025-06-18 15:06:50.572 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 2 class path changes (0 additions, 0 deletions, 2 modifications)
+2025-06-18 15:06:50.575 [Thread-5] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-18 15:06:50.577 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:06:50.583 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-18 15:06:50.583 [Thread-5] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:06:50.589 [Thread-5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-06-18 15:06:50.596 [Thread-5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-06-18 15:06:50.724 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Starting SchoolwallApplication using Java 22.0.1 with PID 28456 (D:\Repos\schoolwall\target\classes started by Dr.Y in D:\Repos\schoolwall)
+2025-06-18 15:06:50.724 [restartedMain] DEBUG c.f.schoolwall.SchoolwallApplication - Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-06-18 15:06:50.725 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-18 15:06:50.986 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-18 15:06:50.988 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:06:50.988 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-18 15:06:50.989 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-06-18 15:06:51.005 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-18 15:06:51.005 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 275 ms
+2025-06-18 15:06:51.101 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/callback' ...
+2025-06-18 15:06:51.101 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/callback using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@b593d62 ...
+2025-06-18 15:06:51.102 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Unable to resolve location classpath:db/callback.
+2025-06-18 15:06:51.102 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/migration' ...
+2025-06-18 15:06:51.102 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/migration using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@b593d62 ...
+2025-06-18 15:06:51.102 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning URL: file:/D:/Repos/schoolwall/target/classes/db/migration
+2025-06-18 15:06:51.102 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning starting at classpath root in filesystem: D:\Repos\schoolwall\target\classes\
+2025-06-18 15:06:51.102 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning for resources in path: D:\Repos\schoolwall\target\classes\db\migration (db/migration)
+2025-06-18 15:06:51.104 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V1__initial_schema.sql
+2025-06-18 15:06:51.104 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V2__add_index_to_posts.sql
+2025-06-18 15:06:51.104 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classes at classpath:db/migration
+2025-06-18 15:06:51.104 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+2025-06-18 15:06:51.109 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@714bb96
+2025-06-18 15:06:51.109 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+2025-06-18 15:06:51.110 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V2__add_index_to_posts.sql
+2025-06-18 15:06:51.110 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V1__initial_schema.sql
+2025-06-18 15:06:51.114 [restartedMain] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:mysql://localhost:3306/schoolwall?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&useUnicode=true (MySQL 8.4)
+2025-06-18 15:06:51.114 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Database Type: MySQL
+2025-06-18 15:06:51.115 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Driver: MySQL Connector/J mysql-connector-j-9.2.0 (Revision: a3909bfeb62d5a517ab444bb88ba7ecf26100297)
+2025-06-18 15:06:51.115 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - DDL Transactions Supported: false
+2025-06-18 15:06:51.115 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Schemas: 
+2025-06-18 15:06:51.115 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Default schema: null
+2025-06-18 15:06:51.121 [restartedMain] WARN  o.f.c.i.database.base.Database - Flyway upgrade recommended: MySQL 8.4 is newer than this version of Flyway and support has not been tested. The latest supported version of MySQL is 8.1.
+2025-06-18 15:06:51.121 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Scanning for script callbacks ...
+2025-06-18 15:06:51.121 [restartedMain] DEBUG o.f.c.i.c.SqlScriptCallbackFactory - Scanning for SQL callbacks ...
+2025-06-18 15:06:51.122 [restartedMain] DEBUG o.f.core.internal.command.DbValidate - Validating migrations ...
+2025-06-18 15:06:51.123 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 15:06:51.124 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:06:51.124 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:06:51.124 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:06:51.125 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:06:51.125 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:06:51.125 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:06:51.125 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:06:51.125 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:06:51.130 [restartedMain] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.007s)
+2025-06-18 15:06:51.130 [restartedMain] DEBUG o.f.core.internal.command.DbSchemas - Skipping creation of existing schema: `schoolwall`
+2025-06-18 15:06:51.135 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 15:06:51.140 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Current version of schema `schoolwall`: 2
+2025-06-18 15:06:51.140 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Schema `schoolwall` is up to date. No migration necessary.
+2025-06-18 15:06:51.142 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Memory usage: 53 of 80M
+2025-06-18 15:06:51.263 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-06-18 15:06:51.277 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, DefaultResourcesFilter, DefaultLoginPageGeneratingFilter, DefaultLogoutPageGeneratingFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-18 15:06:51.313 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-06-18 15:06:51.318 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:06:51.321 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-18 15:06:51.323 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Started SchoolwallApplication in 0.662 seconds (process running for 986.955)
+2025-06-18 15:06:51.323 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2025-06-18 15:07:16.118 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-06-18 15:07:16.119 [Thread-7] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-18 15:07:16.119 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:07:16.123 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-18 15:07:16.124 [Thread-7] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:07:16.127 [Thread-7] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+2025-06-18 15:07:16.128 [Thread-7] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
+2025-06-18 15:07:16.205 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Starting SchoolwallApplication using Java 22.0.1 with PID 28456 (D:\Repos\schoolwall\target\classes started by Dr.Y in D:\Repos\schoolwall)
+2025-06-18 15:07:16.205 [restartedMain] DEBUG c.f.schoolwall.SchoolwallApplication - Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-06-18 15:07:16.205 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-18 15:07:16.414 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-18 15:07:16.415 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:07:16.415 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-18 15:07:16.416 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-06-18 15:07:16.429 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-18 15:07:16.429 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 222 ms
+2025-06-18 15:07:16.496 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/callback' ...
+2025-06-18 15:07:16.496 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/callback using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@5e012040 ...
+2025-06-18 15:07:16.497 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Unable to resolve location classpath:db/callback.
+2025-06-18 15:07:16.497 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/migration' ...
+2025-06-18 15:07:16.497 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/migration using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@5e012040 ...
+2025-06-18 15:07:16.497 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning URL: file:/D:/Repos/schoolwall/target/classes/db/migration
+2025-06-18 15:07:16.498 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning starting at classpath root in filesystem: D:\Repos\schoolwall\target\classes\
+2025-06-18 15:07:16.498 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning for resources in path: D:\Repos\schoolwall\target\classes\db\migration (db/migration)
+2025-06-18 15:07:16.498 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V1__initial_schema.sql
+2025-06-18 15:07:16.498 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V2__add_index_to_posts.sql
+2025-06-18 15:07:16.498 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classes at classpath:db/migration
+2025-06-18 15:07:16.498 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Starting...
+2025-06-18 15:07:16.506 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2c1aa646
+2025-06-18 15:07:16.506 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Start completed.
+2025-06-18 15:07:16.508 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V2__add_index_to_posts.sql
+2025-06-18 15:07:16.508 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V1__initial_schema.sql
+2025-06-18 15:07:16.510 [restartedMain] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:mysql://localhost:3306/schoolwall?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&useUnicode=true (MySQL 8.4)
+2025-06-18 15:07:16.510 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Database Type: MySQL
+2025-06-18 15:07:16.510 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Driver: MySQL Connector/J mysql-connector-j-9.2.0 (Revision: a3909bfeb62d5a517ab444bb88ba7ecf26100297)
+2025-06-18 15:07:16.510 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - DDL Transactions Supported: false
+2025-06-18 15:07:16.510 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Schemas: 
+2025-06-18 15:07:16.510 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Default schema: null
+2025-06-18 15:07:16.515 [restartedMain] WARN  o.f.c.i.database.base.Database - Flyway upgrade recommended: MySQL 8.4 is newer than this version of Flyway and support has not been tested. The latest supported version of MySQL is 8.1.
+2025-06-18 15:07:16.516 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Scanning for script callbacks ...
+2025-06-18 15:07:16.516 [restartedMain] DEBUG o.f.c.i.c.SqlScriptCallbackFactory - Scanning for SQL callbacks ...
+2025-06-18 15:07:16.517 [restartedMain] DEBUG o.f.core.internal.command.DbValidate - Validating migrations ...
+2025-06-18 15:07:16.517 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 15:07:16.519 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:07:16.519 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:07:16.519 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:07:16.519 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:07:16.519 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:07:16.519 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:07:16.519 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:07:16.519 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:07:16.524 [restartedMain] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.006s)
+2025-06-18 15:07:16.524 [restartedMain] DEBUG o.f.core.internal.command.DbSchemas - Skipping creation of existing schema: `schoolwall`
+2025-06-18 15:07:16.528 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 15:07:16.530 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Current version of schema `schoolwall`: 2
+2025-06-18 15:07:16.530 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Schema `schoolwall` is up to date. No migration necessary.
+2025-06-18 15:07:16.530 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Memory usage: 49 of 80M
+2025-06-18 15:07:16.620 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-06-18 15:07:16.629 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, DefaultResourcesFilter, DefaultLoginPageGeneratingFilter, DefaultLogoutPageGeneratingFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-18 15:07:16.657 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-06-18 15:07:16.660 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:07:16.662 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-18 15:07:16.664 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Started SchoolwallApplication in 0.484 seconds (process running for 1012.296)
+2025-06-18 15:07:16.665 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2025-06-18 15:07:42.384 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 2 class path changes (0 additions, 0 deletions, 2 modifications)
+2025-06-18 15:07:42.384 [Thread-11] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-18 15:07:42.386 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:07:42.388 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-18 15:07:42.390 [Thread-11] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:07:42.390 [Thread-11] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Shutdown initiated...
+2025-06-18 15:07:42.393 [Thread-11] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Shutdown completed.
+2025-06-18 15:07:42.453 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Starting SchoolwallApplication using Java 22.0.1 with PID 28456 (D:\Repos\schoolwall\target\classes started by Dr.Y in D:\Repos\schoolwall)
+2025-06-18 15:07:42.454 [restartedMain] DEBUG c.f.schoolwall.SchoolwallApplication - Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-06-18 15:07:42.454 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-18 15:07:42.648 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-18 15:07:42.648 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:07:42.649 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-18 15:07:42.649 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-06-18 15:07:42.669 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-18 15:07:42.669 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 213 ms
+2025-06-18 15:07:42.742 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/callback' ...
+2025-06-18 15:07:42.742 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/callback using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@259a9e5c ...
+2025-06-18 15:07:42.742 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Unable to resolve location classpath:db/callback.
+2025-06-18 15:07:42.743 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/migration' ...
+2025-06-18 15:07:42.743 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/migration using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@259a9e5c ...
+2025-06-18 15:07:42.743 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning URL: file:/D:/Repos/schoolwall/target/classes/db/migration
+2025-06-18 15:07:42.743 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning starting at classpath root in filesystem: D:\Repos\schoolwall\target\classes\
+2025-06-18 15:07:42.744 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning for resources in path: D:\Repos\schoolwall\target\classes\db\migration (db/migration)
+2025-06-18 15:07:42.744 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V1__initial_schema.sql
+2025-06-18 15:07:42.744 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V2__add_index_to_posts.sql
+2025-06-18 15:07:42.744 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classes at classpath:db/migration
+2025-06-18 15:07:42.744 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Starting...
+2025-06-18 15:07:42.747 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-4 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7278ac95
+2025-06-18 15:07:42.747 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Start completed.
+2025-06-18 15:07:42.748 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V2__add_index_to_posts.sql
+2025-06-18 15:07:42.748 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V1__initial_schema.sql
+2025-06-18 15:07:42.750 [restartedMain] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:mysql://localhost:3306/schoolwall?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&useUnicode=true (MySQL 8.4)
+2025-06-18 15:07:42.750 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Database Type: MySQL
+2025-06-18 15:07:42.750 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Driver: MySQL Connector/J mysql-connector-j-9.2.0 (Revision: a3909bfeb62d5a517ab444bb88ba7ecf26100297)
+2025-06-18 15:07:42.751 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - DDL Transactions Supported: false
+2025-06-18 15:07:42.751 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Schemas: 
+2025-06-18 15:07:42.751 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Default schema: null
+2025-06-18 15:07:42.772 [restartedMain] WARN  o.f.c.i.database.base.Database - Flyway upgrade recommended: MySQL 8.4 is newer than this version of Flyway and support has not been tested. The latest supported version of MySQL is 8.1.
+2025-06-18 15:07:42.772 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Scanning for script callbacks ...
+2025-06-18 15:07:42.774 [restartedMain] DEBUG o.f.c.i.c.SqlScriptCallbackFactory - Scanning for SQL callbacks ...
+2025-06-18 15:07:42.775 [restartedMain] DEBUG o.f.core.internal.command.DbValidate - Validating migrations ...
+2025-06-18 15:07:42.775 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 15:07:42.776 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:07:42.776 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:07:42.776 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:07:42.777 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:07:42.777 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:07:42.777 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:07:42.778 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:07:42.778 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:07:42.783 [restartedMain] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.007s)
+2025-06-18 15:07:42.784 [restartedMain] DEBUG o.f.core.internal.command.DbSchemas - Skipping creation of existing schema: `schoolwall`
+2025-06-18 15:07:42.788 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 15:07:42.790 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Current version of schema `schoolwall`: 2
+2025-06-18 15:07:42.792 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Schema `schoolwall` is up to date. No migration necessary.
+2025-06-18 15:07:42.792 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Memory usage: 45 of 80M
+2025-06-18 15:07:42.878 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-06-18 15:07:42.887 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, DefaultResourcesFilter, DefaultLoginPageGeneratingFilter, DefaultLogoutPageGeneratingFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-18 15:07:42.922 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-06-18 15:07:42.924 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:07:42.927 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-18 15:07:42.928 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Started SchoolwallApplication in 0.495 seconds (process running for 1038.561)
+2025-06-18 15:07:42.930 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2025-06-18 15:08:09.591 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-06-18 15:08:09.593 [Thread-15] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-18 15:08:09.593 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:08:09.599 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-18 15:08:09.599 [Thread-15] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:08:09.599 [Thread-15] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Shutdown initiated...
+2025-06-18 15:08:09.601 [Thread-15] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Shutdown completed.
+2025-06-18 15:08:09.659 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Starting SchoolwallApplication using Java 22.0.1 with PID 28456 (D:\Repos\schoolwall\target\classes started by Dr.Y in D:\Repos\schoolwall)
+2025-06-18 15:08:09.659 [restartedMain] DEBUG c.f.schoolwall.SchoolwallApplication - Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-06-18 15:08:09.659 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-18 15:08:09.822 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-18 15:08:09.823 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:08:09.823 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-18 15:08:09.823 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-06-18 15:08:09.838 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-18 15:08:09.839 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 179 ms
+2025-06-18 15:08:09.894 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/callback' ...
+2025-06-18 15:08:09.894 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/callback using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@31873b5c ...
+2025-06-18 15:08:09.894 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Unable to resolve location classpath:db/callback.
+2025-06-18 15:08:09.894 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/migration' ...
+2025-06-18 15:08:09.894 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/migration using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@31873b5c ...
+2025-06-18 15:08:09.894 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning URL: file:/D:/Repos/schoolwall/target/classes/db/migration
+2025-06-18 15:08:09.894 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning starting at classpath root in filesystem: D:\Repos\schoolwall\target\classes\
+2025-06-18 15:08:09.894 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning for resources in path: D:\Repos\schoolwall\target\classes\db\migration (db/migration)
+2025-06-18 15:08:09.894 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V1__initial_schema.sql
+2025-06-18 15:08:09.894 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V2__add_index_to_posts.sql
+2025-06-18 15:08:09.894 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classes at classpath:db/migration
+2025-06-18 15:08:09.894 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-5 - Starting...
+2025-06-18 15:08:09.899 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3b641ef
+2025-06-18 15:08:09.899 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-5 - Start completed.
+2025-06-18 15:08:09.900 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V2__add_index_to_posts.sql
+2025-06-18 15:08:09.900 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V1__initial_schema.sql
+2025-06-18 15:08:09.904 [restartedMain] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:mysql://localhost:3306/schoolwall?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&useUnicode=true (MySQL 8.4)
+2025-06-18 15:08:09.904 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Database Type: MySQL
+2025-06-18 15:08:09.904 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Driver: MySQL Connector/J mysql-connector-j-9.2.0 (Revision: a3909bfeb62d5a517ab444bb88ba7ecf26100297)
+2025-06-18 15:08:09.904 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - DDL Transactions Supported: false
+2025-06-18 15:08:09.905 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Schemas: 
+2025-06-18 15:08:09.905 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Default schema: null
+2025-06-18 15:08:09.909 [restartedMain] WARN  o.f.c.i.database.base.Database - Flyway upgrade recommended: MySQL 8.4 is newer than this version of Flyway and support has not been tested. The latest supported version of MySQL is 8.1.
+2025-06-18 15:08:09.909 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Scanning for script callbacks ...
+2025-06-18 15:08:09.909 [restartedMain] DEBUG o.f.c.i.c.SqlScriptCallbackFactory - Scanning for SQL callbacks ...
+2025-06-18 15:08:09.911 [restartedMain] DEBUG o.f.core.internal.command.DbValidate - Validating migrations ...
+2025-06-18 15:08:09.911 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 15:08:09.912 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:08:09.912 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:08:09.912 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:08:09.912 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:08:09.912 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:08:09.913 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:08:09.913 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:08:09.913 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:08:09.918 [restartedMain] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.007s)
+2025-06-18 15:08:09.919 [restartedMain] DEBUG o.f.core.internal.command.DbSchemas - Skipping creation of existing schema: `schoolwall`
+2025-06-18 15:08:09.921 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 15:08:09.925 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Current version of schema `schoolwall`: 2
+2025-06-18 15:08:09.925 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Schema `schoolwall` is up to date. No migration necessary.
+2025-06-18 15:08:09.927 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Memory usage: 45 of 80M
+2025-06-18 15:08:10.006 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-06-18 15:08:10.014 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, DefaultResourcesFilter, DefaultLoginPageGeneratingFilter, DefaultLogoutPageGeneratingFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-18 15:08:10.044 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-06-18 15:08:10.046 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:08:10.049 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-18 15:08:10.051 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Started SchoolwallApplication in 0.409 seconds (process running for 1065.683)
+2025-06-18 15:08:10.051 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2025-06-18 15:12:11.753 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-06-18 15:12:11.755 [Thread-19] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-18 15:12:11.755 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:12:11.759 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-18 15:12:11.759 [Thread-19] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:12:11.759 [Thread-19] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-5 - Shutdown initiated...
+2025-06-18 15:12:11.762 [Thread-19] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-5 - Shutdown completed.
+2025-06-18 15:12:11.809 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Starting SchoolwallApplication using Java 22.0.1 with PID 28456 (D:\Repos\schoolwall\target\classes started by Dr.Y in D:\Repos\schoolwall)
+2025-06-18 15:12:11.809 [restartedMain] DEBUG c.f.schoolwall.SchoolwallApplication - Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-06-18 15:12:11.809 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-18 15:12:11.939 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-18 15:12:11.939 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:12:11.939 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-18 15:12:11.939 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-06-18 15:12:11.951 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-18 15:12:11.951 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 140 ms
+2025-06-18 15:12:12.004 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/callback' ...
+2025-06-18 15:12:12.004 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/callback using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@6f7ae195 ...
+2025-06-18 15:12:12.004 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Unable to resolve location classpath:db/callback.
+2025-06-18 15:12:12.004 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/migration' ...
+2025-06-18 15:12:12.004 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/migration using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@6f7ae195 ...
+2025-06-18 15:12:12.004 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning URL: file:/D:/Repos/schoolwall/target/classes/db/migration
+2025-06-18 15:12:12.004 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning starting at classpath root in filesystem: D:\Repos\schoolwall\target\classes\
+2025-06-18 15:12:12.004 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning for resources in path: D:\Repos\schoolwall\target\classes\db\migration (db/migration)
+2025-06-18 15:12:12.004 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V1__initial_schema.sql
+2025-06-18 15:12:12.004 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V2__add_index_to_posts.sql
+2025-06-18 15:12:12.004 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classes at classpath:db/migration
+2025-06-18 15:12:12.006 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-6 - Starting...
+2025-06-18 15:12:12.009 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1b6b6c87
+2025-06-18 15:12:12.009 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-6 - Start completed.
+2025-06-18 15:12:12.010 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V2__add_index_to_posts.sql
+2025-06-18 15:12:12.010 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V1__initial_schema.sql
+2025-06-18 15:12:12.013 [restartedMain] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:mysql://localhost:3306/schoolwall?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&useUnicode=true (MySQL 8.4)
+2025-06-18 15:12:12.013 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Database Type: MySQL
+2025-06-18 15:12:12.013 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Driver: MySQL Connector/J mysql-connector-j-9.2.0 (Revision: a3909bfeb62d5a517ab444bb88ba7ecf26100297)
+2025-06-18 15:12:12.013 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - DDL Transactions Supported: false
+2025-06-18 15:12:12.013 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Schemas: 
+2025-06-18 15:12:12.014 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Default schema: null
+2025-06-18 15:12:12.017 [restartedMain] WARN  o.f.c.i.database.base.Database - Flyway upgrade recommended: MySQL 8.4 is newer than this version of Flyway and support has not been tested. The latest supported version of MySQL is 8.1.
+2025-06-18 15:12:12.017 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Scanning for script callbacks ...
+2025-06-18 15:12:12.017 [restartedMain] DEBUG o.f.c.i.c.SqlScriptCallbackFactory - Scanning for SQL callbacks ...
+2025-06-18 15:12:12.018 [restartedMain] DEBUG o.f.core.internal.command.DbValidate - Validating migrations ...
+2025-06-18 15:12:12.018 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 15:12:12.019 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:12:12.019 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:12:12.019 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:12:12.019 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:12:12.020 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:12:12.020 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:12:12.020 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:12:12.020 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:12:12.024 [restartedMain] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.006s)
+2025-06-18 15:12:12.026 [restartedMain] DEBUG o.f.core.internal.command.DbSchemas - Skipping creation of existing schema: `schoolwall`
+2025-06-18 15:12:12.028 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 15:12:12.029 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Current version of schema `schoolwall`: 2
+2025-06-18 15:12:12.029 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Schema `schoolwall` is up to date. No migration necessary.
+2025-06-18 15:12:12.031 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Memory usage: 104 of 188M
+2025-06-18 15:12:12.106 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-06-18 15:12:12.115 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, DefaultResourcesFilter, DefaultLoginPageGeneratingFilter, DefaultLogoutPageGeneratingFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-18 15:12:12.142 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-06-18 15:12:12.144 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:12:12.150 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-18 15:12:12.152 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Started SchoolwallApplication in 0.36 seconds (process running for 1307.783)
+2025-06-18 15:12:12.153 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2025-06-18 15:12:27.723 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-06-18 15:12:27.725 [Thread-23] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-18 15:12:27.725 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:12:27.730 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-18 15:12:27.730 [Thread-23] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:12:27.732 [Thread-23] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-6 - Shutdown initiated...
+2025-06-18 15:12:27.734 [Thread-23] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-6 - Shutdown completed.
+2025-06-18 15:12:27.781 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Starting SchoolwallApplication using Java 22.0.1 with PID 28456 (D:\Repos\schoolwall\target\classes started by Dr.Y in D:\Repos\schoolwall)
+2025-06-18 15:12:27.781 [restartedMain] DEBUG c.f.schoolwall.SchoolwallApplication - Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-06-18 15:12:27.781 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-18 15:12:27.914 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-18 15:12:27.914 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:12:27.914 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-18 15:12:27.914 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-06-18 15:12:27.925 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-18 15:12:27.925 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 141 ms
+2025-06-18 15:12:27.981 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/callback' ...
+2025-06-18 15:12:27.981 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/callback using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@6fa3b271 ...
+2025-06-18 15:12:27.981 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Unable to resolve location classpath:db/callback.
+2025-06-18 15:12:27.981 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/migration' ...
+2025-06-18 15:12:27.981 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/migration using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@6fa3b271 ...
+2025-06-18 15:12:27.983 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning URL: file:/D:/Repos/schoolwall/target/classes/db/migration
+2025-06-18 15:12:27.983 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning starting at classpath root in filesystem: D:\Repos\schoolwall\target\classes\
+2025-06-18 15:12:27.983 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning for resources in path: D:\Repos\schoolwall\target\classes\db\migration (db/migration)
+2025-06-18 15:12:27.983 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V1__initial_schema.sql
+2025-06-18 15:12:27.983 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V2__add_index_to_posts.sql
+2025-06-18 15:12:27.983 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classes at classpath:db/migration
+2025-06-18 15:12:27.983 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-7 - Starting...
+2025-06-18 15:12:27.986 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-7 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7220a0d2
+2025-06-18 15:12:27.986 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-7 - Start completed.
+2025-06-18 15:12:27.986 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V2__add_index_to_posts.sql
+2025-06-18 15:12:27.988 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V1__initial_schema.sql
+2025-06-18 15:12:27.990 [restartedMain] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:mysql://localhost:3306/schoolwall?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&useUnicode=true (MySQL 8.4)
+2025-06-18 15:12:27.990 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Database Type: MySQL
+2025-06-18 15:12:27.990 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Driver: MySQL Connector/J mysql-connector-j-9.2.0 (Revision: a3909bfeb62d5a517ab444bb88ba7ecf26100297)
+2025-06-18 15:12:27.990 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - DDL Transactions Supported: false
+2025-06-18 15:12:27.990 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Schemas: 
+2025-06-18 15:12:27.990 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Default schema: null
+2025-06-18 15:12:27.992 [restartedMain] WARN  o.f.c.i.database.base.Database - Flyway upgrade recommended: MySQL 8.4 is newer than this version of Flyway and support has not been tested. The latest supported version of MySQL is 8.1.
+2025-06-18 15:12:27.992 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Scanning for script callbacks ...
+2025-06-18 15:12:27.992 [restartedMain] DEBUG o.f.c.i.c.SqlScriptCallbackFactory - Scanning for SQL callbacks ...
+2025-06-18 15:12:27.994 [restartedMain] DEBUG o.f.core.internal.command.DbValidate - Validating migrations ...
+2025-06-18 15:12:27.995 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 15:12:27.995 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:12:27.995 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:12:27.995 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:12:27.995 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:12:27.995 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:12:27.995 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:12:27.995 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:12:27.995 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:12:27.999 [restartedMain] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.004s)
+2025-06-18 15:12:28.000 [restartedMain] DEBUG o.f.core.internal.command.DbSchemas - Skipping creation of existing schema: `schoolwall`
+2025-06-18 15:12:28.003 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 15:12:28.005 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Current version of schema `schoolwall`: 2
+2025-06-18 15:12:28.005 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Schema `schoolwall` is up to date. No migration necessary.
+2025-06-18 15:12:28.006 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Memory usage: 103 of 160M
+2025-06-18 15:12:28.078 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-06-18 15:12:28.086 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, DefaultResourcesFilter, DefaultLoginPageGeneratingFilter, DefaultLogoutPageGeneratingFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-18 15:12:28.125 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-06-18 15:12:28.128 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:12:28.128 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-18 15:12:28.130 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Started SchoolwallApplication in 0.363 seconds (process running for 1323.763)
+2025-06-18 15:12:28.130 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2025-06-18 15:12:39.661 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-06-18 15:12:39.663 [Thread-27] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-18 15:12:39.663 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:12:39.666 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-18 15:12:39.667 [Thread-27] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:12:39.669 [Thread-27] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-7 - Shutdown initiated...
+2025-06-18 15:12:39.671 [Thread-27] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-7 - Shutdown completed.
+2025-06-18 15:12:39.718 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Starting SchoolwallApplication using Java 22.0.1 with PID 28456 (D:\Repos\schoolwall\target\classes started by Dr.Y in D:\Repos\schoolwall)
+2025-06-18 15:12:39.718 [restartedMain] DEBUG c.f.schoolwall.SchoolwallApplication - Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-06-18 15:12:39.718 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-18 15:12:39.843 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-18 15:12:39.844 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:12:39.844 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-18 15:12:39.844 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-06-18 15:12:39.854 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-18 15:12:39.854 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 136 ms
+2025-06-18 15:12:39.897 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/callback' ...
+2025-06-18 15:12:39.897 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/callback using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@28c5a3ce ...
+2025-06-18 15:12:39.899 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Unable to resolve location classpath:db/callback.
+2025-06-18 15:12:39.900 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/migration' ...
+2025-06-18 15:12:39.900 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/migration using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@28c5a3ce ...
+2025-06-18 15:12:39.900 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning URL: file:/D:/Repos/schoolwall/target/classes/db/migration
+2025-06-18 15:12:39.900 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning starting at classpath root in filesystem: D:\Repos\schoolwall\target\classes\
+2025-06-18 15:12:39.900 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning for resources in path: D:\Repos\schoolwall\target\classes\db\migration (db/migration)
+2025-06-18 15:12:39.901 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V1__initial_schema.sql
+2025-06-18 15:12:39.901 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V2__add_index_to_posts.sql
+2025-06-18 15:12:39.901 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classes at classpath:db/migration
+2025-06-18 15:12:39.901 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-8 - Starting...
+2025-06-18 15:12:39.903 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-8 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2a7e66c9
+2025-06-18 15:12:39.905 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-8 - Start completed.
+2025-06-18 15:12:39.905 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V2__add_index_to_posts.sql
+2025-06-18 15:12:39.905 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V1__initial_schema.sql
+2025-06-18 15:12:39.907 [restartedMain] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:mysql://localhost:3306/schoolwall?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&useUnicode=true (MySQL 8.4)
+2025-06-18 15:12:39.907 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Database Type: MySQL
+2025-06-18 15:12:39.907 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Driver: MySQL Connector/J mysql-connector-j-9.2.0 (Revision: a3909bfeb62d5a517ab444bb88ba7ecf26100297)
+2025-06-18 15:12:39.907 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - DDL Transactions Supported: false
+2025-06-18 15:12:39.907 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Schemas: 
+2025-06-18 15:12:39.907 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Default schema: null
+2025-06-18 15:12:39.911 [restartedMain] WARN  o.f.c.i.database.base.Database - Flyway upgrade recommended: MySQL 8.4 is newer than this version of Flyway and support has not been tested. The latest supported version of MySQL is 8.1.
+2025-06-18 15:12:39.912 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Scanning for script callbacks ...
+2025-06-18 15:12:39.912 [restartedMain] DEBUG o.f.c.i.c.SqlScriptCallbackFactory - Scanning for SQL callbacks ...
+2025-06-18 15:12:39.914 [restartedMain] DEBUG o.f.core.internal.command.DbValidate - Validating migrations ...
+2025-06-18 15:12:39.914 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 15:12:39.914 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:12:39.914 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:12:39.914 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:12:39.914 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:12:39.914 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:12:39.916 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:12:39.916 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:12:39.916 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:12:39.918 [restartedMain] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.005s)
+2025-06-18 15:12:39.920 [restartedMain] DEBUG o.f.core.internal.command.DbSchemas - Skipping creation of existing schema: `schoolwall`
+2025-06-18 15:12:39.922 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 15:12:39.924 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Current version of schema `schoolwall`: 2
+2025-06-18 15:12:39.925 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Schema `schoolwall` is up to date. No migration necessary.
+2025-06-18 15:12:39.926 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Memory usage: 102 of 160M
+2025-06-18 15:12:39.999 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-06-18 15:12:40.008 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, DefaultResourcesFilter, DefaultLoginPageGeneratingFilter, DefaultLogoutPageGeneratingFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-18 15:12:40.047 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-06-18 15:12:40.049 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:12:40.050 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-18 15:12:40.052 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Started SchoolwallApplication in 0.35 seconds (process running for 1335.685)
+2025-06-18 15:12:40.052 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2025-06-18 15:12:46.511 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-06-18 15:12:46.511 [Thread-31] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-18 15:12:46.513 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:12:46.516 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-18 15:12:46.516 [Thread-31] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:12:46.517 [Thread-31] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-8 - Shutdown initiated...
+2025-06-18 15:12:46.518 [Thread-31] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-8 - Shutdown completed.
+2025-06-18 15:12:46.561 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Starting SchoolwallApplication using Java 22.0.1 with PID 28456 (D:\Repos\schoolwall\target\classes started by Dr.Y in D:\Repos\schoolwall)
+2025-06-18 15:12:46.561 [restartedMain] DEBUG c.f.schoolwall.SchoolwallApplication - Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-06-18 15:12:46.561 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-18 15:12:46.686 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-18 15:12:46.688 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:12:46.688 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-18 15:12:46.689 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-06-18 15:12:46.698 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-18 15:12:46.700 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 137 ms
+2025-06-18 15:12:46.745 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/callback' ...
+2025-06-18 15:12:46.745 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/callback using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@18ad4e4e ...
+2025-06-18 15:12:46.745 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Unable to resolve location classpath:db/callback.
+2025-06-18 15:12:46.747 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/migration' ...
+2025-06-18 15:12:46.747 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/migration using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@18ad4e4e ...
+2025-06-18 15:12:46.747 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning URL: file:/D:/Repos/schoolwall/target/classes/db/migration
+2025-06-18 15:12:46.747 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning starting at classpath root in filesystem: D:\Repos\schoolwall\target\classes\
+2025-06-18 15:12:46.747 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning for resources in path: D:\Repos\schoolwall\target\classes\db\migration (db/migration)
+2025-06-18 15:12:46.747 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V1__initial_schema.sql
+2025-06-18 15:12:46.747 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V2__add_index_to_posts.sql
+2025-06-18 15:12:46.747 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classes at classpath:db/migration
+2025-06-18 15:12:46.747 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-9 - Starting...
+2025-06-18 15:12:46.752 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Added connection com.mysql.cj.jdbc.ConnectionImpl@791070f3
+2025-06-18 15:12:46.752 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-9 - Start completed.
+2025-06-18 15:12:46.752 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V2__add_index_to_posts.sql
+2025-06-18 15:12:46.754 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V1__initial_schema.sql
+2025-06-18 15:12:46.757 [restartedMain] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:mysql://localhost:3306/schoolwall?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&useUnicode=true (MySQL 8.4)
+2025-06-18 15:12:46.757 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Database Type: MySQL
+2025-06-18 15:12:46.757 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Driver: MySQL Connector/J mysql-connector-j-9.2.0 (Revision: a3909bfeb62d5a517ab444bb88ba7ecf26100297)
+2025-06-18 15:12:46.757 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - DDL Transactions Supported: false
+2025-06-18 15:12:46.757 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Schemas: 
+2025-06-18 15:12:46.757 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Default schema: null
+2025-06-18 15:12:46.764 [restartedMain] WARN  o.f.c.i.database.base.Database - Flyway upgrade recommended: MySQL 8.4 is newer than this version of Flyway and support has not been tested. The latest supported version of MySQL is 8.1.
+2025-06-18 15:12:46.764 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Scanning for script callbacks ...
+2025-06-18 15:12:46.764 [restartedMain] DEBUG o.f.c.i.c.SqlScriptCallbackFactory - Scanning for SQL callbacks ...
+2025-06-18 15:12:46.764 [restartedMain] DEBUG o.f.core.internal.command.DbValidate - Validating migrations ...
+2025-06-18 15:12:46.766 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 15:12:46.766 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:12:46.767 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:12:46.767 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:12:46.767 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:12:46.767 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:12:46.767 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:12:46.768 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:12:46.768 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:12:46.773 [restartedMain] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.007s)
+2025-06-18 15:12:46.774 [restartedMain] DEBUG o.f.core.internal.command.DbSchemas - Skipping creation of existing schema: `schoolwall`
+2025-06-18 15:12:46.777 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 15:12:46.779 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Current version of schema `schoolwall`: 2
+2025-06-18 15:12:46.779 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Schema `schoolwall` is up to date. No migration necessary.
+2025-06-18 15:12:46.781 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Memory usage: 103 of 160M
+2025-06-18 15:12:46.856 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-06-18 15:12:46.863 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, DefaultResourcesFilter, DefaultLoginPageGeneratingFilter, DefaultLogoutPageGeneratingFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-18 15:12:46.905 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-06-18 15:12:46.907 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:12:46.909 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-18 15:12:46.911 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Started SchoolwallApplication in 0.363 seconds (process running for 1342.543)
+2025-06-18 15:12:46.911 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2025-06-18 15:12:58.415 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-06-18 15:12:58.416 [Thread-35] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-18 15:12:58.417 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:12:58.421 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-18 15:12:58.421 [Thread-35] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:12:58.422 [Thread-35] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-9 - Shutdown initiated...
+2025-06-18 15:12:58.423 [Thread-35] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-9 - Shutdown completed.
+2025-06-18 15:12:58.470 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Starting SchoolwallApplication using Java 22.0.1 with PID 28456 (D:\Repos\schoolwall\target\classes started by Dr.Y in D:\Repos\schoolwall)
+2025-06-18 15:12:58.470 [restartedMain] DEBUG c.f.schoolwall.SchoolwallApplication - Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-06-18 15:12:58.471 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-18 15:12:58.583 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-18 15:12:58.585 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:12:58.585 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-18 15:12:58.585 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-06-18 15:12:58.594 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-18 15:12:58.594 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 122 ms
+2025-06-18 15:12:58.639 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/callback' ...
+2025-06-18 15:12:58.639 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/callback using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@5eaaaec7 ...
+2025-06-18 15:12:58.639 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Unable to resolve location classpath:db/callback.
+2025-06-18 15:12:58.641 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/migration' ...
+2025-06-18 15:12:58.641 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/migration using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@5eaaaec7 ...
+2025-06-18 15:12:58.641 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning URL: file:/D:/Repos/schoolwall/target/classes/db/migration
+2025-06-18 15:12:58.641 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning starting at classpath root in filesystem: D:\Repos\schoolwall\target\classes\
+2025-06-18 15:12:58.641 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning for resources in path: D:\Repos\schoolwall\target\classes\db\migration (db/migration)
+2025-06-18 15:12:58.641 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V1__initial_schema.sql
+2025-06-18 15:12:58.641 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V2__add_index_to_posts.sql
+2025-06-18 15:12:58.641 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classes at classpath:db/migration
+2025-06-18 15:12:58.641 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-10 - Starting...
+2025-06-18 15:12:58.645 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7c18a953
+2025-06-18 15:12:58.645 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-10 - Start completed.
+2025-06-18 15:12:58.646 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V2__add_index_to_posts.sql
+2025-06-18 15:12:58.647 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V1__initial_schema.sql
+2025-06-18 15:12:58.655 [restartedMain] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:mysql://localhost:3306/schoolwall?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&useUnicode=true (MySQL 8.4)
+2025-06-18 15:12:58.655 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Database Type: MySQL
+2025-06-18 15:12:58.655 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Driver: MySQL Connector/J mysql-connector-j-9.2.0 (Revision: a3909bfeb62d5a517ab444bb88ba7ecf26100297)
+2025-06-18 15:12:58.655 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - DDL Transactions Supported: false
+2025-06-18 15:12:58.655 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Schemas: 
+2025-06-18 15:12:58.655 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Default schema: null
+2025-06-18 15:12:58.661 [restartedMain] WARN  o.f.c.i.database.base.Database - Flyway upgrade recommended: MySQL 8.4 is newer than this version of Flyway and support has not been tested. The latest supported version of MySQL is 8.1.
+2025-06-18 15:12:58.661 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Scanning for script callbacks ...
+2025-06-18 15:12:58.661 [restartedMain] DEBUG o.f.c.i.c.SqlScriptCallbackFactory - Scanning for SQL callbacks ...
+2025-06-18 15:12:58.661 [restartedMain] DEBUG o.f.core.internal.command.DbValidate - Validating migrations ...
+2025-06-18 15:12:58.663 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 15:12:58.663 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:12:58.663 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:12:58.663 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:12:58.663 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:12:58.663 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:12:58.663 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:12:58.663 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 15:12:58.665 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 15:12:58.668 [restartedMain] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.006s)
+2025-06-18 15:12:58.670 [restartedMain] DEBUG o.f.core.internal.command.DbSchemas - Skipping creation of existing schema: `schoolwall`
+2025-06-18 15:12:58.674 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 15:12:58.676 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Current version of schema `schoolwall`: 2
+2025-06-18 15:12:58.677 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Schema `schoolwall` is up to date. No migration necessary.
+2025-06-18 15:12:58.678 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Memory usage: 104 of 160M
+2025-06-18 15:12:58.749 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-06-18 15:12:58.760 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, DefaultResourcesFilter, DefaultLoginPageGeneratingFilter, DefaultLogoutPageGeneratingFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-18 15:12:58.805 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-06-18 15:12:58.808 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-06-18 15:12:58.810 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-18 15:12:58.812 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Started SchoolwallApplication in 0.355 seconds (process running for 1354.444)
+2025-06-18 15:12:58.813 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged

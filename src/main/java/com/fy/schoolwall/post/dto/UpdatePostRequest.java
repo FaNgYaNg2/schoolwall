@@ -1,5 +1,7 @@
 package com.fy.schoolwall.post.dto;
 
+import com.fy.schoolwall.common.enums.PostCategory;
+
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -22,4 +24,15 @@ public class UpdatePostRequest {
     private String coverImage;
 
     private String status;
+
+    public PostCategory getCategoryEnum() {
+        if (this.category == null || this.category.isEmpty()) {
+            return null; // 如果分类为空，返回null
+        }
+        PostCategory categoryEnum = PostCategory.fromCode(this.category);
+        if (categoryEnum == null) {
+            throw new IllegalArgumentException("Invalid category: " + this.category);
+        }
+        return categoryEnum;
+    }
 }

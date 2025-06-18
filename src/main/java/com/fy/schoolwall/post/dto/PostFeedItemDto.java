@@ -1,5 +1,6 @@
 package com.fy.schoolwall.post.dto;
 
+import com.fy.schoolwall.common.enums.PostCategory;
 import lombok.Data;
 import java.time.LocalDateTime;
 
@@ -11,6 +12,7 @@ public class PostFeedItemDto {
     private String slug;
     private String authorUsername;
     private String category;
+    private String categoryDisplayName; // 分类显示名称
     private String coverImage;
     private Integer viewCount;
     private Integer likeCount;
@@ -18,6 +20,15 @@ public class PostFeedItemDto {
     private Boolean isTop;
     private Boolean isRecommended;
     private LocalDateTime publishedAt;
+
+    /**
+     * 设置分类并自动设置显示名称
+     */
+    public void setCategory(String category) {
+        this.category = category;
+        PostCategory categoryEnum = PostCategory.fromCode(category);
+        this.categoryDisplayName = categoryEnum != null ? categoryEnum.getDisplayName() : category;
+    }
 
     /**
      * 生成内容摘要

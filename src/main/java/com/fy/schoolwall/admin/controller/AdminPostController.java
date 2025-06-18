@@ -4,6 +4,7 @@ import com.fy.schoolwall.admin.dto.AdminPostActionRequest;
 import com.fy.schoolwall.admin.service.AdminPostService;
 import com.fy.schoolwall.common.util.PaginationUtil;
 import com.fy.schoolwall.post.dto.PostDto;
+import com.fy.schoolwall.common.enums.PostCategory;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,8 @@ import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/admin/posts")
@@ -25,7 +28,7 @@ public class AdminPostController {
 
     /**
      * 获取所有帖子（分页）
-     * GET /admin/posts?page=0&size=10&status=PUBLISHED
+     * GET /admin/posts?page=0&size=10&status=PUBLISHED&category=TECH_SHARING
      */
     @GetMapping
     public ResponseEntity<PaginationUtil.PageResponse<PostDto>> getAllPosts(
@@ -33,13 +36,27 @@ public class AdminPostController {
             @RequestParam(defaultValue = "10") Integer size,
             @RequestParam(required = false) String sort,
             @RequestParam(defaultValue = "DESC") String direction,
-            @RequestParam(required = false) String status) {
+            @RequestParam(required = false) String status,
+            @RequestParam(required = false) String category) {
 
         PaginationUtil.PageRequest pageRequest = PaginationUtil.validatePageRequest(page, size, sort, direction);
 
         PaginationUtil.PageResponse<PostDto> posts;
-        if (status != null) {
+        if (status != null && category != null) {
+            // 同时按状态和分类筛选 - 这里需要在PostMapper中添加相应方法
+            PostCategory categoryEnum = PostCategory.fromCode(category);
+            if (categoryEnum == null) {
+                throw new RuntimeException("Invalid category: " + category);
+            }
+            posts = adminPostService.getPostsByCategory(categoryEnum, pageRequest);
+        } else if (status != null) {
             posts = adminPostService.getPostsByStatus(status, pageRequest);
+        } else if (category != null) {
+            PostCategory categoryEnum = PostCategory.fromCode(category);
+            if (categoryEnum == null) {
+                throw new RuntimeException("Invalid category: " + category);
+            }
+            posts = adminPostService.getPostsByCategory(categoryEnum, pageRequest);
         } else {
             posts = adminPostService.getAllPosts(pageRequest);
         }
@@ -88,6 +105,8 @@ public class AdminPostController {
 
         Map<String, String> response = new HashMap<>();
         response.put("message", "Post status updated to " + status);
+        response.put("postId", postId.toString());
+        response.put("newStatus", status);
         return ResponseEntity.ok(response);
     }
 
@@ -109,6 +128,8 @@ public class AdminPostController {
         Map<String, String> response = new HashMap<>();
         String action = isTop ? "set as top" : "removed from top";
         response.put("message", "Post " + action + " successfully");
+        response.put("postId", postId.toString());
+        response.put("isTop", isTop.toString());
         return ResponseEntity.ok(response);
     }
 
@@ -130,6 +151,8 @@ public class AdminPostController {
         Map<String, String> response = new HashMap<>();
         String action = isRecommended ? "set as recommended" : "removed from recommended";
         response.put("message", "Post " + action + " successfully");
+        response.put("postId", postId.toString());
+        response.put("isRecommended", isRecommended.toString());
         return ResponseEntity.ok(response);
     }
 
@@ -143,6 +166,7 @@ public class AdminPostController {
 
         Map<String, String> response = new HashMap<>();
         response.put("message", "Post deleted successfully");
+        response.put("postId", postId.toString());
         return ResponseEntity.ok(response);
     }
 
@@ -158,6 +182,11 @@ public class AdminPostController {
 
         Map<String, String> response = new HashMap<>();
         response.put("message", "Action '" + request.getAction() + "' executed successfully");
+        response.put("postId", postId.toString());
+        response.put("action", request.getAction());
+        if (request.getReason() != null) {
+            response.put("reason", request.getReason());
+        }
         return ResponseEntity.ok(response);
     }
 
@@ -184,6 +213,62 @@ public class AdminPostController {
 
         Map<String, String> response = new HashMap<>();
         response.put("message", "Batch status update (" + status + ") for " + postIds.size() + " posts completed");
+        response.put("status", status);
+        response.put("count", String.valueOf(postIds.size()));
         return ResponseEntity.ok(response);
+    }
+
+    /**
+     * 获取各分类帖子统计
+     * GET /admin/posts/category-stats
+     */
+    @GetMapping("/category-stats")
+    public ResponseEntity<Map<String, Object>> getCategoryStats() {
+        Map<String, Object> stats = new HashMap<>();
+
+        for (PostCategory category : PostCategory.values()) {
+            long count = adminPostService.getPostCountByCategory(category);
+            Map<String, Object> categoryInfo = new HashMap<>();
+            categoryInfo.put("code", category.getCode());
+            categoryInfo.put("displayName", category.getDisplayName());
+            categoryInfo.put("count", count);
+            stats.put(category.getCode(), categoryInfo);
+        }
+
+        return ResponseEntity.ok(stats);
+    }
+
+    /**
+     * 获取所有帖子分类
+     * GET /admin/posts/categories
+     */
+    @GetMapping("/categories")
+    public ResponseEntity<List<Map<String, String>>> getPostCategories() {
+        List<Map<String, String>> categories = Arrays.stream(PostCategory.values())
+                .map(category -> {
+                    Map<String, String> categoryMap = new HashMap<>();
+                    categoryMap.put("code", category.getCode());
+                    categoryMap.put("displayName", category.getDisplayName());
+                    return categoryMap;
+                })
+                .collect(Collectors.toList());
+        
+        return ResponseEntity.ok(categories);
+    }
+
+    /**
+     * 获取所有可用的帖子状态
+     * GET /admin/posts/statuses
+     */
+    @GetMapping("/statuses")
+    public ResponseEntity<List<Map<String, String>>> getPostStatuses() {
+        List<Map<String, String>> statuses = List.of(
+            Map.of("code", "DRAFT", "displayName", "草稿"),
+            Map.of("code", "PUBLISHED", "displayName", "已发布"),
+            Map.of("code", "HIDDEN", "displayName", "已隐藏"),
+            Map.of("code", "DELETED", "displayName", "已删除")
+        );
+        
+        return ResponseEntity.ok(statuses);
     }
 }

@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface PostMapper {
@@ -52,6 +53,9 @@ public interface PostMapper {
 
         long countByCategory(@Param("category") String category);
 
+        // 获取所有分类及其帖子数量统计
+        List<Map<String, Object>> getCategoryStats();
+
         // 管理员专用
         List<Post> findAllPosts(@Param("offset") int offset, @Param("limit") int limit);
 
@@ -60,4 +64,17 @@ public interface PostMapper {
         void setTopStatus(@Param("id") Long id, @Param("isTop") boolean isTop);
 
         void setRecommendedStatus(@Param("id") Long id, @Param("isRecommended") boolean isRecommended);
+
+        // 添加的方法
+        long countAllPosts();
+
+        long countPostsForReview();
+
+        // 按状态和分类同时筛选的方法
+        List<Post> findPostsByStatusAndCategory(@Param("status") String status,
+                                       @Param("category") String category,
+                                       @Param("offset") int offset,
+                                       @Param("limit") int limit);
+
+        long countByStatusAndCategory(@Param("status") String status, @Param("category") String category);
 }

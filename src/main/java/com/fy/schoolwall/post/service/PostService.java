@@ -2,6 +2,7 @@ package com.fy.schoolwall.post.service;
 
 import com.fy.schoolwall.common.exception.ResourceNotFoundException;
 import com.fy.schoolwall.common.util.PaginationUtil;
+import com.fy.schoolwall.common.enums.PostCategory;
 import com.fy.schoolwall.post.dto.*;
 import com.fy.schoolwall.post.model.Post;
 import com.fy.schoolwall.post.repository.PostMapper;
@@ -39,7 +40,13 @@ public class PostService {
         post.setAuthorId(currentUser.getId());
         post.setAuthorUsername(currentUser.getUsername());
         post.setStatus(request.getStatus() != null ? request.getStatus() : "DRAFT");
-        post.setCategory(request.getCategory());
+        
+        // 使用枚举设置分类
+        PostCategory categoryEnum = request.getCategoryEnum();
+        if (categoryEnum != null) {
+            post.setCategory(categoryEnum);
+        }
+        
         post.setTags(request.getTags());
         post.setCoverImage(request.getCoverImage());
         post.setViewCount(0);
@@ -66,7 +73,7 @@ public class PostService {
      */
     @Transactional
     public PostDto updatePost(Long postId, UpdatePostRequest request) {
-        Post post = findPostById(postId); // 改名避免冲突
+        Post post = findPostById(postId);
         User currentUser = userService.getCurrentAuthenticatedUser();
 
         // 检查权限：只有作者本人可以编辑
@@ -84,9 +91,15 @@ public class PostService {
         if (request.getContent() != null) {
             post.setContent(request.getContent());
         }
+        
+        // 使用枚举处理分类更新
         if (request.getCategory() != null) {
-            post.setCategory(request.getCategory());
+            PostCategory categoryEnum = request.getCategoryEnum();
+            if (categoryEnum != null) {
+                post.setCategory(categoryEnum);
+            }
         }
+        
         if (request.getTags() != null) {
             post.setTags(request.getTags());
         }
@@ -184,17 +197,33 @@ public class PostService {
     }
 
     /**
-     * 根据分类获取帖子
+     * 根据分类获取帖子 - 使用枚举
      */
-    public PaginationUtil.PageResponse<PostFeedItemDto> getPostsByCategory(String category,
+    public PaginationUtil.PageResponse<PostFeedItemDto> getPostsByCategory(PostCategory category,
             PaginationUtil.PageRequest pageRequest) {
-        List<Post> posts = postMapper.findPostsByCategory(category, pageRequest.getOffset(), pageRequest.getLimit());
+        if (category == null) {
+            throw new IllegalArgumentException("Category is required");
+        }
+
+        List<Post> posts = postMapper.findPostsByCategory(category.getCode(), pageRequest.getOffset(), pageRequest.getLimit());
         List<PostFeedItemDto> feedItems = posts.stream()
                 .map(this::convertToFeedItemDto)
                 .collect(Collectors.toList());
 
-        long totalElements = postMapper.countByCategory(category);
+        long totalElements = postMapper.countByCategory(category.getCode());
         return PaginationUtil.createPageResponse(feedItems, pageRequest, totalElements);
+    }
+
+    /**
+     * 根据分类获取帖子 - 兼容字符串参数
+     */
+    public PaginationUtil.PageResponse<PostFeedItemDto> getPostsByCategory(String categoryCode,
+            PaginationUtil.PageRequest pageRequest) {
+        PostCategory category = PostCategory.fromCode(categoryCode);
+        if (category == null) {
+            throw new IllegalArgumentException("Invalid category code: " + categoryCode);
+        }
+        return getPostsByCategory(category, pageRequest);
     }
 
     /**
@@ -281,7 +310,17 @@ public class PostService {
         dto.setAuthorId(post.getAuthorId());
         dto.setAuthorUsername(post.getAuthorUsername());
         dto.setStatus(post.getStatus());
-        dto.setCategory(post.getCategory());
+        
+        // 正确设置分类信息
+        PostCategory categoryEnum = post.getCategoryEnum();
+        if (categoryEnum != null) {
+            dto.setCategory(categoryEnum.getCode());
+            dto.setCategoryDisplayName(categoryEnum.getDisplayName());
+        } else {
+            dto.setCategory(post.getCategory());
+            dto.setCategoryDisplayName(post.getCategory());
+        }
+        
         dto.setTags(post.getTags());
         dto.setCoverImage(post.getCoverImage());
         dto.setViewCount(post.getViewCount());
@@ -303,7 +342,17 @@ public class PostService {
         dto.setTitle(post.getTitle());
         dto.setSlug(post.getSlug());
         dto.setAuthorUsername(post.getAuthorUsername());
-        dto.setCategory(post.getCategory());
+        
+        // 正确设置分类信息
+        PostCategory categoryEnum = post.getCategoryEnum();
+        if (categoryEnum != null) {
+            dto.setCategory(categoryEnum.getCode());
+            dto.setCategoryDisplayName(categoryEnum.getDisplayName());
+        } else {
+            dto.setCategory(post.getCategory());
+            dto.setCategoryDisplayName(post.getCategory());
+        }
+        
         dto.setCoverImage(post.getCoverImage());
         dto.setViewCount(post.getViewCount());
         dto.setCommentCount(post.getCommentCount());

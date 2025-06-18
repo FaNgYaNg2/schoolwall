@@ -24,14 +24,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                // 禁用 CSRF。注意：对于基于会话的认证，CSRF 保护通常是重要的。
-                // 在 REST API 中，如果前端不发送 CSRF token，禁用它会简化开发。
-                // 生产环境中，如果使用会话，强烈建议启用 CSRF 并确保前端正确处理 token。
-                .csrf(AbstractHttpConfigurer::disable)
+                .csrf(AbstractHttpConfigurer::disable) // 禁用 CSRF
                 .authorizeHttpRequests(authorize -> authorize
-                        // 允许所有用户访问注册和登录接口
-                        .requestMatchers("/auth/register").permitAll()
-                        .requestMatchers("/login").permitAll() // Spring Security 默认的登录处理URL
+                        // 允许对 /auth/**, /login, /logout 等公共端点的匿名访问
+                        .requestMatchers(
+                                "/auth/**", "/login", "/logout",
+                                // 允许公开访问 Swagger UI 和 API 文档
+                                "/swagger-ui.html",
+                                "/swagger-ui/**",
+                                "/api-docs",
+                                "/api-docs/**",
+                                "/v3/api-docs/**"
+                        ).permitAll()
                         // 只有 ADMIN 角色可以访问 /admin/** 路径下的资源
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         // 其他所有请求都需要认证
@@ -40,7 +44,7 @@ public class SecurityConfig {
                         .loginProcessingUrl("/login") // 指定处理登录表单提交的 URL
                         .usernameParameter("username") // 登录请求中用户名参数的名称
                         .passwordParameter("password") // 登录请求中密码参数的名称
-                        // 登录成功时的处理，返回 200 OK 和 JSON 消息
+                        // 登录成功时的处理，返回 200 OK 和 JSON 消 Messages
                         .successHandler((request, response, authentication) -> {
                             response.setStatus(HttpStatus.OK.value());
                             response.getWriter().write("{\"message\": \"Login successful\"}");

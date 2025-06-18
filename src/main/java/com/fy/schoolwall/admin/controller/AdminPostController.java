@@ -1,6 +1,7 @@
 package com.fy.schoolwall.admin.controller;
 
 import com.fy.schoolwall.admin.dto.AdminPostActionRequest;
+import com.fy.schoolwall.admin.dto.BatchPostStatusRequest;
 import com.fy.schoolwall.admin.service.AdminPostService;
 import com.fy.schoolwall.common.util.PaginationUtil;
 import com.fy.schoolwall.post.dto.PostDto;
@@ -196,25 +197,15 @@ public class AdminPostController {
      */
     @PutMapping("/batch/status")
     public ResponseEntity<Map<String, String>> batchUpdatePostStatus(
-            @RequestBody Map<String, Object> request) {
+            @Valid @RequestBody BatchPostStatusRequest request) {
 
-        @SuppressWarnings("unchecked")
-        List<Long> postIds = (List<Long>) request.get("postIds");
-        String status = (String) request.get("status");
-
-        if (postIds == null || postIds.isEmpty()) {
-            throw new RuntimeException("Post IDs are required");
-        }
-        if (status == null || status.trim().isEmpty()) {
-            throw new RuntimeException("Status is required");
-        }
-
-        adminPostService.batchUpdatePostStatus(postIds, status);
+        adminPostService.batchUpdatePostStatus(request.getPostIds(), request.getStatus());
 
         Map<String, String> response = new HashMap<>();
-        response.put("message", "Batch status update (" + status + ") for " + postIds.size() + " posts completed");
-        response.put("status", status);
-        response.put("count", String.valueOf(postIds.size()));
+        response.put("message", "Batch status update (" + request.getStatus() + ") for " + request.getPostIds().size()
+                + " posts completed");
+        response.put("status", request.getStatus());
+        response.put("count", String.valueOf(request.getPostIds().size()));
         return ResponseEntity.ok(response);
     }
 
@@ -252,7 +243,7 @@ public class AdminPostController {
                     return categoryMap;
                 })
                 .collect(Collectors.toList());
-        
+
         return ResponseEntity.ok(categories);
     }
 
@@ -263,12 +254,11 @@ public class AdminPostController {
     @GetMapping("/statuses")
     public ResponseEntity<List<Map<String, String>>> getPostStatuses() {
         List<Map<String, String>> statuses = List.of(
-            Map.of("code", "DRAFT", "displayName", "草稿"),
-            Map.of("code", "PUBLISHED", "displayName", "已发布"),
-            Map.of("code", "HIDDEN", "displayName", "已隐藏"),
-            Map.of("code", "DELETED", "displayName", "已删除")
-        );
-        
+                Map.of("code", "DRAFT", "displayName", "草稿"),
+                Map.of("code", "PUBLISHED", "displayName", "已发布"),
+                Map.of("code", "HIDDEN", "displayName", "已隐藏"),
+                Map.of("code", "DELETED", "displayName", "已删除"));
+
         return ResponseEntity.ok(statuses);
     }
 }

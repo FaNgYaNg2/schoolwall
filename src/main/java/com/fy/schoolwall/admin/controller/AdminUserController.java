@@ -1,6 +1,7 @@
 package com.fy.schoolwall.admin.controller;
 
 import com.fy.schoolwall.admin.dto.AdminUserDto;
+import com.fy.schoolwall.admin.dto.BatchUserStatusRequest;
 import com.fy.schoolwall.admin.service.AdminUserService;
 import com.fy.schoolwall.common.enums.UserRole;
 import com.fy.schoolwall.common.util.PaginationUtil;
@@ -106,24 +107,15 @@ public class AdminUserController {
      */
     @PutMapping("/batch/status")
     public ResponseEntity<Map<String, String>> batchToggleUserStatus(
-            @RequestBody Map<String, Object> request) {
-
-        @SuppressWarnings("unchecked")
-        List<Long> userIds = (List<Long>) request.get("userIds");
-        Boolean enabled = (Boolean) request.get("enabled");
-
-        if (userIds == null || userIds.isEmpty()) {
-            throw new RuntimeException("User IDs are required");
-        }
-        if (enabled == null) {
-            throw new RuntimeException("Enabled status is required");
-        }
-
-        adminUserService.batchToggleUserStatus(userIds, enabled);
+            @Valid @RequestBody BatchUserStatusRequest request) {
+        adminUserService.batchToggleUserStatus(request.getUserIds(), request.getEnabled());
 
         Map<String, String> response = new HashMap<>();
-        String action = enabled ? "enabled" : "disabled";
-        response.put("message", "Batch " + action + " " + userIds.size() + " users successfully");
+        String action = request.getEnabled() ? "enabled" : "disabled";
+        response.put("message",
+                "Batch status update (" + action + ") for " + request.getUserIds().size() + " users completed");
+        response.put("status", action);
+        response.put("count", String.valueOf(request.getUserIds().size()));
         return ResponseEntity.ok(response);
     }
 }

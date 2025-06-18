@@ -419,6 +419,7 @@ paths:
       tags:
         - Comments
       summary: 创建评论
+      description: 创建新的评论，支持对帖子或其他评论的回复。当回复其他评论时，parentId 应该是被回复评论的 ID，否则 parentId 应是0。
       security:
         - bearerAuth: []
       requestBody:

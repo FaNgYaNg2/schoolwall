@@ -869,6 +869,7 @@ paths:
       tags:
         - Admin - Post Management
       summary: 执行帖子操作
+      description: "approve, reject, set_top, remove_top, set_recommended, remove_recommended, delete"
       security:
         - bearerAuth: []
       parameters:

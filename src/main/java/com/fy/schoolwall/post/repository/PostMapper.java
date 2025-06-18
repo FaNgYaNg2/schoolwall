@@ -72,9 +72,9 @@ public interface PostMapper {
 
         // 按状态和分类同时筛选的方法
         List<Post> findPostsByStatusAndCategory(@Param("status") String status,
-                                       @Param("category") String category,
-                                       @Param("offset") int offset,
-                                       @Param("limit") int limit);
+                        @Param("category") String category,
+                        @Param("offset") int offset,
+                        @Param("limit") int limit);
 
         long countByStatusAndCategory(@Param("status") String status, @Param("category") String category);
 }

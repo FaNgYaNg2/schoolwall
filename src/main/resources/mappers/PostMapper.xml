@@ -106,8 +106,16 @@
     <select id="findAllPosts" resultMap="BaseResultMap"> SELECT * FROM posts ORDER BY created_at
         DESC LIMIT #{limit} OFFSET #{offset} </select>
 
-    <select id="findPostsForReview" resultMap="BaseResultMap"> SELECT * FROM posts WHERE status IN
-        ('DRAFT', 'PUBLISHED') ORDER BY created_at DESC LIMIT #{limit} OFFSET #{offset} </select>
+    <select id="findPostsForReview" resultType="com.fy.schoolwall.post.model.Post"> SELECT * FROM
+        posts WHERE status = 'DRAFT' ORDER BY created_at DESC LIMIT #{limit} OFFSET #{offset} </select>
+
+    <select id="countPostsForReview" resultType="long"> SELECT count(*) FROM posts WHERE status =
+        'DRAFT' </select>
+
+    <select id="countAllPosts" resultType="long"> SELECT count(*) FROM posts </select>
+
+    <select id="getCategoryStats" resultType="java.util.Map"> SELECT category, COUNT(*) as
+        post_count FROM post WHERE status = 'PUBLISHED' GROUP BY category </select>
 
     <!-- 管理员状态设置 -->
     <update id="setTopStatus"> UPDATE posts SET is_top = #{isTop}, updated_at = NOW() WHERE id =

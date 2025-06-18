@@ -10413,3 +10413,672 @@ Unconditional classes:
 2025-06-18 18:29:36.662 [http-nio-8080-exec-9] DEBUG c.f.s.u.r.U.updateUserStatus - ==>  Preparing: UPDATE users SET is_enabled = ?, updated_at = NOW() WHERE id = ?
 2025-06-18 18:29:36.662 [http-nio-8080-exec-9] DEBUG c.f.s.u.r.U.updateUserStatus - ==> Parameters: true(Boolean), 3(Long)
 2025-06-18 18:29:36.663 [http-nio-8080-exec-9] DEBUG c.f.s.u.r.U.updateUserStatus - <==    Updates: 1
+2025-06-18 18:56:33.634 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /admin/posts/category-stats
+2025-06-18 18:56:33.636 [http-nio-8080-exec-1] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_ADMIN]]]
+2025-06-18 18:56:33.636 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /admin/posts/category-stats
+2025-06-18 18:56:33.638 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:56:33.638 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:56:33.642 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:56:33.645 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==>  Preparing: SELECT COUNT(*) FROM posts WHERE category = ? AND status = 'PUBLISHED'
+2025-06-18 18:56:33.645 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==> Parameters: academic(String)
+2025-06-18 18:56:33.653 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - <==      Total: 1
+2025-06-18 18:56:33.654 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:56:33.654 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:56:33.656 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:56:33.656 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==>  Preparing: SELECT COUNT(*) FROM posts WHERE category = ? AND status = 'PUBLISHED'
+2025-06-18 18:56:33.657 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==> Parameters: campus_life(String)
+2025-06-18 18:56:33.659 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - <==      Total: 1
+2025-06-18 18:56:33.659 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:56:33.660 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:56:33.662 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:56:33.663 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==>  Preparing: SELECT COUNT(*) FROM posts WHERE category = ? AND status = 'PUBLISHED'
+2025-06-18 18:56:33.664 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==> Parameters: club_activity(String)
+2025-06-18 18:56:33.665 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - <==      Total: 1
+2025-06-18 18:56:33.665 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:56:33.666 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:56:33.667 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:56:33.668 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==>  Preparing: SELECT COUNT(*) FROM posts WHERE category = ? AND status = 'PUBLISHED'
+2025-06-18 18:56:33.668 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==> Parameters: job_intern(String)
+2025-06-18 18:56:33.669 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - <==      Total: 1
+2025-06-18 18:56:33.670 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:56:33.670 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:56:33.670 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:56:33.671 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==>  Preparing: SELECT COUNT(*) FROM posts WHERE category = ? AND status = 'PUBLISHED'
+2025-06-18 18:56:33.671 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==> Parameters: secondhand(String)
+2025-06-18 18:56:33.672 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - <==      Total: 1
+2025-06-18 18:56:33.672 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:56:33.673 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:56:33.675 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:56:33.675 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==>  Preparing: SELECT COUNT(*) FROM posts WHERE category = ? AND status = 'PUBLISHED'
+2025-06-18 18:56:33.676 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==> Parameters: lost_found(String)
+2025-06-18 18:56:33.677 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - <==      Total: 1
+2025-06-18 18:56:33.677 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:56:33.677 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:56:33.678 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:56:33.679 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==>  Preparing: SELECT COUNT(*) FROM posts WHERE category = ? AND status = 'PUBLISHED'
+2025-06-18 18:56:33.680 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==> Parameters: dormitory(String)
+2025-06-18 18:56:33.681 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - <==      Total: 1
+2025-06-18 18:56:33.682 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:56:33.682 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:56:33.683 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:56:33.684 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==>  Preparing: SELECT COUNT(*) FROM posts WHERE category = ? AND status = 'PUBLISHED'
+2025-06-18 18:56:33.684 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==> Parameters: dining(String)
+2025-06-18 18:56:33.685 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - <==      Total: 1
+2025-06-18 18:56:33.686 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:56:33.687 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:56:33.688 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:56:33.688 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==>  Preparing: SELECT COUNT(*) FROM posts WHERE category = ? AND status = 'PUBLISHED'
+2025-06-18 18:56:33.689 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==> Parameters: study_group(String)
+2025-06-18 18:56:33.690 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - <==      Total: 1
+2025-06-18 18:56:33.690 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:56:33.690 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:56:33.692 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:56:33.693 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==>  Preparing: SELECT COUNT(*) FROM posts WHERE category = ? AND status = 'PUBLISHED'
+2025-06-18 18:56:33.693 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==> Parameters: course_review(String)
+2025-06-18 18:56:33.694 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - <==      Total: 1
+2025-06-18 18:56:33.694 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:56:33.695 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:56:33.696 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:56:33.697 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==>  Preparing: SELECT COUNT(*) FROM posts WHERE category = ? AND status = 'PUBLISHED'
+2025-06-18 18:56:33.697 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==> Parameters: scholarship(String)
+2025-06-18 18:56:33.698 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - <==      Total: 1
+2025-06-18 18:56:33.699 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:56:33.699 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:56:33.700 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:56:33.700 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==>  Preparing: SELECT COUNT(*) FROM posts WHERE category = ? AND status = 'PUBLISHED'
+2025-06-18 18:56:33.701 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==> Parameters: competition(String)
+2025-06-18 18:56:33.702 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - <==      Total: 1
+2025-06-18 18:56:33.702 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:56:33.703 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:56:33.704 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:56:33.705 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==>  Preparing: SELECT COUNT(*) FROM posts WHERE category = ? AND status = 'PUBLISHED'
+2025-06-18 18:56:33.705 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==> Parameters: volunteer(String)
+2025-06-18 18:56:33.707 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - <==      Total: 1
+2025-06-18 18:56:33.707 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:56:33.708 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:56:33.709 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:56:33.710 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==>  Preparing: SELECT COUNT(*) FROM posts WHERE category = ? AND status = 'PUBLISHED'
+2025-06-18 18:56:33.710 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==> Parameters: sports(String)
+2025-06-18 18:56:33.711 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - <==      Total: 1
+2025-06-18 18:56:33.712 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:56:33.712 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:56:33.714 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:56:33.714 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==>  Preparing: SELECT COUNT(*) FROM posts WHERE category = ? AND status = 'PUBLISHED'
+2025-06-18 18:56:33.715 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==> Parameters: entertainment(String)
+2025-06-18 18:56:33.716 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - <==      Total: 1
+2025-06-18 18:56:33.716 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:56:33.716 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:56:33.717 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:56:33.718 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==>  Preparing: SELECT COUNT(*) FROM posts WHERE category = ? AND status = 'PUBLISHED'
+2025-06-18 18:56:33.718 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==> Parameters: travel(String)
+2025-06-18 18:56:33.719 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - <==      Total: 1
+2025-06-18 18:56:33.720 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:56:33.720 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:56:33.720 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:56:33.721 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==>  Preparing: SELECT COUNT(*) FROM posts WHERE category = ? AND status = 'PUBLISHED'
+2025-06-18 18:56:33.721 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==> Parameters: emotional(String)
+2025-06-18 18:56:33.722 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - <==      Total: 1
+2025-06-18 18:56:33.723 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:56:33.724 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:56:33.725 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:56:33.726 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==>  Preparing: SELECT COUNT(*) FROM posts WHERE category = ? AND status = 'PUBLISHED'
+2025-06-18 18:56:33.726 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==> Parameters: anonymous(String)
+2025-06-18 18:56:33.727 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - <==      Total: 1
+2025-06-18 18:56:33.728 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:56:33.728 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:56:33.729 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:56:33.730 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==>  Preparing: SELECT COUNT(*) FROM posts WHERE category = ? AND status = 'PUBLISHED'
+2025-06-18 18:56:33.730 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==> Parameters: notice(String)
+2025-06-18 18:56:33.731 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - <==      Total: 1
+2025-06-18 18:56:33.731 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:56:33.731 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:56:33.732 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:56:33.733 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==>  Preparing: SELECT COUNT(*) FROM posts WHERE category = ? AND status = 'PUBLISHED'
+2025-06-18 18:56:33.733 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - ==> Parameters: other(String)
+2025-06-18 18:56:33.734 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countByCategory - <==      Total: 1
+2025-06-18 18:57:12.945 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /admin/posts/review
+2025-06-18 18:57:12.946 [http-nio-8080-exec-3] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_ADMIN]]]
+2025-06-18 18:57:12.946 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /admin/posts/review
+2025-06-18 18:57:12.949 [http-nio-8080-exec-3] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:57:12.950 [http-nio-8080-exec-3] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:57:12.952 [http-nio-8080-exec-3] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:57:12.954 [http-nio-8080-exec-3] DEBUG c.f.s.p.r.P.findPostsForReview - ==>  Preparing: SELECT * FROM posts WHERE status IN ('DRAFT', 'PUBLISHED') ORDER BY created_at DESC LIMIT ? OFFSET ?
+2025-06-18 18:57:12.954 [http-nio-8080-exec-3] DEBUG c.f.s.p.r.P.findPostsForReview - ==> Parameters: 10(Integer), 0(Integer)
+2025-06-18 18:57:12.958 [http-nio-8080-exec-3] DEBUG c.f.s.p.r.P.findPostsForReview - <==      Total: 2
+2025-06-18 18:57:12.971 [http-nio-8080-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.fy.schoolwall.post.repository.PostMapper.countPostsForReview]
+2025-06-18 18:57:52.783 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /admin/posts
+2025-06-18 18:57:52.783 [http-nio-8080-exec-4] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_ADMIN]]]
+2025-06-18 18:57:52.784 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /admin/posts
+2025-06-18 18:57:52.788 [http-nio-8080-exec-4] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:57:52.789 [http-nio-8080-exec-4] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:57:52.790 [http-nio-8080-exec-4] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:57:52.790 [http-nio-8080-exec-4] DEBUG c.f.s.p.r.PostMapper.findAllPosts - ==>  Preparing: SELECT * FROM posts ORDER BY created_at DESC LIMIT ? OFFSET ?
+2025-06-18 18:57:52.790 [http-nio-8080-exec-4] DEBUG c.f.s.p.r.PostMapper.findAllPosts - ==> Parameters: 10(Integer), 0(Integer)
+2025-06-18 18:57:52.791 [http-nio-8080-exec-4] DEBUG c.f.s.p.r.PostMapper.findAllPosts - <==      Total: 2
+2025-06-18 18:57:52.801 [http-nio-8080-exec-4] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.fy.schoolwall.post.repository.PostMapper.countAllPosts]
+2025-06-18 18:58:01.464 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/me
+2025-06-18 18:58:01.465 [http-nio-8080-exec-5] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_ADMIN]]]
+2025-06-18 18:58:01.465 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/me
+2025-06-18 18:58:01.467 [http-nio-8080-exec-5] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:58:01.467 [http-nio-8080-exec-5] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:58:01.468 [http-nio-8080-exec-5] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:58:22.910 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /admin/posts
+2025-06-18 18:58:22.911 [http-nio-8080-exec-7] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_ADMIN]]]
+2025-06-18 18:58:22.911 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /admin/posts
+2025-06-18 18:58:22.912 [http-nio-8080-exec-7] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:58:22.912 [http-nio-8080-exec-7] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:58:22.914 [http-nio-8080-exec-7] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:58:22.914 [http-nio-8080-exec-7] DEBUG c.f.s.p.r.PostMapper.findAllPosts - ==>  Preparing: SELECT * FROM posts ORDER BY created_at DESC LIMIT ? OFFSET ?
+2025-06-18 18:58:22.915 [http-nio-8080-exec-7] DEBUG c.f.s.p.r.PostMapper.findAllPosts - ==> Parameters: 10(Integer), 0(Integer)
+2025-06-18 18:58:22.918 [http-nio-8080-exec-7] DEBUG c.f.s.p.r.PostMapper.findAllPosts - <==      Total: 2
+2025-06-18 18:58:22.924 [http-nio-8080-exec-7] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.fy.schoolwall.post.repository.PostMapper.countAllPosts]
+2025-06-18 18:59:11.503 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /admin/review
+2025-06-18 18:59:11.504 [http-nio-8080-exec-8] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_ADMIN]]]
+2025-06-18 18:59:11.504 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /admin/review
+2025-06-18 18:59:11.518 [http-nio-8080-exec-8] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource admin/review.]
+2025-06-18 18:59:26.504 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /admin/posts/review
+2025-06-18 18:59:26.505 [http-nio-8080-exec-9] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_ADMIN]]]
+2025-06-18 18:59:26.505 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured GET /admin/posts/review
+2025-06-18 18:59:26.506 [http-nio-8080-exec-9] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 18:59:26.507 [http-nio-8080-exec-9] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 18:59:26.509 [http-nio-8080-exec-9] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 18:59:26.509 [http-nio-8080-exec-9] DEBUG c.f.s.p.r.P.findPostsForReview - ==>  Preparing: SELECT * FROM posts WHERE status IN ('DRAFT', 'PUBLISHED') ORDER BY created_at DESC LIMIT ? OFFSET ?
+2025-06-18 18:59:26.510 [http-nio-8080-exec-9] DEBUG c.f.s.p.r.P.findPostsForReview - ==> Parameters: 10(Integer), 0(Integer)
+2025-06-18 18:59:26.513 [http-nio-8080-exec-9] DEBUG c.f.s.p.r.P.findPostsForReview - <==      Total: 2
+2025-06-18 18:59:26.524 [http-nio-8080-exec-9] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.fy.schoolwall.post.repository.PostMapper.countPostsForReview]
+2025-06-18 19:03:45.929 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-06-18 19:03:45.931 [Thread-5] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-18 19:03:45.932 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2025-06-18 19:03:45.936 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-18 19:03:45.937 [Thread-5] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2025-06-18 19:03:45.942 [Thread-5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-06-18 19:03:45.945 [Thread-5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-06-18 19:03:46.086 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Starting SchoolwallApplication using Java 22.0.1 with PID 67384 (D:\Repos\schoolwall\target\classes started by Dr.Y in D:\Repos\schoolwall)
+2025-06-18 19:03:46.087 [restartedMain] DEBUG c.f.schoolwall.SchoolwallApplication - Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-06-18 19:03:46.087 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-18 19:03:46.454 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-18 19:03:46.454 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-06-18 19:03:46.455 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-18 19:03:46.455 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-06-18 19:03:46.478 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-18 19:03:46.478 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 389 ms
+2025-06-18 19:03:46.609 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/callback' ...
+2025-06-18 19:03:46.609 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/callback using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@513922bc ...
+2025-06-18 19:03:46.610 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Unable to resolve location classpath:db/callback.
+2025-06-18 19:03:46.611 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/migration' ...
+2025-06-18 19:03:46.611 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/migration using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@513922bc ...
+2025-06-18 19:03:46.611 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning URL: file:/D:/Repos/schoolwall/target/classes/db/migration
+2025-06-18 19:03:46.611 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning starting at classpath root in filesystem: D:\Repos\schoolwall\target\classes\
+2025-06-18 19:03:46.611 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning for resources in path: D:\Repos\schoolwall\target\classes\db\migration (db/migration)
+2025-06-18 19:03:46.612 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V1__initial_schema.sql
+2025-06-18 19:03:46.612 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V2__add_index_to_posts.sql
+2025-06-18 19:03:46.612 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classes at classpath:db/migration
+2025-06-18 19:03:46.612 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+2025-06-18 19:03:46.617 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3e69da05
+2025-06-18 19:03:46.617 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+2025-06-18 19:03:46.619 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V2__add_index_to_posts.sql
+2025-06-18 19:03:46.619 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V1__initial_schema.sql
+2025-06-18 19:03:46.623 [restartedMain] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:mysql://localhost:3306/schoolwall?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&useUnicode=true (MySQL 8.4)
+2025-06-18 19:03:46.623 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Database Type: MySQL
+2025-06-18 19:03:46.623 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Driver: MySQL Connector/J mysql-connector-j-9.2.0 (Revision: a3909bfeb62d5a517ab444bb88ba7ecf26100297)
+2025-06-18 19:03:46.623 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - DDL Transactions Supported: false
+2025-06-18 19:03:46.623 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Schemas: 
+2025-06-18 19:03:46.623 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Default schema: null
+2025-06-18 19:03:46.629 [restartedMain] WARN  o.f.c.i.database.base.Database - Flyway upgrade recommended: MySQL 8.4 is newer than this version of Flyway and support has not been tested. The latest supported version of MySQL is 8.1.
+2025-06-18 19:03:46.629 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Scanning for script callbacks ...
+2025-06-18 19:03:46.630 [restartedMain] DEBUG o.f.c.i.c.SqlScriptCallbackFactory - Scanning for SQL callbacks ...
+2025-06-18 19:03:46.631 [restartedMain] DEBUG o.f.core.internal.command.DbValidate - Validating migrations ...
+2025-06-18 19:03:46.632 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 19:03:46.633 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 19:03:46.634 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 19:03:46.634 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 19:03:46.634 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 19:03:46.635 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 19:03:46.635 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 19:03:46.635 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 19:03:46.635 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 19:03:46.639 [restartedMain] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.007s)
+2025-06-18 19:03:46.640 [restartedMain] DEBUG o.f.core.internal.command.DbSchemas - Skipping creation of existing schema: `schoolwall`
+2025-06-18 19:03:46.644 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 19:03:46.647 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Current version of schema `schoolwall`: 2
+2025-06-18 19:03:46.648 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Schema `schoolwall` is up to date. No migration necessary.
+2025-06-18 19:03:46.649 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Memory usage: 39 of 68M
+2025-06-18 19:03:46.825 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-06-18 19:03:46.841 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, DefaultResourcesFilter, DefaultLoginPageGeneratingFilter, DefaultLogoutPageGeneratingFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-18 19:03:46.886 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-06-18 19:03:46.893 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-06-18 19:03:46.902 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-18 19:03:46.914 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Started SchoolwallApplication in 0.882 seconds (process running for 2154.093)
+2025-06-18 19:03:46.917 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2025-06-18 19:03:55.433 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-06-18 19:03:55.434 [Thread-7] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-18 19:03:55.435 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2025-06-18 19:03:55.441 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-18 19:03:55.441 [Thread-7] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2025-06-18 19:03:55.443 [Thread-7] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+2025-06-18 19:03:55.445 [Thread-7] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
+2025-06-18 19:03:55.548 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Starting SchoolwallApplication using Java 22.0.1 with PID 67384 (D:\Repos\schoolwall\target\classes started by Dr.Y in D:\Repos\schoolwall)
+2025-06-18 19:03:55.548 [restartedMain] DEBUG c.f.schoolwall.SchoolwallApplication - Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-06-18 19:03:55.549 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-18 19:03:55.875 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-18 19:03:55.875 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-06-18 19:03:55.876 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-18 19:03:55.877 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-06-18 19:03:55.908 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-18 19:03:55.908 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 358 ms
+2025-06-18 19:03:56.025 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/callback' ...
+2025-06-18 19:03:56.025 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/callback using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@24b1a59e ...
+2025-06-18 19:03:56.026 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Unable to resolve location classpath:db/callback.
+2025-06-18 19:03:56.026 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/migration' ...
+2025-06-18 19:03:56.027 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/migration using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@24b1a59e ...
+2025-06-18 19:03:56.027 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning URL: file:/D:/Repos/schoolwall/target/classes/db/migration
+2025-06-18 19:03:56.027 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning starting at classpath root in filesystem: D:\Repos\schoolwall\target\classes\
+2025-06-18 19:03:56.027 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning for resources in path: D:\Repos\schoolwall\target\classes\db\migration (db/migration)
+2025-06-18 19:03:56.027 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V1__initial_schema.sql
+2025-06-18 19:03:56.028 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V2__add_index_to_posts.sql
+2025-06-18 19:03:56.028 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classes at classpath:db/migration
+2025-06-18 19:03:56.028 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Starting...
+2025-06-18 19:03:56.031 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4aeabb05
+2025-06-18 19:03:56.031 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Start completed.
+2025-06-18 19:03:56.034 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V2__add_index_to_posts.sql
+2025-06-18 19:03:56.034 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V1__initial_schema.sql
+2025-06-18 19:03:56.035 [restartedMain] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:mysql://localhost:3306/schoolwall?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&useUnicode=true (MySQL 8.4)
+2025-06-18 19:03:56.035 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Database Type: MySQL
+2025-06-18 19:03:56.035 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Driver: MySQL Connector/J mysql-connector-j-9.2.0 (Revision: a3909bfeb62d5a517ab444bb88ba7ecf26100297)
+2025-06-18 19:03:56.037 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - DDL Transactions Supported: false
+2025-06-18 19:03:56.037 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Schemas: 
+2025-06-18 19:03:56.037 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Default schema: null
+2025-06-18 19:03:56.041 [restartedMain] WARN  o.f.c.i.database.base.Database - Flyway upgrade recommended: MySQL 8.4 is newer than this version of Flyway and support has not been tested. The latest supported version of MySQL is 8.1.
+2025-06-18 19:03:56.042 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Scanning for script callbacks ...
+2025-06-18 19:03:56.042 [restartedMain] DEBUG o.f.c.i.c.SqlScriptCallbackFactory - Scanning for SQL callbacks ...
+2025-06-18 19:03:56.043 [restartedMain] DEBUG o.f.core.internal.command.DbValidate - Validating migrations ...
+2025-06-18 19:03:56.044 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 19:03:56.045 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 19:03:56.045 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 19:03:56.046 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 19:03:56.046 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 19:03:56.046 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 19:03:56.046 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 19:03:56.046 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 19:03:56.046 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 19:03:56.050 [restartedMain] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.006s)
+2025-06-18 19:03:56.051 [restartedMain] DEBUG o.f.core.internal.command.DbSchemas - Skipping creation of existing schema: `schoolwall`
+2025-06-18 19:03:56.056 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 19:03:56.058 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Current version of schema `schoolwall`: 2
+2025-06-18 19:03:56.059 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Schema `schoolwall` is up to date. No migration necessary.
+2025-06-18 19:03:56.061 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Memory usage: 44 of 68M
+2025-06-18 19:03:56.195 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-06-18 19:03:56.209 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, DefaultResourcesFilter, DefaultLoginPageGeneratingFilter, DefaultLogoutPageGeneratingFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-18 19:03:56.277 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-06-18 19:03:56.280 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-06-18 19:03:56.285 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-18 19:03:56.288 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Started SchoolwallApplication in 0.765 seconds (process running for 2163.467)
+2025-06-18 19:03:56.289 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2025-06-18 19:04:01.164 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-18 19:04:01.164 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-06-18 19:04:01.165 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-06-18 19:04:01.165 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /admin/posts/review
+2025-06-18 19:04:01.166 [http-nio-8080-exec-1] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_ADMIN]]]
+2025-06-18 19:04:01.167 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /admin/posts/review
+2025-06-18 19:04:01.170 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 19:04:01.170 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 19:04:01.171 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 19:04:01.172 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.P.findPostsForReview - ==>  Preparing: SELECT * FROM post WHERE status = 'DRAFT' ORDER BY created_at DESC LIMIT ? OFFSET ?
+2025-06-18 19:04:01.173 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.P.findPostsForReview - ==> Parameters: 10(Integer), 0(Integer)
+2025-06-18 19:04:01.575 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.jdbc.BadSqlGrammarException: <EOL><EOL>### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Table 'schoolwall.post' doesn't exist<EOL><EOL>### The error may exist in file [D:\Repos\schoolwall\target\classes\mappers\PostMapper.xml]<EOL><EOL>### The error may involve defaultParameterMap<EOL><EOL>### The error occurred while setting parameters<EOL><EOL>### SQL: SELECT * FROM         post WHERE status = 'DRAFT' ORDER BY created_at DESC LIMIT ? OFFSET ?<EOL><EOL>### Cause: java.sql.SQLSyntaxErrorException: Table 'schoolwall.post' doesn't exist<EOL>; bad SQL grammar []]
+2025-06-18 19:05:25.446 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-06-18 19:05:25.449 [Thread-11] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-18 19:05:25.450 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2025-06-18 19:05:25.462 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-18 19:05:25.462 [Thread-11] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2025-06-18 19:05:25.466 [Thread-11] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Shutdown initiated...
+2025-06-18 19:05:25.468 [Thread-11] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Shutdown completed.
+2025-06-18 19:05:25.558 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Starting SchoolwallApplication using Java 22.0.1 with PID 67384 (D:\Repos\schoolwall\target\classes started by Dr.Y in D:\Repos\schoolwall)
+2025-06-18 19:05:25.559 [restartedMain] DEBUG c.f.schoolwall.SchoolwallApplication - Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-06-18 19:05:25.559 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-18 19:05:25.768 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-18 19:05:25.768 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-06-18 19:05:25.769 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-18 19:05:25.769 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-06-18 19:05:25.783 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-18 19:05:25.783 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 222 ms
+2025-06-18 19:05:25.863 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/callback' ...
+2025-06-18 19:05:25.863 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/callback using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@65f44c6c ...
+2025-06-18 19:05:25.864 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Unable to resolve location classpath:db/callback.
+2025-06-18 19:05:25.864 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/migration' ...
+2025-06-18 19:05:25.864 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/migration using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@65f44c6c ...
+2025-06-18 19:05:25.865 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning URL: file:/D:/Repos/schoolwall/target/classes/db/migration
+2025-06-18 19:05:25.865 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning starting at classpath root in filesystem: D:\Repos\schoolwall\target\classes\
+2025-06-18 19:05:25.865 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning for resources in path: D:\Repos\schoolwall\target\classes\db\migration (db/migration)
+2025-06-18 19:05:25.865 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V1__initial_schema.sql
+2025-06-18 19:05:25.865 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V2__add_index_to_posts.sql
+2025-06-18 19:05:25.866 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classes at classpath:db/migration
+2025-06-18 19:05:25.866 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Starting...
+2025-06-18 19:05:25.871 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-4 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2161a592
+2025-06-18 19:05:25.871 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Start completed.
+2025-06-18 19:05:25.872 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V2__add_index_to_posts.sql
+2025-06-18 19:05:25.873 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V1__initial_schema.sql
+2025-06-18 19:05:25.875 [restartedMain] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:mysql://localhost:3306/schoolwall?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&useUnicode=true (MySQL 8.4)
+2025-06-18 19:05:25.875 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Database Type: MySQL
+2025-06-18 19:05:25.875 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Driver: MySQL Connector/J mysql-connector-j-9.2.0 (Revision: a3909bfeb62d5a517ab444bb88ba7ecf26100297)
+2025-06-18 19:05:25.875 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - DDL Transactions Supported: false
+2025-06-18 19:05:25.875 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Schemas: 
+2025-06-18 19:05:25.875 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Default schema: null
+2025-06-18 19:05:25.878 [restartedMain] WARN  o.f.c.i.database.base.Database - Flyway upgrade recommended: MySQL 8.4 is newer than this version of Flyway and support has not been tested. The latest supported version of MySQL is 8.1.
+2025-06-18 19:05:25.878 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Scanning for script callbacks ...
+2025-06-18 19:05:25.879 [restartedMain] DEBUG o.f.c.i.c.SqlScriptCallbackFactory - Scanning for SQL callbacks ...
+2025-06-18 19:05:25.880 [restartedMain] DEBUG o.f.core.internal.command.DbValidate - Validating migrations ...
+2025-06-18 19:05:25.881 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 19:05:25.881 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 19:05:25.882 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 19:05:25.882 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 19:05:25.882 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 19:05:25.882 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 19:05:25.882 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 19:05:25.883 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 19:05:25.883 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 19:05:25.886 [restartedMain] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.005s)
+2025-06-18 19:05:25.887 [restartedMain] DEBUG o.f.core.internal.command.DbSchemas - Skipping creation of existing schema: `schoolwall`
+2025-06-18 19:05:25.891 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 19:05:25.893 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Current version of schema `schoolwall`: 2
+2025-06-18 19:05:25.894 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Schema `schoolwall` is up to date. No migration necessary.
+2025-06-18 19:05:25.894 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Memory usage: 45 of 68M
+2025-06-18 19:05:26.025 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-06-18 19:05:26.035 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, DefaultResourcesFilter, DefaultLoginPageGeneratingFilter, DefaultLogoutPageGeneratingFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-18 19:05:26.076 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-06-18 19:05:26.079 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-06-18 19:05:26.083 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-18 19:05:26.085 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Started SchoolwallApplication in 0.548 seconds (process running for 2253.264)
+2025-06-18 19:05:26.086 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2025-06-18 19:05:26.945 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-18 19:05:26.945 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-06-18 19:05:26.946 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-06-18 19:05:26.947 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /admin/posts/review
+2025-06-18 19:05:26.947 [http-nio-8080-exec-1] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_ADMIN]]]
+2025-06-18 19:05:26.948 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /admin/posts/review
+2025-06-18 19:05:26.950 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 19:05:26.952 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 19:05:26.954 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 19:05:26.955 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.P.findPostsForReview - ==>  Preparing: SELECT * FROM posts WHERE status = 'DRAFT' ORDER BY created_at DESC LIMIT ? OFFSET ?
+2025-06-18 19:05:26.956 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.P.findPostsForReview - ==> Parameters: 10(Integer), 0(Integer)
+2025-06-18 19:05:26.957 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.P.findPostsForReview - <==      Total: 0
+2025-06-18 19:05:26.957 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.P.countPostsForReview - ==>  Preparing: SELECT count(*) FROM posts WHERE status = 'DRAFT'
+2025-06-18 19:05:26.958 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.P.countPostsForReview - ==> Parameters: 
+2025-06-18 19:05:26.959 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.P.countPostsForReview - <==      Total: 1
+2025-06-18 19:05:49.515 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /admin/posts
+2025-06-18 19:05:49.515 [http-nio-8080-exec-3] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_ADMIN]]]
+2025-06-18 19:05:49.515 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /admin/posts
+2025-06-18 19:05:49.517 [http-nio-8080-exec-3] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 19:05:49.518 [http-nio-8080-exec-3] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 19:05:49.519 [http-nio-8080-exec-3] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 19:05:49.519 [http-nio-8080-exec-3] DEBUG c.f.s.p.r.PostMapper.findAllPosts - ==>  Preparing: SELECT * FROM posts ORDER BY created_at DESC LIMIT ? OFFSET ?
+2025-06-18 19:05:49.520 [http-nio-8080-exec-3] DEBUG c.f.s.p.r.PostMapper.findAllPosts - ==> Parameters: 10(Integer), 0(Integer)
+2025-06-18 19:05:49.523 [http-nio-8080-exec-3] DEBUG c.f.s.p.r.PostMapper.findAllPosts - <==      Total: 2
+2025-06-18 19:05:49.534 [http-nio-8080-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.fy.schoolwall.post.repository.PostMapper.countAllPosts]
+2025-06-18 19:10:40.152 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /admin/posts
+2025-06-18 19:10:40.153 [http-nio-8080-exec-4] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_ADMIN]]]
+2025-06-18 19:10:40.153 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /admin/posts
+2025-06-18 19:10:40.154 [http-nio-8080-exec-4] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 19:10:40.154 [http-nio-8080-exec-4] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 19:10:40.156 [http-nio-8080-exec-4] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 19:10:40.156 [http-nio-8080-exec-4] DEBUG c.f.s.p.r.PostMapper.findAllPosts - ==>  Preparing: SELECT * FROM posts ORDER BY created_at DESC LIMIT ? OFFSET ?
+2025-06-18 19:10:40.157 [http-nio-8080-exec-4] DEBUG c.f.s.p.r.PostMapper.findAllPosts - ==> Parameters: 10(Integer), 0(Integer)
+2025-06-18 19:10:40.158 [http-nio-8080-exec-4] DEBUG c.f.s.p.r.PostMapper.findAllPosts - <==      Total: 2
+2025-06-18 19:10:40.165 [http-nio-8080-exec-4] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.fy.schoolwall.post.repository.PostMapper.countAllPosts]
+2025-06-18 19:10:45.327 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-06-18 19:10:45.329 [Thread-15] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-18 19:10:45.329 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2025-06-18 19:10:45.334 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-18 19:10:45.335 [Thread-15] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2025-06-18 19:10:45.336 [Thread-15] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Shutdown initiated...
+2025-06-18 19:10:45.339 [Thread-15] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Shutdown completed.
+2025-06-18 19:10:45.390 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Starting SchoolwallApplication using Java 22.0.1 with PID 67384 (D:\Repos\schoolwall\target\classes started by Dr.Y in D:\Repos\schoolwall)
+2025-06-18 19:10:45.390 [restartedMain] DEBUG c.f.schoolwall.SchoolwallApplication - Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-06-18 19:10:45.391 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-18 19:10:45.565 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-18 19:10:45.566 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-06-18 19:10:45.566 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-18 19:10:45.567 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-06-18 19:10:45.579 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-18 19:10:45.579 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 187 ms
+2025-06-18 19:10:45.658 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/callback' ...
+2025-06-18 19:10:45.658 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/callback using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@3c639ca3 ...
+2025-06-18 19:10:45.658 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Unable to resolve location classpath:db/callback.
+2025-06-18 19:10:45.659 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/migration' ...
+2025-06-18 19:10:45.659 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/migration using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@3c639ca3 ...
+2025-06-18 19:10:45.659 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning URL: file:/D:/Repos/schoolwall/target/classes/db/migration
+2025-06-18 19:10:45.659 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning starting at classpath root in filesystem: D:\Repos\schoolwall\target\classes\
+2025-06-18 19:10:45.660 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning for resources in path: D:\Repos\schoolwall\target\classes\db\migration (db/migration)
+2025-06-18 19:10:45.660 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V1__initial_schema.sql
+2025-06-18 19:10:45.660 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V2__add_index_to_posts.sql
+2025-06-18 19:10:45.660 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classes at classpath:db/migration
+2025-06-18 19:10:45.660 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-5 - Starting...
+2025-06-18 19:10:45.663 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Added connection com.mysql.cj.jdbc.ConnectionImpl@191e3473
+2025-06-18 19:10:45.664 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-5 - Start completed.
+2025-06-18 19:10:45.664 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V2__add_index_to_posts.sql
+2025-06-18 19:10:45.665 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V1__initial_schema.sql
+2025-06-18 19:10:45.667 [restartedMain] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:mysql://localhost:3306/schoolwall?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&useUnicode=true (MySQL 8.4)
+2025-06-18 19:10:45.667 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Database Type: MySQL
+2025-06-18 19:10:45.667 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Driver: MySQL Connector/J mysql-connector-j-9.2.0 (Revision: a3909bfeb62d5a517ab444bb88ba7ecf26100297)
+2025-06-18 19:10:45.667 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - DDL Transactions Supported: false
+2025-06-18 19:10:45.667 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Schemas: 
+2025-06-18 19:10:45.667 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Default schema: null
+2025-06-18 19:10:45.672 [restartedMain] WARN  o.f.c.i.database.base.Database - Flyway upgrade recommended: MySQL 8.4 is newer than this version of Flyway and support has not been tested. The latest supported version of MySQL is 8.1.
+2025-06-18 19:10:45.672 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Scanning for script callbacks ...
+2025-06-18 19:10:45.672 [restartedMain] DEBUG o.f.c.i.c.SqlScriptCallbackFactory - Scanning for SQL callbacks ...
+2025-06-18 19:10:45.673 [restartedMain] DEBUG o.f.core.internal.command.DbValidate - Validating migrations ...
+2025-06-18 19:10:45.673 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 19:10:45.674 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 19:10:45.674 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 19:10:45.675 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 19:10:45.675 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 19:10:45.675 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 19:10:45.675 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 19:10:45.675 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 19:10:45.675 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 19:10:45.679 [restartedMain] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.005s)
+2025-06-18 19:10:45.679 [restartedMain] DEBUG o.f.core.internal.command.DbSchemas - Skipping creation of existing schema: `schoolwall`
+2025-06-18 19:10:45.682 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 19:10:45.684 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Current version of schema `schoolwall`: 2
+2025-06-18 19:10:45.685 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Schema `schoolwall` is up to date. No migration necessary.
+2025-06-18 19:10:45.686 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Memory usage: 101 of 148M
+2025-06-18 19:10:45.783 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-06-18 19:10:45.792 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, DefaultResourcesFilter, DefaultLoginPageGeneratingFilter, DefaultLogoutPageGeneratingFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-18 19:10:45.828 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-06-18 19:10:45.831 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-06-18 19:10:45.835 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-18 19:10:45.836 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Started SchoolwallApplication in 0.467 seconds (process running for 2573.014)
+2025-06-18 19:10:45.837 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2025-06-18 19:10:57.434 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-06-18 19:10:57.435 [Thread-19] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-18 19:10:57.435 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2025-06-18 19:10:57.439 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-18 19:10:57.440 [Thread-19] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2025-06-18 19:10:57.441 [Thread-19] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-5 - Shutdown initiated...
+2025-06-18 19:10:57.444 [Thread-19] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-5 - Shutdown completed.
+2025-06-18 19:10:57.502 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Starting SchoolwallApplication using Java 22.0.1 with PID 67384 (D:\Repos\schoolwall\target\classes started by Dr.Y in D:\Repos\schoolwall)
+2025-06-18 19:10:57.502 [restartedMain] DEBUG c.f.schoolwall.SchoolwallApplication - Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-06-18 19:10:57.502 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-18 19:10:57.671 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-18 19:10:57.672 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-06-18 19:10:57.672 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-18 19:10:57.672 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-06-18 19:10:57.684 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-18 19:10:57.684 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 181 ms
+2025-06-18 19:10:57.743 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/callback' ...
+2025-06-18 19:10:57.743 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/callback using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@5ab662bb ...
+2025-06-18 19:10:57.744 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Unable to resolve location classpath:db/callback.
+2025-06-18 19:10:57.744 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/migration' ...
+2025-06-18 19:10:57.744 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/migration using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@5ab662bb ...
+2025-06-18 19:10:57.744 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning URL: file:/D:/Repos/schoolwall/target/classes/db/migration
+2025-06-18 19:10:57.744 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning starting at classpath root in filesystem: D:\Repos\schoolwall\target\classes\
+2025-06-18 19:10:57.745 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning for resources in path: D:\Repos\schoolwall\target\classes\db\migration (db/migration)
+2025-06-18 19:10:57.745 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V1__initial_schema.sql
+2025-06-18 19:10:57.745 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V2__add_index_to_posts.sql
+2025-06-18 19:10:57.745 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classes at classpath:db/migration
+2025-06-18 19:10:57.745 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-6 - Starting...
+2025-06-18 19:10:57.748 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Added connection com.mysql.cj.jdbc.ConnectionImpl@366dab36
+2025-06-18 19:10:57.748 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-6 - Start completed.
+2025-06-18 19:10:57.749 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V2__add_index_to_posts.sql
+2025-06-18 19:10:57.749 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V1__initial_schema.sql
+2025-06-18 19:10:57.752 [restartedMain] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:mysql://localhost:3306/schoolwall?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&useUnicode=true (MySQL 8.4)
+2025-06-18 19:10:57.752 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Database Type: MySQL
+2025-06-18 19:10:57.752 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Driver: MySQL Connector/J mysql-connector-j-9.2.0 (Revision: a3909bfeb62d5a517ab444bb88ba7ecf26100297)
+2025-06-18 19:10:57.752 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - DDL Transactions Supported: false
+2025-06-18 19:10:57.752 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Schemas: 
+2025-06-18 19:10:57.752 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Default schema: null
+2025-06-18 19:10:57.755 [restartedMain] WARN  o.f.c.i.database.base.Database - Flyway upgrade recommended: MySQL 8.4 is newer than this version of Flyway and support has not been tested. The latest supported version of MySQL is 8.1.
+2025-06-18 19:10:57.755 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Scanning for script callbacks ...
+2025-06-18 19:10:57.755 [restartedMain] DEBUG o.f.c.i.c.SqlScriptCallbackFactory - Scanning for SQL callbacks ...
+2025-06-18 19:10:57.756 [restartedMain] DEBUG o.f.core.internal.command.DbValidate - Validating migrations ...
+2025-06-18 19:10:57.756 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 19:10:57.757 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 19:10:57.757 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 19:10:57.757 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 19:10:57.757 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 19:10:57.757 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 19:10:57.758 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 19:10:57.758 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 19:10:57.758 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 19:10:57.761 [restartedMain] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.004s)
+2025-06-18 19:10:57.761 [restartedMain] DEBUG o.f.core.internal.command.DbSchemas - Skipping creation of existing schema: `schoolwall`
+2025-06-18 19:10:57.764 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 19:10:57.766 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Current version of schema `schoolwall`: 2
+2025-06-18 19:10:57.766 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Schema `schoolwall` is up to date. No migration necessary.
+2025-06-18 19:10:57.768 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Memory usage: 53 of 96M
+2025-06-18 19:10:57.848 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-06-18 19:10:57.862 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, DefaultResourcesFilter, DefaultLoginPageGeneratingFilter, DefaultLogoutPageGeneratingFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-18 19:10:57.894 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-06-18 19:10:57.896 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-06-18 19:10:57.899 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-18 19:10:57.901 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Started SchoolwallApplication in 0.417 seconds (process running for 2585.079)
+2025-06-18 19:10:57.901 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2025-06-18 19:11:15.139 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-18 19:11:15.139 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-06-18 19:11:15.140 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-06-18 19:11:15.140 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /admin/posts
+2025-06-18 19:11:15.141 [http-nio-8080-exec-1] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_ADMIN]]]
+2025-06-18 19:11:15.141 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /admin/posts
+2025-06-18 19:11:15.144 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 19:11:15.144 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 19:11:15.146 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 19:11:15.147 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.findAllPosts - ==>  Preparing: SELECT * FROM posts ORDER BY created_at DESC LIMIT ? OFFSET ?
+2025-06-18 19:11:15.147 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.findAllPosts - ==> Parameters: 10(Integer), 0(Integer)
+2025-06-18 19:11:15.149 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.findAllPosts - <==      Total: 2
+2025-06-18 19:11:15.150 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countAllPosts - ==>  Preparing: SELECT count(*) FROM post
+2025-06-18 19:11:15.150 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countAllPosts - ==> Parameters: 
+2025-06-18 19:11:15.165 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.jdbc.BadSqlGrammarException: <EOL><EOL>### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Table 'schoolwall.post' doesn't exist<EOL><EOL>### The error may exist in file [D:\Repos\schoolwall\target\classes\mappers\PostMapper.xml]<EOL><EOL>### The error may involve defaultParameterMap<EOL><EOL>### The error occurred while setting parameters<EOL><EOL>### SQL: SELECT count(*) FROM post<EOL><EOL>### Cause: java.sql.SQLSyntaxErrorException: Table 'schoolwall.post' doesn't exist<EOL>; bad SQL grammar []]
+2025-06-18 19:11:28.838 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-06-18 19:11:28.839 [Thread-23] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-18 19:11:28.839 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2025-06-18 19:11:28.845 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-18 19:11:28.845 [Thread-23] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2025-06-18 19:11:28.847 [Thread-23] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-6 - Shutdown initiated...
+2025-06-18 19:11:28.849 [Thread-23] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-6 - Shutdown completed.
+2025-06-18 19:11:28.914 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Starting SchoolwallApplication using Java 22.0.1 with PID 67384 (D:\Repos\schoolwall\target\classes started by Dr.Y in D:\Repos\schoolwall)
+2025-06-18 19:11:28.914 [restartedMain] DEBUG c.f.schoolwall.SchoolwallApplication - Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-06-18 19:11:28.914 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-18 19:11:29.079 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-18 19:11:29.079 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-06-18 19:11:29.080 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-18 19:11:29.080 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-06-18 19:11:29.093 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-18 19:11:29.094 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 179 ms
+2025-06-18 19:11:29.178 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/callback' ...
+2025-06-18 19:11:29.178 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/callback using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@61f19a80 ...
+2025-06-18 19:11:29.178 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Unable to resolve location classpath:db/callback.
+2025-06-18 19:11:29.179 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classpath resources at 'classpath:db/migration' ...
+2025-06-18 19:11:29.179 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Determining location urls for classpath:db/migration using ClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@61f19a80 ...
+2025-06-18 19:11:29.180 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning URL: file:/D:/Repos/schoolwall/target/classes/db/migration
+2025-06-18 19:11:29.180 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning starting at classpath root in filesystem: D:\Repos\schoolwall\target\classes\
+2025-06-18 19:11:29.180 [restartedMain] DEBUG o.f.c.i.s.c.FileSystemClassPathLocationScanner - Scanning for resources in path: D:\Repos\schoolwall\target\classes\db\migration (db/migration)
+2025-06-18 19:11:29.180 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V1__initial_schema.sql
+2025-06-18 19:11:29.180 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Found resource: db/migration/V2__add_index_to_posts.sql
+2025-06-18 19:11:29.180 [restartedMain] DEBUG o.f.c.i.s.classpath.ClassPathScanner - Scanning for classes at classpath:db/migration
+2025-06-18 19:11:29.180 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-7 - Starting...
+2025-06-18 19:11:29.184 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-7 - Added connection com.mysql.cj.jdbc.ConnectionImpl@285e227
+2025-06-18 19:11:29.184 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-7 - Start completed.
+2025-06-18 19:11:29.185 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V2__add_index_to_posts.sql
+2025-06-18 19:11:29.185 [restartedMain] DEBUG o.f.c.i.r.ResourceNameValidator - Validating V1__initial_schema.sql
+2025-06-18 19:11:29.187 [restartedMain] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:mysql://localhost:3306/schoolwall?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&useUnicode=true (MySQL 8.4)
+2025-06-18 19:11:29.187 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Database Type: MySQL
+2025-06-18 19:11:29.188 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Driver: MySQL Connector/J mysql-connector-j-9.2.0 (Revision: a3909bfeb62d5a517ab444bb88ba7ecf26100297)
+2025-06-18 19:11:29.188 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - DDL Transactions Supported: false
+2025-06-18 19:11:29.188 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Schemas: 
+2025-06-18 19:11:29.188 [restartedMain] DEBUG o.f.c.i.s.SchemaHistoryFactory - Default schema: null
+2025-06-18 19:11:29.192 [restartedMain] WARN  o.f.c.i.database.base.Database - Flyway upgrade recommended: MySQL 8.4 is newer than this version of Flyway and support has not been tested. The latest supported version of MySQL is 8.1.
+2025-06-18 19:11:29.192 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Scanning for script callbacks ...
+2025-06-18 19:11:29.193 [restartedMain] DEBUG o.f.c.i.c.SqlScriptCallbackFactory - Scanning for SQL callbacks ...
+2025-06-18 19:11:29.194 [restartedMain] DEBUG o.f.core.internal.command.DbValidate - Validating migrations ...
+2025-06-18 19:11:29.195 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 19:11:29.195 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 19:11:29.196 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 19:11:29.196 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 19:11:29.196 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 19:11:29.196 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 19:11:29.196 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 19:11:29.196 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V2__add_index_to_posts.sql (filename: V2__add_index_to_posts.sql)
+2025-06-18 19:11:29.196 [restartedMain] DEBUG o.f.core.internal.scanner.Scanner - Filtering out resource: db/migration/V1__initial_schema.sql (filename: V1__initial_schema.sql)
+2025-06-18 19:11:29.201 [restartedMain] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.006s)
+2025-06-18 19:11:29.203 [restartedMain] DEBUG o.f.core.internal.command.DbSchemas - Skipping creation of existing schema: `schoolwall`
+2025-06-18 19:11:29.207 [restartedMain] DEBUG o.f.c.a.c.ClassicConfiguration - CherryPickConfigurationExtension not found
+2025-06-18 19:11:29.209 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Current version of schema `schoolwall`: 2
+2025-06-18 19:11:29.209 [restartedMain] INFO  o.f.core.internal.command.DbMigrate - Schema `schoolwall` is up to date. No migration necessary.
+2025-06-18 19:11:29.211 [restartedMain] DEBUG org.flywaydb.core.FlywayExecutor - Memory usage: 54 of 96M
+2025-06-18 19:11:29.326 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-06-18 19:11:29.340 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, DefaultResourcesFilter, DefaultLoginPageGeneratingFilter, DefaultLogoutPageGeneratingFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-18 19:11:29.380 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-06-18 19:11:29.383 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-06-18 19:11:29.388 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-18 19:11:29.389 [restartedMain] INFO  c.f.schoolwall.SchoolwallApplication - Started SchoolwallApplication in 0.493 seconds (process running for 2616.567)
+2025-06-18 19:11:29.390 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2025-06-18 19:11:30.351 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-18 19:11:30.351 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-06-18 19:11:30.352 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2025-06-18 19:11:30.353 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /admin/posts
+2025-06-18 19:11:30.354 [http-nio-8080-exec-1] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_ADMIN]]]
+2025-06-18 19:11:30.355 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /admin/posts
+2025-06-18 19:11:30.357 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==>  Preparing: SELECT id, username, email, password_hash, role, avatar_url, bio, created_at, updated_at, is_enabled, is_locked FROM users WHERE username = ?
+2025-06-18 19:11:30.358 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - ==> Parameters: admin(String)
+2025-06-18 19:11:30.360 [http-nio-8080-exec-1] DEBUG c.f.s.u.r.UserMapper.findByUsername - <==      Total: 1
+2025-06-18 19:11:30.362 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.findAllPosts - ==>  Preparing: SELECT * FROM posts ORDER BY created_at DESC LIMIT ? OFFSET ?
+2025-06-18 19:11:30.363 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.findAllPosts - ==> Parameters: 10(Integer), 0(Integer)
+2025-06-18 19:11:30.366 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.findAllPosts - <==      Total: 2
+2025-06-18 19:11:30.367 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countAllPosts - ==>  Preparing: SELECT count(*) FROM posts
+2025-06-18 19:11:30.367 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countAllPosts - ==> Parameters: 
+2025-06-18 19:11:30.368 [http-nio-8080-exec-1] DEBUG c.f.s.p.r.PostMapper.countAllPosts - <==      Total: 1
+2025-06-18 19:12:12.762 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /admin/posts/status
+2025-06-18 19:12:12.762 [http-nio-8080-exec-3] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_ADMIN]]]
+2025-06-18 19:12:12.762 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /admin/posts/status
+2025-06-18 19:12:12.776 [http-nio-8080-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'postId': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "status"]
+2025-06-18 19:12:19.807 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /admin/posts/statuses
+2025-06-18 19:12:19.808 [http-nio-8080-exec-4] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_ADMIN]]]
+2025-06-18 19:12:19.808 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /admin/posts/statuses
+2025-06-18 19:12:46.300 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /admin/posts/{1}
+2025-06-18 19:12:46.301 [http-nio-8080-exec-6] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_ADMIN]]]
+2025-06-18 19:12:46.301 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /admin/posts/{1}
+2025-06-18 19:12:46.309 [http-nio-8080-exec-6] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'postId': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "{1}"]
+2025-06-18 19:12:49.981 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /admin/posts/${1}
+2025-06-18 19:12:49.982 [http-nio-8080-exec-8] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_ADMIN]]]
+2025-06-18 19:12:49.982 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /admin/posts/${1}
+2025-06-18 19:12:49.988 [http-nio-8080-exec-8] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'postId': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "${1}"]
+2025-06-18 19:13:28.303 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /admin/posts/${2}
+2025-06-18 19:13:28.303 [http-nio-8080-exec-7] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_ADMIN]]]
+2025-06-18 19:13:28.304 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /admin/posts/${2}
+2025-06-18 19:13:28.311 [http-nio-8080-exec-7] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'postId': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "${2}"]
+2025-06-18 19:13:35.765 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /admin/posts/$2
+2025-06-18 19:13:35.766 [http-nio-8080-exec-9] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_ADMIN]]]
+2025-06-18 19:13:35.766 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured GET /admin/posts/$2
+2025-06-18 19:13:35.773 [http-nio-8080-exec-9] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'postId': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "$2"]
+2025-06-18 19:14:46.357 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing GET /admin/posts/$-5455268700015400
+2025-06-18 19:14:46.357 [http-nio-8080-exec-10] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_ADMIN]]]
+2025-06-18 19:14:46.357 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured GET /admin/posts/$-5455268700015400
+2025-06-18 19:14:46.365 [http-nio-8080-exec-10] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'postId': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "$-5455268700015400"]
+2025-06-18 19:15:03.306 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /admin/posts/{1}
+2025-06-18 19:15:03.307 [http-nio-8080-exec-1] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_ADMIN]]]
+2025-06-18 19:15:03.307 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /admin/posts/{1}
+2025-06-18 19:15:03.315 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'postId': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "{1}"]
+2025-06-18 19:15:15.127 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /admin/posts/${1}
+2025-06-18 19:15:15.127 [http-nio-8080-exec-2] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=null], Granted Authorities=[ROLE_ADMIN]]]
+2025-06-18 19:15:15.127 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /admin/posts/${1}
+2025-06-18 19:15:15.135 [http-nio-8080-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'postId': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "${1}"]

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fy.schoolwall.emotion.repository.EmotionMapper">
+
+    <select id="findByPostId" resultType="com.fy.schoolwall.emotion.model.Emotion"> SELECT * FROM
+        emotion WHERE post_id = #{postId} LIMIT 1 </select>
+
+    <select id="findByCommentId" resultType="com.fy.schoolwall.emotion.model.Emotion"> SELECT * FROM
+        emotion WHERE comment_id = #{commentId} LIMIT 1 </select>
+
+    <insert id="insert" parameterType="com.fy.schoolwall.emotion.model.Emotion"> INSERT INTO emotion
+        (post_id, comment_id, text, sentiment, confidence, probabilities_json, created_at) VALUES
+        (#{postId}, #{commentId}, #{text}, #{sentiment}, #{confidence}, #{probabilitiesJson},
+        #{createdAt}) </insert>
+
+</mapper>

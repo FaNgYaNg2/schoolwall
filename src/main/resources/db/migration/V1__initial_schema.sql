@@ -98,3 +98,28 @@ CREATE TABLE comments (
 CREATE INDEX idx_comments_post_id ON comments(post_id);
 CREATE INDEX idx_comments_parent_comment_id ON comments(parent_comment_id);
 CREATE INDEX idx_comments_created_at ON comments(created_at DESC);
+
+CREATE TABLE emotion (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+    post_id BIGINT NULL COMMENT '关联帖子ID',
+    comment_id BIGINT NULL COMMENT '关联评论ID',
+    text TEXT NOT NULL COMMENT '分析文本',
+    sentiment VARCHAR(16) NOT NULL COMMENT '情绪类型',
+    confidence DOUBLE COMMENT '置信度',
+    probabilities_json TEXT COMMENT '各情绪概率(JSON)',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    CONSTRAINT fk_emotion_post FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE,
+    CONSTRAINT fk_emotion_comment FOREIGN KEY (comment_id) REFERENCES comments(id) ON DELETE CASCADE
+);
+
+CREATE INDEX idx_emotion_post_id ON emotion(post_id);
+CREATE INDEX idx_emotion_comment_id ON emotion(comment_id);
+
+ALTER TABLE posts
+ADD FULLTEXT INDEX idx_posts_fulltext (title, content);
+
+ALTER TABLE posts
+ADD INDEX idx_posts_community_created_at (community_id, created_at DESC);
+
+ALTER TABLE comments
+ADD INDEX idx_comments_post_created_at (post_id, created_at DESC);

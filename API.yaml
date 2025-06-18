@@ -1076,6 +1076,49 @@ paths:
         "200":
           description: 操作成功
 
+  /emotion/post/{postId}:
+    get:
+      summary: 获取或生成帖子的情绪分析
+      tags:
+        - Emotion
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: 帖子ID
+      responses:
+        "200":
+          description: 情绪分析结果
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EmotionDto"
+        "404":
+          description: 帖子不存在
+  /emotion/comment/{commentId}:
+    get:
+      summary: 获取或生成评论的情绪分析
+      tags:
+        - Emotion
+      parameters:
+        - name: commentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: 评论ID
+      responses:
+        "200":
+          description: 情绪分析结果
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EmotionDto"
+        "404":
+          description: 评论不存在
+
 components:
   securitySchemes:
     bearerAuth:
@@ -1404,3 +1447,40 @@ components:
               type: array
               items:
                 $ref: "#/components/schemas/CategoryInfo"
+    EmotionDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: 情绪分析记录ID
+        postId:
+          type: integer
+          format: int64
+          nullable: true
+          description: 帖子ID
+        commentId:
+          type: integer
+          format: int64
+          nullable: true
+          description: 评论ID
+        text:
+          type: string
+          description: 被分析的文本内容
+        sentiment:
+          type: string
+          description: 情绪标签（如 positive, negative, neutral）
+        confidence:
+          type: number
+          format: double
+          description: 情绪置信度
+        probabilities:
+          type: object
+          additionalProperties:
+            type: number
+            format: double
+          description: 各情绪类别的概率分布
+        createdAt:
+          type: string
+          format: date-time
+          description: 分析生成时间

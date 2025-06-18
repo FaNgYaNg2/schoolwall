@@ -1,0 +1,1404 @@
+openapi: 3.0.3
+info:
+  title: SchoolWall API
+  description: SchoolWall 项目的后端 API 接口文档。
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: 本地开发服务器
+
+tags:
+  - name: Admin - User Management
+    description: 管理员用户管理接口
+  - name: Admin - Post Management
+    description: 管理员帖子管理接口
+  - name: Admin - Comment Management
+    description: 管理员评论管理接口
+  - name: Authentication
+    description: 用户认证与注册
+  - name: User Profile
+    description: 用户个人资料管理
+  - name: Posts
+    description: 帖子相关操作
+  - name: Comments
+    description: 评论相关操作
+
+paths:
+  # AuthController
+  /auth/register:
+    post:
+      tags:
+        - Authentication
+      summary: 注册新用户
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterRequest"
+      responses:
+        "201":
+          description: 用户注册成功
+        "400":
+          description: 请求无效（例如，用户名或邮箱已存在）
+  /auth/whoami:
+    get:
+      tags:
+        - Authentication
+      summary: 获取当前登录用户信息
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: 成功获取用户信息
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserProfileDto"
+        "401":
+          description: 未授权或未登录
+
+  # UserController
+  /users/me:
+    get:
+      tags:
+        - User Profile
+      summary: 获取当前用户的个人资料
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserProfileDto"
+    put:
+      tags:
+        - User Profile
+      summary: 更新当前用户的个人资料
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserUpdateRequest"
+      responses:
+        "200":
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserProfileDto"
+    delete:
+      tags:
+        - User Profile
+      summary: 删除当前用户账户（软删除）
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeleteAccountRequest"
+      responses:
+        "200":
+          description: 删除成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Account deleted successfully
+
+  /users/me/password:
+    put:
+      tags:
+        - User Profile
+      summary: 修改当前用户的密码
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PasswordChangeRequest"
+      responses:
+        "200":
+          description: 密码修改成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Password changed successfully
+
+  # PostController
+  /posts:
+    post:
+      tags:
+        - Posts
+      summary: 创建新帖子
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreatePostRequest"
+      responses:
+        "201":
+          description: 帖子创建成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PostDto"
+  /posts/feed:
+    get:
+      tags:
+        - Posts
+      summary: 获取帖子动态列表（分页）
+      parameters:
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/Size"
+        - $ref: "#/components/parameters/Sort"
+        - $ref: "#/components/parameters/Direction"
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageResponsePostFeedItemDto"
+  /posts/me:
+    get:
+      tags:
+        - Posts
+      summary: 获取当前用户的帖子列表
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PostDto"
+  /posts/search:
+    get:
+      tags:
+        - Posts
+      summary: 搜索帖子
+      parameters:
+        - name: keyword
+          in: query
+          required: true
+          schema:
+            type: string
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/Size"
+      responses:
+        "200":
+          description: 搜索结果
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageResponsePostFeedItemDto"
+  /posts/top:
+    get:
+      tags:
+        - Posts
+      summary: 获取置顶帖子
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 5
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PostFeedItemDto"
+  /posts/recommended:
+    get:
+      tags:
+        - Posts
+      summary: 获取推荐帖子
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 5
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PostFeedItemDto"
+  /posts/categories:
+    get:
+      tags:
+        - Posts
+      summary: 获取所有可用的帖子分类
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  categories:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/CategoryInfo"
+                  total:
+                    type: integer
+                  message:
+                    type: string
+  /posts/category/{category}:
+    get:
+      tags:
+        - Posts
+      summary: 根据分类获取帖子
+      parameters:
+        - name: category
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/Size"
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageResponsePostFeedItemDto"
+        "400":
+          description: 无效的分类代码
+  /posts/categories/validate/{category}:
+    get:
+      tags:
+        - Posts
+      summary: 验证分类是否有效
+      parameters:
+        - name: category
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 验证结果
+  /posts/{postId}:
+    get:
+      tags:
+        - Posts
+      summary: 根据ID获取帖子详情
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PostDto"
+    put:
+      tags:
+        - Posts
+      summary: 更新帖子
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdatePostRequest"
+      responses:
+        "200":
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PostDto"
+    delete:
+      tags:
+        - Posts
+      summary: 删除帖子
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: 删除成功
+  /posts/slug/{slug}:
+    get:
+      tags:
+        - Posts
+      summary: 根据slug获取帖子详情（会增加浏览量）
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PostDto"
+  /posts/{postId}/publish:
+    put:
+      tags:
+        - Posts
+      summary: 发布帖子
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: 发布成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PostDto"
+
+  # CommentController
+  /comments:
+    post:
+      tags:
+        - Comments
+      summary: 创建评论
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommentRequest"
+      responses:
+        "200":
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommentDto"
+  /comments/me:
+    get:
+      tags:
+        - Comments
+      summary: 获取我的评论历史
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/Size"
+        - $ref: "#/components/parameters/Sort"
+        - $ref: "#/components/parameters/Direction"
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageResponseCommentDto"
+  /comments/users/{userId}:
+    get:
+      tags:
+        - Comments
+      summary: 获取指定用户的评论
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/Size"
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageResponseCommentDto"
+  /comments/{commentId}:
+    get:
+      tags:
+        - Comments
+      summary: 获取评论详情
+      parameters:
+        - name: commentId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommentDto"
+    put:
+      tags:
+        - Comments
+      summary: 更新评论
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: commentId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommentUpdateRequest"
+      responses:
+        "200":
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommentDto"
+    delete:
+      tags:
+        - Comments
+      summary: 删除评论
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: commentId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: 删除成功
+  /comments/{commentId}/replies:
+    get:
+      tags:
+        - Comments
+      summary: 获取评论的回复
+      parameters:
+        - name: commentId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/Size"
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageResponseCommentDto"
+
+  # AdminUserController
+  /admin/users:
+    get:
+      tags:
+        - Admin - User Management
+      summary: 获取所有用户列表（分页或全量）
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/Size"
+        - $ref: "#/components/parameters/Sort"
+        - $ref: "#/components/parameters/Direction"
+        - name: enabled
+          in: query
+          schema:
+            type: boolean
+        - name: role
+          in: query
+          schema:
+            type: string
+            enum: [USER, ADMIN]
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/PageResponseAdminUserDto"
+                  - type: array
+                    items:
+                      $ref: "#/components/schemas/AdminUserDto"
+  /admin/users/{userId}:
+    get:
+      tags:
+        - Admin - User Management
+      summary: 获取用户详情
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminUserDto"
+    delete:
+      tags:
+        - Admin - User Management
+      summary: 管理员删除用户账户（硬删除）
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: 删除成功
+  /admin/users/{userId}/status:
+    put:
+      tags:
+        - Admin - User Management
+      summary: 管理员切换用户状态（启用/禁用）
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserStatusRequest"
+      responses:
+        "200":
+          description: 操作成功
+  /admin/users/batch/status:
+    put:
+      tags:
+        - Admin - User Management
+      summary: 批量切换用户状态
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BatchUserStatusRequest"
+      responses:
+        "200":
+          description: 操作成功
+
+  # AdminPostController
+  /admin/posts:
+    get:
+      tags:
+        - Admin - Post Management
+      summary: 获取所有帖子（分页）
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/Size"
+        - $ref: "#/components/parameters/Sort"
+        - $ref: "#/components/parameters/Direction"
+        - name: status
+          in: query
+          schema:
+            type: string
+        - name: category
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageResponsePostDto"
+  /admin/posts/review:
+    get:
+      tags:
+        - Admin - Post Management
+      summary: 获取待审核帖子
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/Size"
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageResponsePostDto"
+  /admin/posts/category-stats:
+    get:
+      tags:
+        - Admin - Post Management
+      summary: 获取各分类帖子统计
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: 成功
+  /admin/posts/categories:
+    get:
+      tags:
+        - Admin - Post Management
+      summary: 获取所有帖子分类
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CategoryInfo"
+  /admin/posts/statuses:
+    get:
+      tags:
+        - Admin - Post Management
+      summary: 获取所有可用的帖子状态
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: 成功
+  /admin/posts/{postId}:
+    get:
+      tags:
+        - Admin - Post Management
+      summary: 获取帖子详情
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PostDto"
+    delete:
+      tags:
+        - Admin - Post Management
+      summary: 删除帖子
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: 删除成功
+  /admin/posts/{postId}/status:
+    put:
+      tags:
+        - Admin - Post Management
+      summary: 更新帖子状态
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+      responses:
+        "200":
+          description: 更新成功
+  /admin/posts/{postId}/top:
+    put:
+      tags:
+        - Admin - Post Management
+      summary: 设置帖子置顶状态
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                isTop:
+                  type: boolean
+      responses:
+        "200":
+          description: 操作成功
+  /admin/posts/{postId}/recommended:
+    put:
+      tags:
+        - Admin - Post Management
+      summary: 设置帖子推荐状态
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                isRecommended:
+                  type: boolean
+      responses:
+        "200":
+          description: 操作成功
+  /admin/posts/{postId}/action:
+    post:
+      tags:
+        - Admin - Post Management
+      summary: 执行帖子操作
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdminPostActionRequest"
+      responses:
+        "200":
+          description: 操作成功
+  /admin/posts/batch/status:
+    put:
+      tags:
+        - Admin - Post Management
+      summary: 批量更新帖子状态
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BatchPostStatusRequest"
+      responses:
+        "200":
+          description: 操作成功
+
+  # AdminCommentController
+  /admin/comments:
+    get:
+      tags:
+        - Admin - Comment Management
+      summary: 获取所有评论（分页）
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/Size"
+        - $ref: "#/components/parameters/Sort"
+        - $ref: "#/components/parameters/Direction"
+        - name: isDeleted
+          in: query
+          schema:
+            type: boolean
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageResponseCommentDto"
+  /admin/comments/users/{userId}:
+    get:
+      tags:
+        - Admin - Comment Management
+      summary: 获取用户的评论
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/Size"
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageResponseCommentDto"
+  /admin/comments/posts/{postId}:
+    get:
+      tags:
+        - Admin - Comment Management
+      summary: 获取帖子的评论
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/Size"
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageResponseCommentDto"
+  /admin/comments/deleted/{isDeleted}:
+    get:
+      tags:
+        - Admin - Comment Management
+      summary: 根据删除状态获取评论
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: isDeleted
+          in: path
+          required: true
+          schema:
+            type: boolean
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/Size"
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageResponseCommentDto"
+  /admin/comments/{commentId}/soft-delete:
+    put:
+      tags:
+        - Admin - Comment Management
+      summary: 软删除评论
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: commentId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: 操作成功
+  /admin/comments/{commentId}:
+    delete:
+      tags:
+        - Admin - Comment Management
+      summary: 物理删除评论
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: commentId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: 操作成功
+  /admin/comments/batch/soft-delete:
+    put:
+      tags:
+        - Admin - Comment Management
+      summary: 批量软删除评论
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                commentIds:
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        "200":
+          description: 操作成功
+  /admin/comments/batch:
+    delete:
+      tags:
+        - Admin - Comment Management
+      summary: 批量物理删除评论
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                commentIds:
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        "200":
+          description: 操作成功
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  parameters:
+    Page:
+      name: page
+      in: query
+      description: 页码 (从0开始)
+      schema:
+        type: integer
+        default: 0
+    Size:
+      name: size
+      in: query
+      description: 每页数量
+      schema:
+        type: integer
+        default: 10
+    Sort:
+      name: sort
+      in: query
+      description: 排序字段
+      schema:
+        type: string
+    Direction:
+      name: direction
+      in: query
+      description: 排序方向
+      schema:
+        type: string
+        enum: [ASC, DESC]
+        default: DESC
+  schemas:
+    # DTOs
+    RegisterRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+    UserProfileDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        avatarUrl:
+          type: string
+          format: uri
+        bio:
+          type: string
+        role:
+          type: string
+    UserUpdateRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        avatarUrl:
+          type: string
+          format: uri
+        bio:
+          type: string
+    PasswordChangeRequest:
+      type: object
+      properties:
+        oldPassword:
+          type: string
+        newPassword:
+          type: string
+    DeleteAccountRequest:
+      type: object
+      properties:
+        password:
+          type: string
+    AdminUserDto:
+      allOf:
+        - $ref: "#/components/schemas/UserProfileDto"
+        - type: object
+          properties:
+            enabled:
+              type: boolean
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+    UserStatusRequest:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+    BatchUserStatusRequest:
+      type: object
+      properties:
+        userIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        enabled:
+          type: boolean
+    CreatePostRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        content:
+          type: string
+        category:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+    UpdatePostRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        content:
+          type: string
+        category:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+    PostDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        content:
+          type: string
+        slug:
+          type: string
+        authorInfo:
+          type: object
+        category:
+          type: string
+        status:
+          type: string
+        viewCount:
+          type: integer
+        likeCount:
+          type: integer
+        commentCount:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        isTop:
+          type: boolean
+        isRecommended:
+          type: boolean
+        tags:
+          type: array
+          items:
+            type: string
+    PostFeedItemDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        slug:
+          type: string
+        authorInfo:
+          type: object
+        summary:
+          type: string
+        category:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        likeCount:
+          type: integer
+        commentCount:
+          type: integer
+    BatchPostStatusRequest:
+      type: object
+      properties:
+        postIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        status:
+          type: string
+    AdminPostActionRequest:
+      type: object
+      properties:
+        action:
+          type: string
+        reason:
+          type: string
+    CommentRequest:
+      type: object
+      properties:
+        postId:
+          type: integer
+          format: int64
+        parentId:
+          type: integer
+          format: int64
+        content:
+          type: string
+    CommentUpdateRequest:
+      type: object
+      properties:
+        content:
+          type: string
+    CommentDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        content:
+          type: string
+        authorInfo:
+          type: object
+        postId:
+          type: integer
+          format: int64
+        parentId:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        isDeleted:
+          type: boolean
+    CategoryInfo:
+      type: object
+      properties:
+        code:
+          type: string
+        displayName:
+          type: string
+    # Generic Page Response
+    PageResponse:
+      type: object
+      properties:
+        page:
+          type: integer
+        size:
+          type: integer
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+        last:
+          type: boolean
+    PageResponseAdminUserDto:
+      allOf:
+        - $ref: "#/components/schemas/PageResponse"
+        - type: object
+          properties:
+            content:
+              type: array
+              items:
+                $ref: "#/components/schemas/AdminUserDto"
+    PageResponsePostDto:
+      allOf:
+        - $ref: "#/components/schemas/PageResponse"
+        - type: object
+          properties:
+            content:
+              type: array
+              items:
+                $ref: "#/components/schemas/PostDto"
+    PageResponsePostFeedItemDto:
+      allOf:
+        - $ref: "#/components/schemas/PageResponse"
+        - type: object
+          properties:
+            content:
+              type: array
+              items:
+                $ref: "#/components/schemas/PostFeedItemDto"
+    PageResponseCommentDto:
+      allOf:
+        - $ref: "#/components/schemas/PageResponse"
+        - type: object
+          properties:
+            content:
+              type: array
+              items:
+                $ref: "#/components/schemas/CommentDto"
+    PageResponseCategoryInfo:
+      allOf:
+        - $ref: "#/components/schemas/PageResponse"
+        - type: object
+          properties:
+            content:
+              type: array
+              items:
+                $ref: "#/components/schemas/CategoryInfo"

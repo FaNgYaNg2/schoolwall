@@ -25,6 +25,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable) // 禁用 CSRF
+                .cors(cors -> {
+                }) // 启用 CORS，使用默认配置
                 .authorizeHttpRequests(authorize -> authorize
                         // 允许对 /auth/**, /login, /logout 等公共端点的匿名访问
                         .requestMatchers(
@@ -34,8 +36,8 @@ public class SecurityConfig {
                                 "/swagger-ui/**",
                                 "/api-docs",
                                 "/api-docs/**",
-                                "/v3/api-docs/**"
-                        ).permitAll()
+                                "/v3/api-docs/**")
+                        .permitAll()
                         // 只有 ADMIN 角色可以访问 /admin/** 路径下的资源
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         // 其他所有请求都需要认证

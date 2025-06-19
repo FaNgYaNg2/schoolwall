@@ -14,4 +14,20 @@
         (#{postId}, #{commentId}, #{text}, #{sentiment}, #{confidence}, #{probabilitiesJson},
         #{createdAt}) </insert>
 
+    <!-- 根据用户ID查询其所有帖子的情绪 -->
+    <select id="findEmotionsForUserPosts" resultType="com.fy.schoolwall.emotion.model.Emotion">
+        SELECT e.*
+        FROM emotion e
+        JOIN posts p ON e.post_id = p.id
+        WHERE p.author_id = #{userId} AND e.post_id IS NOT NULL
+    </select>
+
+    <!-- 根据用户ID查询其所有评论的情绪 -->
+    <select id="findEmotionsForUserComments" resultType="com.fy.schoolwall.emotion.model.Emotion">
+        SELECT e.*
+        FROM emotion e
+        JOIN comments c ON e.comment_id = c.id
+        WHERE c.user_id = #{userId} AND e.comment_id IS NOT NULL
+    </select>
+
 </mapper>

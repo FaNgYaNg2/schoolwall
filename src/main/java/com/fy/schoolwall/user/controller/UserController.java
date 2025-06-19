@@ -21,6 +21,15 @@ public class UserController {
     }
 
     /**
+     * 获取指定用户所有内容的综合情绪分析统计。
+     * GET /api/users/{userId}/emotions
+     */
+    @GetMapping("/{userId}/emotions")
+    public ResponseEntity<UserEmotionStatsDto> getUserEmotionStats(@PathVariable Long userId) {
+        return ResponseEntity.ok(userService.getUserEmotionStats(userId));
+    }
+
+    /**
      * 获取当前认证用户的个人资料。
      * GET /api/users/me
      */

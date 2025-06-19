@@ -140,6 +140,47 @@ paths:
                   message:
                     type: string
                     example: Password changed successfully
+  /api/users/{userId}/emotions:
+    get:
+      tags:
+        - User API
+      summary: 获取用户的情绪统计数据
+      description: 根据用户ID，返回该用户所有帖子和评论的情绪分类统计。
+      operationId: getUserEmotionStatsByUserId
+      parameters:
+        - name: userId
+          in: path
+          description: 用户的唯一标识ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 1
+      responses:
+        "200":
+          description: 成功返回统计数据
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserEmotionStatsDto"
+              example:
+                userId: 1
+                postEmotionCounts:
+                  positive: 1
+                  neutral: 1
+                commentEmotionCounts:
+                  positive: 1
+                  negative: 2
+                totalEmotionCounts:
+                  positive: 2
+                  neutral: 1
+                  negative: 2
+        "404":
+          description: 未找到指定ID的用户
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
 
   # PostController
   /posts:
@@ -1527,3 +1568,39 @@ components:
           type: string
           format: date-time
           description: 分析生成时间
+    UserEmotionStatsDto:
+      type: object
+      description: 用户情绪统计数据传输对象
+      properties:
+        userId:
+          type: integer
+          format: int64
+          description: 用户ID
+        postEmotionCounts:
+          type: object
+          description: "用户所有帖子的情绪计数 (key: 情绪类型, value: 数量)"
+          additionalProperties:
+            type: integer
+            format: int64
+          example:
+            positive: 1
+            neutral: 1
+        commentEmotionCounts:
+          type: object
+          description: "用户所有评论的情绪计数 (key: 情绪类型, value: 数量)"
+          additionalProperties:
+            type: integer
+            format: int64
+          example:
+            positive: 1
+            negative: 2
+        totalEmotionCounts:
+          type: object
+          description: "用户所有内容的总情绪计数 (key: 情绪类型, value: 数量)"
+          additionalProperties:
+            type: integer
+            format: int64
+          example:
+            positive: 2
+            neutral: 1
+            negative: 2

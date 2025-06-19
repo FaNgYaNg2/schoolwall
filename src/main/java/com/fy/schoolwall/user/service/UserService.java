@@ -2,7 +2,10 @@ package com.fy.schoolwall.user.service;
 
 import com.fy.schoolwall.common.enums.UserRole;
 import com.fy.schoolwall.common.exception.ResourceNotFoundException;
+import com.fy.schoolwall.emotion.model.Emotion;
+import com.fy.schoolwall.emotion.repository.EmotionMapper;
 import com.fy.schoolwall.user.dto.PasswordChangeRequest;
+import com.fy.schoolwall.user.dto.UserEmotionStatsDto;
 import com.fy.schoolwall.user.dto.UserUpdateRequest;
 import com.fy.schoolwall.user.model.User;
 import com.fy.schoolwall.user.repository.UserMapper;
@@ -18,16 +21,22 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
 
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
+    private final EmotionMapper emotionMapper;
 
-    public UserService(UserMapper userMapper, PasswordEncoder passwordEncoder) {
+    public UserService(UserMapper userMapper, PasswordEncoder passwordEncoder, EmotionMapper emotionMapper) {
         this.userMapper = userMapper;
         this.passwordEncoder = passwordEncoder;
+        this.emotionMapper = emotionMapper;
     }
 
     /**
@@ -52,6 +61,43 @@ public class UserService {
         }
 
         return user;
+    }
+
+    /**
+     * 获取用户的情绪统计信息
+     */
+    public UserEmotionStatsDto getUserEmotionStats(Long userId) {
+        // 1. 检查用户是否存在
+        getUserById(userId);
+
+        // 2. 获取用户帖子的情绪
+        List<Emotion> postEmotions = emotionMapper.findEmotionsForUserPosts(userId);
+
+        // 3. 获取用户评论的情绪
+        List<Emotion> commentEmotions = emotionMapper.findEmotionsForUserComments(userId);
+
+        // 4. 计算帖子情绪计数
+        Map<String, Long> postEmotionCounts = postEmotions.stream()
+                .filter(e -> e.getSentiment() != null && !e.getSentiment().isEmpty())
+                .collect(Collectors.groupingBy(Emotion::getSentiment, Collectors.counting()));
+
+        // 5. 计算评论情绪计数
+        Map<String, Long> commentEmotionCounts = commentEmotions.stream()
+                .filter(e -> e.getSentiment() != null && !e.getSentiment().isEmpty())
+                .collect(Collectors.groupingBy(Emotion::getSentiment, Collectors.counting()));
+
+        // 6. 计算总情绪计数
+        Map<String, Long> totalEmotionCounts = new HashMap<>(postEmotionCounts);
+        commentEmotionCounts.forEach((sentiment, count) -> totalEmotionCounts.merge(sentiment, count, Long::sum));
+
+        // 7. 创建并返回DTO
+        UserEmotionStatsDto statsDto = new UserEmotionStatsDto();
+        statsDto.setUserId(userId);
+        statsDto.setPostEmotionCounts(postEmotionCounts);
+        statsDto.setCommentEmotionCounts(commentEmotionCounts);
+        statsDto.setTotalEmotionCounts(totalEmotionCounts);
+
+        return statsDto;
     }
 
     /**

@@ -28,9 +28,9 @@ public class SecurityConfig {
                 .cors(cors -> {
                 }) // 启用 CORS，使用默认配置
                 .authorizeHttpRequests(authorize -> authorize
-                        // 允许对 /auth/**, /login, /logout 等公共端点的匿名访问
+                        // 允许对 /api/auth/**, /api/login, /api/logout 等公共端点的匿名访问
                         .requestMatchers(
-                                "/auth/**", "/login", "/logout",
+                                "/api/auth/**", "/api/login", "/api/logout",
                                 // 允许公开访问 Swagger UI 和 API 文档
                                 "/swagger-ui.html",
                                 "/swagger-ui/**",
@@ -38,12 +38,12 @@ public class SecurityConfig {
                                 "/api-docs/**",
                                 "/v3/api-docs/**")
                         .permitAll()
-                        // 只有 ADMIN 角色可以访问 /admin/** 路径下的资源
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        // 只有 ADMIN 角色可以访问 /api/admin/** 路径下的资源
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         // 其他所有请求都需要认证
                         .anyRequest().authenticated())
                 .formLogin(formLogin -> formLogin // 启用基于表单的登录认证
-                        .loginProcessingUrl("/login") // 指定处理登录表单提交的 URL
+                        .loginProcessingUrl("/api/login") // 指定处理登录表单提交的 URL
                         .usernameParameter("username") // 登录请求中用户名参数的名称
                         .passwordParameter("password") // 登录请求中密码参数的名称
                         // 登录成功时的处理，返回 200 OK 和 JSON 消 Messages
@@ -59,7 +59,7 @@ public class SecurityConfig {
                             response.getWriter().flush();
                         }))
                 .logout(logout -> logout // 启用注销功能
-                        .logoutUrl("/logout") // 指定注销的 URL
+                        .logoutUrl("/api/logout") // 指定注销的 URL
                         .invalidateHttpSession(true) // 注销时使当前 HttpSession 失效
                         .deleteCookies("JSESSIONID") // 注销时删除名为 JSESSIONID 的 Cookie
                         // 注销成功时的处理，返回 200 OK

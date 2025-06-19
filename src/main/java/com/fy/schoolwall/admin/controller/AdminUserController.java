@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping("/admin/users")
+@RequestMapping("/api/admin/users")
 public class AdminUserController {
 
     private final AdminUserService adminUserService;
@@ -27,7 +27,7 @@ public class AdminUserController {
 
     /**
      * 获取所有用户列表（分页）
-     * GET /admin/users?page=0&size=10&sort=createdAt&direction=DESC
+     * GET /api/admin/users?page=0&size=10&sort=createdAt&direction=DESC
      */
     @GetMapping
     public ResponseEntity<?> getAllUsers(
@@ -64,7 +64,7 @@ public class AdminUserController {
 
     /**
      * 获取用户详情
-     * GET /admin/users/{userId}
+     * GET /api/admin/users/{userId}
      */
     @GetMapping("/{userId}")
     public ResponseEntity<AdminUserDto> getUserById(@PathVariable Long userId) {
@@ -74,7 +74,7 @@ public class AdminUserController {
 
     /**
      * 管理员删除用户账户（硬删除）
-     * DELETE /admin/users/{userId}
+     * DELETE /api/admin/users/{userId}
      */
     @DeleteMapping("/{userId}")
     public ResponseEntity<Map<String, String>> deleteUser(@PathVariable Long userId) {
@@ -87,7 +87,7 @@ public class AdminUserController {
 
     /**
      * 管理员切换用户状态（启用/禁用）
-     * PUT /admin/users/{userId}/status
+     * PUT /api/admin/users/{userId}/status
      */
     @PutMapping("/{userId}/status")
     public ResponseEntity<Map<String, String>> toggleUserStatus(@PathVariable Long userId,
@@ -103,7 +103,7 @@ public class AdminUserController {
 
     /**
      * 批量切换用户状态
-     * PUT /admin/users/batch/status
+     * PUT /api/admin/users/batch/status
      */
     @PutMapping("/batch/status")
     public ResponseEntity<Map<String, String>> batchToggleUserStatus(

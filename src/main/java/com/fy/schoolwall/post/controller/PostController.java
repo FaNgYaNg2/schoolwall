@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping("/posts")
+@RequestMapping("/api/posts")
 public class PostController {
 
     private final PostService postService;
@@ -28,7 +28,7 @@ public class PostController {
 
     /**
      * 创建帖子
-     * POST /posts
+     * POST /api/posts
      */
     @PostMapping
     public ResponseEntity<PostDto> createPost(@Valid @RequestBody CreatePostRequest request) {
@@ -38,7 +38,7 @@ public class PostController {
 
     /**
      * 更新帖子
-     * PUT /posts/{postId}
+     * PUT /api/posts/{postId}
      */
     @PutMapping("/{postId}")
     public ResponseEntity<PostDto> updatePost(@PathVariable Long postId,
@@ -49,7 +49,7 @@ public class PostController {
 
     /**
      * 删除帖子
-     * DELETE /posts/{postId}
+     * DELETE /api/posts/{postId}
      */
     @DeleteMapping("/{postId}")
     public ResponseEntity<Map<String, String>> deletePost(@PathVariable Long postId) {
@@ -62,7 +62,7 @@ public class PostController {
 
     /**
      * 根据ID获取帖子详情
-     * GET /posts/{postId}
+     * GET /api/posts/{postId}
      */
     @GetMapping("/{postId}")
     public ResponseEntity<PostDto> getPostById(@PathVariable Long postId) {
@@ -72,7 +72,7 @@ public class PostController {
 
     /**
      * 根据slug获取帖子详情（公开访问，会增加浏览量）
-     * GET /posts/slug/{slug}
+     * GET /api/posts/slug/{slug}
      */
     @GetMapping("/slug/{slug}")
     public ResponseEntity<PostDto> getPostBySlug(@PathVariable String slug) {
@@ -82,7 +82,7 @@ public class PostController {
 
     /**
      * 获取当前用户的帖子列表
-     * GET /posts/me
+     * GET /api/posts/me
      */
     @GetMapping("/me")
     public ResponseEntity<List<PostDto>> getMyPosts() {
@@ -92,7 +92,7 @@ public class PostController {
 
     /**
      * 获取帖子动态列表（分页）
-     * GET /posts/feed?page=0&size=10
+     * GET /api/posts/feed?page=0&size=10
      */
     @GetMapping("/feed")
     public ResponseEntity<PaginationUtil.PageResponse<PostFeedItemDto>> getPostFeed(
@@ -108,7 +108,7 @@ public class PostController {
 
     /**
      * 根据分类获取帖子 - 使用枚举验证
-     * GET /posts/category/{category}
+     * GET /api/posts/category/{category}
      */
     @GetMapping("/category/{category}")
     public ResponseEntity<PaginationUtil.PageResponse<PostFeedItemDto>> getPostsByCategory(
@@ -132,7 +132,7 @@ public class PostController {
 
     /**
      * 搜索帖子
-     * GET /posts/search?keyword=关键词
+     * GET /api/posts/search?keyword=关键词
      */
     @GetMapping("/search")
     public ResponseEntity<PaginationUtil.PageResponse<PostFeedItemDto>> searchPosts(
@@ -147,7 +147,7 @@ public class PostController {
 
     /**
      * 获取置顶帖子
-     * GET /posts/top
+     * GET /api/posts/top
      */
     @GetMapping("/top")
     public ResponseEntity<List<PostFeedItemDto>> getTopPosts(
@@ -158,7 +158,7 @@ public class PostController {
 
     /**
      * 获取推荐帖子
-     * GET /posts/recommended
+     * GET /api/posts/recommended
      */
     @GetMapping("/recommended")
     public ResponseEntity<List<PostFeedItemDto>> getRecommendedPosts(
@@ -169,7 +169,7 @@ public class PostController {
 
     /**
      * 发布帖子
-     * PUT /posts/{postId}/publish
+     * PUT /api/posts/{postId}/publish
      */
     @PutMapping("/{postId}/publish")
     public ResponseEntity<PostDto> publishPost(@PathVariable Long postId) {
@@ -179,7 +179,7 @@ public class PostController {
 
     /**
      * 获取所有可用的帖子分类 - 返回更详细的信息
-     * GET /posts/categories
+     * GET /api/posts/categories
      */
     @GetMapping("/categories")
     public ResponseEntity<Map<String, Object>> getPostCategories() {
@@ -191,34 +191,34 @@ public class PostController {
                     return categoryMap;
                 })
                 .collect(Collectors.toList());
-        
+
         Map<String, Object> response = new HashMap<>();
         response.put("categories", categories);
         response.put("total", categories.size());
         response.put("message", "All available post categories");
-        
+
         return ResponseEntity.ok(response);
     }
 
     /**
      * 验证分类是否有效
-     * GET /posts/categories/validate/{category}
+     * GET /api/posts/categories/validate/{category}
      */
     @GetMapping("/categories/validate/{category}")
     public ResponseEntity<Map<String, Object>> validateCategory(@PathVariable String category) {
         PostCategory categoryEnum = PostCategory.fromCode(category);
-        
+
         Map<String, Object> response = new HashMap<>();
         response.put("category", category);
         response.put("isValid", categoryEnum != null);
-        
+
         if (categoryEnum != null) {
             response.put("code", categoryEnum.getCode());
             response.put("displayName", categoryEnum.getDisplayName());
         } else {
-            response.put("message", "Invalid category code. Please use /posts/categories to get valid categories.");
+            response.put("message", "Invalid category code. Please use /api/posts/categories to get valid categories.");
         }
-        
+
         return ResponseEntity.ok(response);
     }
 }

@@ -24,58 +24,8 @@ public class WebConfig implements WebMvcConfigurer {
          */
         @Override
         public void addCorsMappings(CorsRegistry registry) {
-                // admin 部分
-                registry.addMapping("/aadmin/**")
-                                .allowedOriginPatterns("*")
-                                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                                .allowedHeaders("*")
-                                .allowCredentials(true)
-                                .maxAge(3600);
-
-                // 其他接口部分整合
-                registry.addMapping("/login")
-                                .allowedOriginPatterns("*")
-                                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                                .allowedHeaders("*")
-                                .allowCredentials(true)
-                                .maxAge(3600);
-
-                registry.addMapping("/logout")
-                                .allowedOriginPatterns("*")
-                                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                                .allowedHeaders("*")
-                                .allowCredentials(true)
-                                .maxAge(3600);
-
-                registry.addMapping("/auth/**")
-                                .allowedOriginPatterns("*")
-                                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                                .allowedHeaders("*")
-                                .allowCredentials(true)
-                                .maxAge(3600);
-
-                registry.addMapping("/users/**")
-                                .allowedOriginPatterns("*")
-                                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                                .allowedHeaders("*")
-                                .allowCredentials(true)
-                                .maxAge(3600);
-
-                registry.addMapping("/comments/**")
-                                .allowedOriginPatterns("*")
-                                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                                .allowedHeaders("*")
-                                .allowCredentials(true)
-                                .maxAge(3600);
-
-                registry.addMapping("/posts/**")
-                                .allowedOriginPatterns("*")
-                                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                                .allowedHeaders("*")
-                                .allowCredentials(true)
-                                .maxAge(3600);
-
-                registry.addMapping("/emotion/**")
+                // 统一为 /api/** 添加CORS配置
+                registry.addMapping("/api/**")
                                 .allowedOriginPatterns("*")
                                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                                 .allowedHeaders("*")

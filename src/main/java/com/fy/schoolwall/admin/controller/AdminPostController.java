@@ -18,7 +18,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/admin/posts")
+@RequestMapping("/api/admin/posts")
 public class AdminPostController {
 
     private final AdminPostService adminPostService;
@@ -29,7 +29,7 @@ public class AdminPostController {
 
     /**
      * 获取所有帖子（分页）
-     * GET /admin/posts?page=0&size=10&status=PUBLISHED&category=TECH_SHARING
+     * GET /api/admin/posts?page=0&size=10&status=PUBLISHED&category=TECH_SHARING
      */
     @GetMapping
     public ResponseEntity<PaginationUtil.PageResponse<PostDto>> getAllPosts(
@@ -67,7 +67,7 @@ public class AdminPostController {
 
     /**
      * 获取待审核帖子
-     * GET /admin/posts/review
+     * GET /api/admin/posts/review
      */
     @GetMapping("/review")
     public ResponseEntity<PaginationUtil.PageResponse<PostDto>> getPostsForReview(
@@ -81,7 +81,7 @@ public class AdminPostController {
 
     /**
      * 获取帖子详情
-     * GET /admin/posts/{postId}
+     * GET /api/admin/posts/{postId}
      */
     @GetMapping("/{postId}")
     public ResponseEntity<PostDto> getPostById(@PathVariable Long postId) {
@@ -91,7 +91,7 @@ public class AdminPostController {
 
     /**
      * 更新帖子状态
-     * PUT /admin/posts/{postId}/status
+     * PUT /api/admin/posts/{postId}/status
      */
     @PutMapping("/{postId}/status")
     public ResponseEntity<Map<String, String>> updatePostStatus(@PathVariable Long postId,
@@ -113,7 +113,7 @@ public class AdminPostController {
 
     /**
      * 设置帖子置顶状态
-     * PUT /admin/posts/{postId}/top
+     * PUT /api/admin/posts/{postId}/top
      */
     @PutMapping("/{postId}/top")
     public ResponseEntity<Map<String, String>> setTopStatus(@PathVariable Long postId,
@@ -136,7 +136,7 @@ public class AdminPostController {
 
     /**
      * 设置帖子推荐状态
-     * PUT /admin/posts/{postId}/recommended
+     * PUT /api/admin/posts/{postId}/recommended
      */
     @PutMapping("/{postId}/recommended")
     public ResponseEntity<Map<String, String>> setRecommendedStatus(@PathVariable Long postId,
@@ -159,7 +159,7 @@ public class AdminPostController {
 
     /**
      * 删除帖子
-     * DELETE /admin/posts/{postId}
+     * DELETE /api/admin/posts/{postId}
      */
     @DeleteMapping("/{postId}")
     public ResponseEntity<Map<String, String>> deletePost(@PathVariable Long postId) {
@@ -173,7 +173,7 @@ public class AdminPostController {
 
     /**
      * 执行帖子操作
-     * POST /admin/posts/{postId}/action
+     * POST /api/admin/posts/{postId}/action
      */
     @PostMapping("/{postId}/action")
     public ResponseEntity<Map<String, String>> executePostAction(@PathVariable Long postId,
@@ -193,7 +193,7 @@ public class AdminPostController {
 
     /**
      * 批量更新帖子状态
-     * PUT /admin/posts/batch/status
+     * PUT /api/admin/posts/batch/status
      */
     @PutMapping("/batch/status")
     public ResponseEntity<Map<String, String>> batchUpdatePostStatus(
@@ -211,7 +211,7 @@ public class AdminPostController {
 
     /**
      * 获取各分类帖子统计
-     * GET /admin/posts/category-stats
+     * GET /api/admin/posts/category-stats
      */
     @GetMapping("/category-stats")
     public ResponseEntity<Map<String, Object>> getCategoryStats() {
@@ -231,7 +231,7 @@ public class AdminPostController {
 
     /**
      * 获取所有帖子分类
-     * GET /admin/posts/categories
+     * GET /api/admin/posts/categories
      */
     @GetMapping("/categories")
     public ResponseEntity<List<Map<String, String>>> getPostCategories() {
@@ -249,7 +249,7 @@ public class AdminPostController {
 
     /**
      * 获取所有可用的帖子状态
-     * GET /admin/posts/statuses
+     * GET /api/admin/posts/statuses
      */
     @GetMapping("/statuses")
     public ResponseEntity<List<Map<String, String>>> getPostStatuses() {

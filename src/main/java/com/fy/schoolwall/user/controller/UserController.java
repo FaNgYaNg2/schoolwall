@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserController {
 
     private final UserService userService;
@@ -22,7 +22,7 @@ public class UserController {
 
     /**
      * 获取当前认证用户的个人资料。
-     * GET /users/me
+     * GET /api/users/me
      */
     @GetMapping("/me")
     public ResponseEntity<UserProfileDto> getMyProfile() {
@@ -41,7 +41,7 @@ public class UserController {
 
     /**
      * 更新当前认证用户的个人资料。
-     * PUT /users/me
+     * PUT /api/users/me
      */
     @PutMapping("/me")
     public ResponseEntity<UserProfileDto> updateMyProfile(@Valid @RequestBody UserUpdateRequest updateRequest) {
@@ -60,7 +60,7 @@ public class UserController {
 
     /**
      * 修改当前认证用户的密码。
-     * PUT /users/me/password
+     * PUT /api/users/me/password
      */
     @PutMapping("/me/password")
     public ResponseEntity<Map<String, String>> changePassword(
@@ -75,7 +75,7 @@ public class UserController {
 
     /**
      * 删除当前用户账户（软删除）
-     * DELETE /users/me
+     * DELETE /api/users/me
      */
     @DeleteMapping("/me")
     public ResponseEntity<Map<String, String>> deleteMyAccount(@Valid @RequestBody DeleteAccountRequest deleteRequest) {

@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping("/comments")
+@RequestMapping("/api/comments")
 public class CommentController {
 
     private final CommentService commentService;
@@ -25,7 +25,7 @@ public class CommentController {
 
     /**
      * 创建评论
-     * POST /comments
+     * POST /api/comments
      */
     @PostMapping
     public ResponseEntity<CommentDto> createComment(@Valid @RequestBody CommentRequest request) {
@@ -35,7 +35,7 @@ public class CommentController {
 
     /**
      * 更新评论
-     * PUT /comments/{commentId}
+     * PUT /api/comments/{commentId}
      */
     @PutMapping("/{commentId}")
     public ResponseEntity<CommentDto> updateComment(@PathVariable Long commentId,
@@ -46,7 +46,7 @@ public class CommentController {
 
     /**
      * 删除评论
-     * DELETE /comments/{commentId}
+     * DELETE /api/comments/{commentId}
      */
     @DeleteMapping("/{commentId}")
     public ResponseEntity<Map<String, String>> deleteComment(@PathVariable Long commentId) {
@@ -59,7 +59,7 @@ public class CommentController {
 
     /**
      * 获取评论详情
-     * GET /comments/{commentId}
+     * GET /api/comments/{commentId}
      */
     @GetMapping("/{commentId}")
     public ResponseEntity<CommentDto> getComment(@PathVariable Long commentId) {
@@ -69,7 +69,7 @@ public class CommentController {
 
     /**
      * 获取评论的回复
-     * GET /comments/{commentId}/replies
+     * GET /api/comments/{commentId}/replies
      */
     @GetMapping("/{commentId}/replies")
     public ResponseEntity<PaginationUtil.PageResponse<CommentDto>> getCommentReplies(
@@ -84,7 +84,7 @@ public class CommentController {
 
     /**
      * 获取帖子的所有顶级评论
-     * GET /comments/post/{postId}/toplevel
+     * GET /api/comments/post/{postId}/toplevel
      */
     @GetMapping("/post/{postId}/toplevel")
     public ResponseEntity<PaginationUtil.PageResponse<CommentDto>> getTopLevelComments(
@@ -100,7 +100,7 @@ public class CommentController {
 
     /**
      * 获取我的评论历史
-     * GET /comments/me
+     * GET /api/comments/me
      */
     @GetMapping("/me")
     public ResponseEntity<PaginationUtil.PageResponse<CommentDto>> getMyComments(
@@ -116,7 +116,7 @@ public class CommentController {
 
     /**
      * 获取指定用户的评论
-     * GET /comments/users/{userId}
+     * GET /api/comments/users/{userId}
      */
     @GetMapping("/users/{userId}")
     public ResponseEntity<PaginationUtil.PageResponse<CommentDto>> getUserComments(

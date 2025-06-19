@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping("/admin/comments")
+@RequestMapping("/api/admin/comments")
 public class AdminCommentController {
 
     private final AdminCommentService adminCommentService;
@@ -23,7 +23,7 @@ public class AdminCommentController {
 
     /**
      * 获取所有评论（分页）
-     * GET /admin/comments?page=0&size=10&isDeleted=false
+     * GET /api/admin/comments?page=0&size=10&isDeleted=false
      */
     @GetMapping
     public ResponseEntity<PaginationUtil.PageResponse<CommentDto>> getAllComments(
@@ -47,7 +47,7 @@ public class AdminCommentController {
 
     /**
      * 获取用户的评论
-     * GET /admin/comments/users/{userId}
+     * GET /api/admin/comments/users/{userId}
      */
     @GetMapping("/users/{userId}")
     public ResponseEntity<PaginationUtil.PageResponse<CommentDto>> getUserComments(
@@ -62,7 +62,7 @@ public class AdminCommentController {
 
     /**
      * 获取帖子的评论
-     * GET /admin/comments/posts/{postId}
+     * GET /api/admin/comments/posts/{postId}
      */
     @GetMapping("/posts/{postId}")
     public ResponseEntity<PaginationUtil.PageResponse<CommentDto>> getPostComments(
@@ -77,7 +77,7 @@ public class AdminCommentController {
 
     /**
      * 软删除评论
-     * PUT /admin/comments/{commentId}/soft-delete
+     * PUT /api/admin/comments/{commentId}/soft-delete
      */
     @PutMapping("/{commentId}/soft-delete")
     public ResponseEntity<Map<String, String>> softDeleteComment(@PathVariable Long commentId) {
@@ -90,7 +90,7 @@ public class AdminCommentController {
 
     /**
      * 物理删除评论
-     * DELETE /admin/comments/{commentId}
+     * DELETE /api/admin/comments/{commentId}
      */
     @DeleteMapping("/{commentId}")
     public ResponseEntity<Map<String, String>> deleteComment(@PathVariable Long commentId) {
@@ -103,7 +103,7 @@ public class AdminCommentController {
 
     /**
      * 批量软删除评论
-     * PUT /admin/comments/batch/soft-delete
+     * PUT /api/admin/comments/batch/soft-delete
      */
     @PutMapping("/batch/soft-delete")
     public ResponseEntity<Map<String, String>> batchSoftDeleteComments(@RequestBody Map<String, Object> request) {
@@ -123,7 +123,7 @@ public class AdminCommentController {
 
     /**
      * 批量物理删除评论
-     * DELETE /admin/comments/batch
+     * DELETE /api/admin/comments/batch
      */
     @DeleteMapping("/batch")
     public ResponseEntity<Map<String, String>> batchDeleteComments(@RequestBody Map<String, Object> request) {
@@ -143,7 +143,7 @@ public class AdminCommentController {
 
     /**
      * 根据删除状态获取评论
-     * GET /admin/comments/deleted/{isDeleted}
+     * GET /api/admin/comments/deleted/{isDeleted}
      */
     @GetMapping("/deleted/{isDeleted}")
     public ResponseEntity<PaginationUtil.PageResponse<CommentDto>> getCommentsByDeletedStatus(
@@ -152,7 +152,8 @@ public class AdminCommentController {
             @RequestParam(defaultValue = "10") Integer size) {
 
         PaginationUtil.PageRequest pageRequest = PaginationUtil.validatePageRequest(page, size, null, "DESC");
-        PaginationUtil.PageResponse<CommentDto> comments = adminCommentService.getCommentsByDeletedStatus(isDeleted, pageRequest);
+        PaginationUtil.PageResponse<CommentDto> comments = adminCommentService.getCommentsByDeletedStatus(isDeleted,
+                pageRequest);
         return ResponseEntity.ok(comments);
     }
 }

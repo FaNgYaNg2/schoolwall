@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/emotion")
+@RequestMapping("/api/emotion")
 public class EmotionController {
     private final EmotionService emotionService;
 

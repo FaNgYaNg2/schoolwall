@@ -557,6 +557,50 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PageResponseCommentDto"
+  /comments/post/{postId}/toplevel:
+    get:
+      tags:
+        - "Comments"
+      summary: "获取帖子的所有顶级评论"
+      description: "根据帖子ID分页获取所有顶级评论（即直接评论帖子的评论，parent_id为null）。"
+      operationId: "getTopLevelCommentsByPostId"
+      parameters:
+        - name: "postId"
+          in: "path"
+          description: "帖子ID"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+        - name: "page"
+          in: "query"
+          description: "页码，从0开始"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: 0
+        - name: "size"
+          in: "query"
+          description: "每页数量"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: 10
+      responses:
+        "200":
+          description: "成功获取顶级评论列表"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageResponseCommentDto"
+        "404":
+          description: "帖子不存在"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
 
   # AdminUserController
   /admin/users:

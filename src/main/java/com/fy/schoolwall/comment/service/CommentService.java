@@ -176,6 +176,35 @@ public class CommentService {
     }
 
     /**
+     * 获取帖子的所有顶级评论（分页）
+     */
+    public PaginationUtil.PageResponse<CommentDto> getTopLevelCommentsByPostId(Long postId, PaginationUtil.PageRequest pageRequest) {
+        // 1. 验证帖子是否存在
+        Post post = postMapper.findById(postId);
+        if (post == null) {
+            throw ResourceNotFoundException.of("Post", postId);
+        }
+
+        // 2. 分页查询顶级评论
+        List<Comment> topLevelComments = commentMapper.findTopLevelCommentsByPostId(
+                postId,
+                pageRequest.getOffset(),
+                pageRequest.getLimit()
+        );
+
+        // 3. 将 Comment 转换为 CommentDto
+        List<CommentDto> commentDtos = topLevelComments.stream()
+                .map(this::convertToCommentDto)
+                .collect(Collectors.toList());
+
+        // 4. 获取顶级评论总数
+        long totalElements = commentMapper.countTopLevelCommentsByPostId(postId);
+
+        // 5. 创建并返回分页响应
+        return PaginationUtil.createPageResponse(commentDtos, pageRequest, totalElements);
+    }
+
+    /**
      * 获取评论的回复
      */
     public PaginationUtil.PageResponse<CommentDto> getCommentReplies(Long commentId,

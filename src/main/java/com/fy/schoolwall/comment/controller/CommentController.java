@@ -83,6 +83,22 @@ public class CommentController {
     }
 
     /**
+     * 获取帖子的所有顶级评论
+     * GET /comments/post/{postId}/toplevel
+     */
+    @GetMapping("/post/{postId}/toplevel")
+    public ResponseEntity<PaginationUtil.PageResponse<CommentDto>> getTopLevelComments(
+            @PathVariable Long postId,
+            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "10") Integer size) {
+        // 默认按时间倒序排列顶级评论
+        PaginationUtil.PageRequest pageRequest = PaginationUtil.validatePageRequest(page, size, "createdAt", "DESC");
+        PaginationUtil.PageResponse<CommentDto> comments = commentService.getTopLevelCommentsByPostId(postId,
+                pageRequest);
+        return ResponseEntity.ok(comments);
+    }
+
+    /**
      * 获取我的评论历史
      * GET /comments/me
      */

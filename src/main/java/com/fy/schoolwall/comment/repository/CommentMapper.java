@@ -38,17 +38,17 @@ public interface CommentMapper {
     long countByUserId(Long userId);
     
     // 根据父评论ID获取回复
-    List<Comment> findRepliesByParentId(@Param("parentCommentId") Long parentCommentId, 
-                                       @Param("offset") int offset, 
-                                       @Param("limit") int limit);
+    List<Comment> findRepliesByParentCommentId(@Param("parentCommentId") Long parentCommentId, 
+                                   @Param("offset") int offset, 
+                                   @Param("limit") int limit);
     
     // 根据父评论ID统计回复数
-    long countRepliesByParentId(Long parentCommentId);
+    long countRepliesByParentCommentId(Long parentCommentId);
     
     // 获取帖子的顶级评论
     List<Comment> findTopLevelCommentsByPostId(@Param("postId") Long postId, 
-                                              @Param("offset") int offset, 
-                                              @Param("limit") int limit);
+                                          @Param("offset") int offset, 
+                                          @Param("limit") int limit);
     
     // 统计帖子的顶级评论数
     long countTopLevelCommentsByPostId(Long postId);

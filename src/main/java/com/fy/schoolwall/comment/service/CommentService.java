@@ -38,29 +38,44 @@ public class CommentService {
     @Transactional
     public CommentDto createComment(CommentRequest request) {
         User currentUser = userService.getCurrentAuthenticatedUser();
+        Long postId = request.getPostId();
+        Long parentCommentId = request.getParentCommentId();
 
-        // 验证帖子存在且已发布
-        Post post = postMapper.findById(request.getPostId());
+        // 如果 postId 为 0，意为该条是评论的评论
+        if (postId != null && postId == 0) {
+            if (parentCommentId == null) {
+                throw new IllegalArgumentException("ParentCommentId is required when postId is 0 to indicate a reply.");
+            }
+            // 验证父评论存在，并从中获取 postId
+            Comment parentComment = commentMapper.findById(parentCommentId);
+            if (parentComment == null || parentComment.isDeleted()) {
+                throw ResourceNotFoundException.of("Parent Comment", parentCommentId);
+            }
+            postId = parentComment.getPostId();
+        } else {
+            // 对于顶级评论或 postId 不为 0 的回复，正常验证父评论
+            if (parentCommentId != null) {
+                if (!commentMapper.existsAndNotDeleted(parentCommentId)) {
+                    throw ResourceNotFoundException.of("Comment", parentCommentId);
+                }
+            }
+        }
+
+        // 统一验证最终的 postId
+        Post post = postMapper.findById(postId);
         if (post == null) {
-            throw ResourceNotFoundException.of("Post", request.getPostId());
+            throw ResourceNotFoundException.of("Post", postId);
         }
         if (!"PUBLISHED".equals(post.getStatus())) {
             throw new RuntimeException("Cannot comment on unpublished post");
-        }
-
-        // 如果是回复评论，验证父评论存在
-        if (request.getParentCommentId() != null) {
-            if (!commentMapper.existsAndNotDeleted(request.getParentCommentId())) {
-                throw ResourceNotFoundException.of("Comment", request.getParentCommentId());
-            }
         }
 
         // 创建评论
         Comment comment = new Comment();
         comment.setContent(request.getContent());
         comment.setUserId(currentUser.getId());
-        comment.setPostId(request.getPostId());
-        comment.setParentCommentId(request.getParentCommentId());
+        comment.setPostId(postId); // 使用最终确定的 postId
+        comment.setParentCommentId(parentCommentId);
         comment.setCreatedAt(LocalDateTime.now());
         comment.setUpdatedAt(LocalDateTime.now());
         comment.setIsDeleted(false);
@@ -68,7 +83,7 @@ public class CommentService {
         commentMapper.insert(comment);
 
         // 更新帖子评论计数
-        postMapper.updateCommentCount(request.getPostId(), true);
+        postMapper.updateCommentCount(postId, true);
 
         return convertToCommentDto(commentMapper.findById(comment.getId()));
     }
@@ -163,9 +178,9 @@ public class CommentService {
                     CommentDto dto = convertToCommentDto(comment);
 
                     // 获取前几条回复
-                    List<Comment> replies = commentMapper.findRepliesByParentId(comment.getId(), 0, 3);
+                    List<Comment> replies = commentMapper.findRepliesByParentCommentId(comment.getId(), 0, 3);
                     dto.setReplies(replies.stream().map(this::convertToCommentDto).collect(Collectors.toList()));
-                    dto.setReplyCount(commentMapper.countRepliesByParentId(comment.getId()));
+                    dto.setReplyCount(commentMapper.countRepliesByParentCommentId(comment.getId()));
 
                     return dto;
                 })
@@ -178,7 +193,8 @@ public class CommentService {
     /**
      * 获取帖子的所有顶级评论（分页）
      */
-    public PaginationUtil.PageResponse<CommentDto> getTopLevelCommentsByPostId(Long postId, PaginationUtil.PageRequest pageRequest) {
+    public PaginationUtil.PageResponse<CommentDto> getTopLevelCommentsByPostId(Long postId,
+            PaginationUtil.PageRequest pageRequest) {
         // 1. 验证帖子是否存在
         Post post = postMapper.findById(postId);
         if (post == null) {
@@ -189,8 +205,7 @@ public class CommentService {
         List<Comment> topLevelComments = commentMapper.findTopLevelCommentsByPostId(
                 postId,
                 pageRequest.getOffset(),
-                pageRequest.getLimit()
-        );
+                pageRequest.getLimit());
 
         // 3. 将 Comment 转换为 CommentDto
         List<CommentDto> commentDtos = topLevelComments.stream()
@@ -214,7 +229,7 @@ public class CommentService {
             throw ResourceNotFoundException.of("Comment", commentId);
         }
 
-        List<Comment> replies = commentMapper.findRepliesByParentId(commentId,
+        List<Comment> replies = commentMapper.findRepliesByParentCommentId(commentId,
                 pageRequest.getOffset(),
                 pageRequest.getLimit());
 
@@ -222,7 +237,7 @@ public class CommentService {
                 .map(this::convertToCommentDto)
                 .collect(Collectors.toList());
 
-        long totalElements = commentMapper.countRepliesByParentId(commentId);
+        long totalElements = commentMapper.countRepliesByParentCommentId(commentId);
         return PaginationUtil.createPageResponse(replyDtos, pageRequest, totalElements);
     }
 

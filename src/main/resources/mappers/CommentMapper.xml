@@ -5,196 +5,125 @@
 
     <!-- 基础结果映射 -->
     <resultMap id="CommentResultMap" type="com.fy.schoolwall.comment.model.Comment">
-        <id property="id" column="id"/>
-        <result property="content" column="content"/>
-        <result property="userId" column="user_id"/>
-        <result property="postId" column="post_id"/>
-        <result property="parentCommentId" column="parent_comment_id"/>
-        <result property="createdAt" column="created_at"/>
-        <result property="updatedAt" column="updated_at"/>
-        <result property="isDeleted" column="is_deleted"/>
+        <id property="id" column="id" />
+        <result property="content" column="content" />
+        <result property="userId" column="user_id" />
+        <result property="postId" column="post_id" />
+        <result property="parentCommentId" column="parent_comment_id" />
+        <result property="createdAt" column="created_at" />
+        <result property="updatedAt" column="updated_at" />
+        <result property="isDeleted" column="is_deleted" />
         <!-- 冗余字段 -->
-        <result property="username" column="username"/>
-        <result property="userAvatarUrl" column="user_avatar_url"/>
-        <result property="postTitle" column="post_title"/>
-        <result property="parentCommentContent" column="parent_comment_content"/>
+        <result property="username" column="username" />
+        <result property="userAvatarUrl" column="user_avatar_url" />
+        <result property="postTitle" column="post_title" />
+        <result property="parentCommentContent" column="parent_comment_content" />
     </resultMap>
 
     <!-- 基础查询 -->
-    <select id="findById" resultMap="CommentResultMap">
-        SELECT c.*, u.username, u.avatar_url as user_avatar_url, 
-               p.title as post_title,
-               pc.content as parent_comment_content
-        FROM comments c
-        LEFT JOIN users u ON c.user_id = u.id
-        LEFT JOIN posts p ON c.post_id = p.id
-        LEFT JOIN comments pc ON c.parent_comment_id = pc.id
-        WHERE c.id = #{id}
-    </select>
+    <select id="findById" resultMap="CommentResultMap"> SELECT c.*, u.username, u.avatar_url as
+        user_avatar_url, p.title as post_title, pc.content as parent_comment_content FROM comments c
+        LEFT JOIN users u ON c.user_id = u.id LEFT JOIN posts p ON c.post_id = p.id LEFT JOIN
+        comments pc ON c.parent_comment_id = pc.id WHERE c.id = #{id} </select>
 
     <!-- 插入评论 -->
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO comments (content, user_id, post_id, parent_comment_id, created_at, updated_at, is_deleted)
-        VALUES (#{content}, #{userId}, #{postId}, #{parentCommentId}, #{createdAt}, #{updatedAt}, #{isDeleted})
-    </insert>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id"> INSERT INTO comments (content,
+        user_id, post_id, parent_comment_id, created_at, updated_at, is_deleted) VALUES (#{content},
+        #{userId}, #{postId}, #{parentCommentId}, #{createdAt}, #{updatedAt}, #{isDeleted}) </insert>
 
     <!-- 更新评论 -->
-    <update id="update">
-        UPDATE comments 
-        SET content = #{content}, updated_at = #{updatedAt}
-        WHERE id = #{id}
-    </update>
+    <update id="update"> UPDATE comments SET content = #{content}, updated_at = #{updatedAt} WHERE
+        id = #{id} </update>
 
     <!-- 物理删除 -->
-    <delete id="deleteById">
-        DELETE FROM comments WHERE id = #{id}
-    </delete>
+    <delete id="deleteById"> DELETE FROM comments WHERE id = #{id} </delete>
 
     <!-- 软删除 -->
-    <update id="softDeleteById">
-        UPDATE comments 
-        SET is_deleted = true, updated_at = NOW()
-        WHERE id = #{id}
-    </update>
+    <update id="softDeleteById"> UPDATE comments SET is_deleted = true, updated_at = NOW() WHERE id
+        = #{id} </update>
 
     <!-- 根据帖子ID获取评论 -->
-    <select id="findByPostId" resultMap="CommentResultMap">
-        SELECT c.*, u.username, u.avatar_url as user_avatar_url, 
-               p.title as post_title,
-               pc.content as parent_comment_content
-        FROM comments c
-        LEFT JOIN users u ON c.user_id = u.id
-        LEFT JOIN posts p ON c.post_id = p.id
-        LEFT JOIN comments pc ON c.parent_comment_id = pc.id
-        WHERE c.post_id = #{postId}
-        ORDER BY c.created_at DESC
-        LIMIT #{limit} OFFSET #{offset}
-    </select>
+    <select id="findByPostId" resultMap="CommentResultMap"> SELECT c.*, u.username, u.avatar_url as
+        user_avatar_url, p.title as post_title, pc.content as parent_comment_content FROM comments c
+        LEFT JOIN users u ON c.user_id = u.id LEFT JOIN posts p ON c.post_id = p.id LEFT JOIN
+        comments pc ON c.parent_comment_id = pc.id WHERE c.post_id = #{postId} ORDER BY c.created_at
+        DESC LIMIT #{limit} OFFSET #{offset} </select>
 
     <!-- 统计帖子评论数 -->
-    <select id="countByPostId" resultType="long">
-        SELECT COUNT(*) FROM comments WHERE post_id = #{postId} AND is_deleted = false
-    </select>
+    <select id="countByPostId" resultType="long"> SELECT COUNT(*) FROM comments WHERE post_id =
+        #{postId} AND is_deleted = false </select>
 
     <!-- 根据用户ID获取评论 -->
-    <select id="findByUserId" resultMap="CommentResultMap">
-        SELECT c.*, u.username, u.avatar_url as user_avatar_url, 
-               p.title as post_title,
-               pc.content as parent_comment_content
-        FROM comments c
-        LEFT JOIN users u ON c.user_id = u.id
-        LEFT JOIN posts p ON c.post_id = p.id
-        LEFT JOIN comments pc ON c.parent_comment_id = pc.id
-        WHERE c.user_id = #{userId}
-        ORDER BY c.created_at DESC
-        LIMIT #{limit} OFFSET #{offset}
-    </select>
+    <select id="findByUserId" resultMap="CommentResultMap"> SELECT c.*, u.username, u.avatar_url as
+        user_avatar_url, p.title as post_title, pc.content as parent_comment_content FROM comments c
+        LEFT JOIN users u ON c.user_id = u.id LEFT JOIN posts p ON c.post_id = p.id LEFT JOIN
+        comments pc ON c.parent_comment_id = pc.id WHERE c.user_id = #{userId} ORDER BY c.created_at
+        DESC LIMIT #{limit} OFFSET #{offset} </select>
 
     <!-- 统计用户评论数 -->
-    <select id="countByUserId" resultType="long">
-        SELECT COUNT(*) FROM comments WHERE user_id = #{userId} AND is_deleted = false
-    </select>
+    <select id="countByUserId" resultType="long"> SELECT COUNT(*) FROM comments WHERE user_id =
+        #{userId} AND is_deleted = false </select>
 
     <!-- 获取回复 -->
-    <select id="findRepliesByParentId" resultMap="CommentResultMap">
-        SELECT c.*, u.username, u.avatar_url as user_avatar_url, 
-               p.title as post_title,
-               pc.content as parent_comment_content
-        FROM comments c
-        LEFT JOIN users u ON c.user_id = u.id
-        LEFT JOIN posts p ON c.post_id = p.id
-        LEFT JOIN comments pc ON c.parent_comment_id = pc.id
-        WHERE c.parent_comment_id = #{parentCommentId} AND c.is_deleted = false
-        ORDER BY c.created_at ASC
-        LIMIT #{limit} OFFSET #{offset}
-    </select>
+    <select id="findRepliesByParentCommentId" resultMap="CommentResultMap"> SELECT c.*, u.username,
+        u.avatar_url as user_avatar_url, p.title as post_title, pc.content as parent_comment_content
+        FROM comments c LEFT JOIN users u ON c.user_id = u.id LEFT JOIN posts p ON c.post_id = p.id
+        LEFT JOIN comments pc ON c.parent_comment_id = pc.id WHERE c.parent_comment_id =
+        #{parentCommentId} AND c.is_deleted = false ORDER BY c.created_at ASC LIMIT #{limit} OFFSET
+        #{offset} </select>
 
     <!-- 统计回复数 -->
-    <select id="countRepliesByParentId" resultType="long">
-        SELECT COUNT(*) FROM comments WHERE parent_comment_id = #{parentCommentId} AND is_deleted = false
-    </select>
+    <select id="countRepliesByParentCommentId" resultType="long"> SELECT COUNT(*) FROM comments
+        WHERE parent_comment_id = #{parentCommentId} AND is_deleted = false </select>
 
     <!-- 获取顶级评论 -->
-    <select id="findTopLevelCommentsByPostId" resultMap="CommentResultMap">
-        SELECT c.*, u.username, u.avatar_url as user_avatar_url, 
-               p.title as post_title
-        FROM comments c
-        LEFT JOIN users u ON c.user_id = u.id
-        LEFT JOIN posts p ON c.post_id = p.id
-        WHERE c.post_id = #{postId} AND c.parent_comment_id IS NULL AND c.is_deleted = false
-        ORDER BY c.created_at DESC
-        LIMIT #{limit} OFFSET #{offset}
-    </select>
+    <select id="findTopLevelCommentsByPostId" resultMap="CommentResultMap"> SELECT c.*, u.username,
+        u.avatar_url as user_avatar_url, p.title as post_title FROM comments c LEFT JOIN users u ON
+        c.user_id = u.id LEFT JOIN posts p ON c.post_id = p.id WHERE c.post_id = #{postId} AND
+        c.parent_comment_id IS NULL AND c.is_deleted = false ORDER BY c.created_at DESC LIMIT
+        #{limit} OFFSET #{offset} </select>
 
     <!-- 统计顶级评论数 -->
-    <select id="countTopLevelCommentsByPostId" resultType="long">
-        SELECT COUNT(*) FROM comments 
-        WHERE post_id = #{postId} AND parent_comment_id IS NULL AND is_deleted = false
-    </select>
+    <select id="countTopLevelCommentsByPostId" resultType="long"> SELECT COUNT(*) FROM comments
+        WHERE post_id = #{postId} AND parent_comment_id IS NULL AND is_deleted = false </select>
 
     <!-- 管理员获取所有评论 -->
-    <select id="findAllComments" resultMap="CommentResultMap">
-        SELECT c.*, u.username, u.avatar_url as user_avatar_url, 
-               p.title as post_title,
-               pc.content as parent_comment_content
-        FROM comments c
-        LEFT JOIN users u ON c.user_id = u.id
-        LEFT JOIN posts p ON c.post_id = p.id
-        LEFT JOIN comments pc ON c.parent_comment_id = pc.id
-        ORDER BY c.created_at DESC
-        LIMIT #{limit} OFFSET #{offset}
-    </select>
+    <select id="findAllComments" resultMap="CommentResultMap"> SELECT c.*, u.username, u.avatar_url
+        as user_avatar_url, p.title as post_title, pc.content as parent_comment_content FROM
+        comments c LEFT JOIN users u ON c.user_id = u.id LEFT JOIN posts p ON c.post_id = p.id LEFT
+        JOIN comments pc ON c.parent_comment_id = pc.id ORDER BY c.created_at DESC LIMIT #{limit}
+        OFFSET #{offset} </select>
 
     <!-- 统计所有评论数 -->
-    <select id="countAllComments" resultType="long">
-        SELECT COUNT(*) FROM comments
-    </select>
+    <select id="countAllComments" resultType="long"> SELECT COUNT(*) FROM comments </select>
 
     <!-- 根据删除状态获取评论 -->
-    <select id="findCommentsByDeletedStatus" resultMap="CommentResultMap">
-        SELECT c.*, u.username, u.avatar_url as user_avatar_url, 
-               p.title as post_title,
-               pc.content as parent_comment_content
-        FROM comments c
-        LEFT JOIN users u ON c.user_id = u.id
-        LEFT JOIN posts p ON c.post_id = p.id
-        LEFT JOIN comments pc ON c.parent_comment_id = pc.id
-        WHERE c.is_deleted = #{isDeleted}
-        ORDER BY c.created_at DESC
-        LIMIT #{limit} OFFSET #{offset}
-    </select>
+    <select id="findCommentsByDeletedStatus" resultMap="CommentResultMap"> SELECT c.*, u.username,
+        u.avatar_url as user_avatar_url, p.title as post_title, pc.content as parent_comment_content
+        FROM comments c LEFT JOIN users u ON c.user_id = u.id LEFT JOIN posts p ON c.post_id = p.id
+        LEFT JOIN comments pc ON c.parent_comment_id = pc.id WHERE c.is_deleted = #{isDeleted} ORDER
+        BY c.created_at DESC LIMIT #{limit} OFFSET #{offset} </select>
 
     <!-- 统计指定删除状态的评论数 -->
-    <select id="countCommentsByDeletedStatus" resultType="long">
-        SELECT COUNT(*) FROM comments WHERE is_deleted = #{isDeleted}
-    </select>
+    <select id="countCommentsByDeletedStatus" resultType="long"> SELECT COUNT(*) FROM comments WHERE
+        is_deleted = #{isDeleted} </select>
 
     <!-- 检查评论所有权 -->
-    <select id="isCommentOwnedByUser" resultType="boolean">
-        SELECT COUNT(*) > 0 FROM comments WHERE id = #{commentId} AND user_id = #{userId}
-    </select>
+    <select id="isCommentOwnedByUser" resultType="boolean"> SELECT COUNT(*) > 0 FROM comments WHERE
+        id = #{commentId} AND user_id = #{userId} </select>
 
     <!-- 检查评论存在且未删除 -->
-    <select id="existsAndNotDeleted" resultType="boolean">
-        SELECT COUNT(*) > 0 FROM comments WHERE id = #{commentId} AND is_deleted = false
-    </select>
+    <select id="existsAndNotDeleted" resultType="boolean"> SELECT COUNT(*) > 0 FROM comments WHERE
+        id = #{commentId} AND is_deleted = false </select>
 
     <!-- 批量软删除 -->
-    <update id="batchSoftDelete">
-        UPDATE comments 
-        SET is_deleted = true, updated_at = NOW()
-        WHERE id IN
-        <foreach collection="commentIds" item="id" open="(" separator="," close=")">
-            #{id}
-        </foreach>
+    <update id="batchSoftDelete"> UPDATE comments SET is_deleted = true, updated_at = NOW() WHERE id
+        IN <foreach collection="commentIds" item="id" open="(" separator="," close=")"> #{id} </foreach>
     </update>
 
     <!-- 批量物理删除 -->
-    <delete id="batchDelete">
-        DELETE FROM comments WHERE id IN
-        <foreach collection="commentIds" item="id" open="(" separator="," close=")">
-            #{id}
-        </foreach>
+    <delete id="batchDelete"> DELETE FROM comments WHERE id IN <foreach collection="commentIds"
+            item="id" open="(" separator="," close=")"> #{id} </foreach>
     </delete>
 
 </mapper>

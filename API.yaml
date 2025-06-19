@@ -1246,9 +1246,8 @@ components:
         category:
           type: string
         tags:
-          type: array
-          items:
-            type: string
+          type: string
+          description: 英文逗号分隔的标签字符串
     UpdatePostRequest:
       type: object
       properties:

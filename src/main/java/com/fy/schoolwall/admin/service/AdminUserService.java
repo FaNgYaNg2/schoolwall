@@ -79,7 +79,7 @@ public class AdminUserService {
     }
 
     /**
-     * 管理员删除用户账户（硬删除）
+     * 管理员删除用户账户（软删除）
      */
     @Transactional
     public void deleteUserByAdmin(Long userId) {
@@ -92,12 +92,12 @@ public class AdminUserService {
         }
 
         try {
-            userMapper.deleteById(userId);
+            userMapper.softDeleteById1(userId);
             System.out.println(
-                    "User account hard deleted by admin. User ID: " + userId + ", Admin ID: " + currentUser.getId());
+                    "User account soft deleted by admin. User ID: " + userId + ", Admin ID: " + currentUser.getId());
         } catch (Exception e) {
-            System.err.println("Database error while admin deleting user: " + e.getMessage());
-            throw new RuntimeException("Failed to delete user account: " + e.getMessage(), e);
+            System.err.println("Database error while admin soft deleting user: " + e.getMessage());
+            throw new RuntimeException("Failed to soft delete user account: " + e.getMessage(), e);
         }
     }
 

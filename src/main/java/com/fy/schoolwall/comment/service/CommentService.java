@@ -282,6 +282,26 @@ public class CommentService {
     }
 
     /**
+     * 获取对当前用户内容的评论（“评论我的”）
+     */
+    public PaginationUtil.PageResponse<CommentDto> getCommentsForMe(PaginationUtil.PageRequest pageRequest) {
+        User currentUser = userService.getCurrentAuthenticatedUser();
+        Long userId = currentUser.getId();
+
+        List<Comment> comments = commentMapper.findCommentsForUser(
+                userId,
+                pageRequest.getOffset(),
+                pageRequest.getLimit());
+
+        List<CommentDto> commentDtos = comments.stream()
+                .map(this::convertToCommentDto)
+                .collect(Collectors.toList());
+
+        long totalElements = commentMapper.countCommentsForUser(userId);
+        return PaginationUtil.createPageResponse(commentDtos, pageRequest, totalElements);
+    }
+
+    /**
      * 转换为CommentDto
      */
     private CommentDto convertToCommentDto(Comment comment) {

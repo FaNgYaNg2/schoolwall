@@ -76,8 +76,21 @@
         #{offset} </select>
 
     <!-- 按状态查询 -->
-    <select id="findPostsByStatus" resultMap="BaseResultMap"> SELECT * FROM posts WHERE status =
-        #{status} ORDER BY created_at DESC LIMIT #{limit} OFFSET #{offset} </select>
+    <select id="findPostsByStatus" resultType="com.fy.schoolwall.post.model.Post"> SELECT * FROM
+        posts WHERE status = #{status} ORDER BY ${sort} ${direction} LIMIT #{limit} OFFSET #{offset} </select>
+
+    <select id="findPostsByStatusAndCategory" resultType="com.fy.schoolwall.post.model.Post"> SELECT
+        * FROM posts WHERE status = #{status} AND category = #{category} ORDER BY ${sort}
+        ${direction} LIMIT #{limit} OFFSET #{offset} </select>
+
+    <!-- 管理员专用：获取所有帖子 -->
+    <select id="findAllPosts" resultType="com.fy.schoolwall.post.model.Post"> SELECT * FROM posts
+        ORDER BY ${sort} ${direction} LIMIT #{limit} OFFSET #{offset} </select>
+
+    <!-- 管理员专用：按分类查询 -->
+    <select id="adminFindPostsByCategory" resultType="com.fy.schoolwall.post.model.Post"> SELECT *
+        FROM posts WHERE category = #{category} ORDER BY ${sort} ${direction} LIMIT #{limit} OFFSET
+        #{offset} </select>
 
     <!-- 置顶帖子 -->
     <select id="findTopPosts" resultMap="BaseResultMap"> SELECT * FROM posts WHERE is_top = true AND
@@ -99,21 +112,16 @@
     <select id="countByAuthorId" resultType="long"> SELECT COUNT(*) FROM posts WHERE author_id =
         #{authorId} </select>
 
-    <select id="countByCategory" resultType="long"> SELECT COUNT(*) FROM posts WHERE category =
-        #{category} AND status = 'PUBLISHED' </select>
+    <select id="countByCategory" resultType="long"> SELECT count(*) FROM posts WHERE category =
+        #{category} </select>
 
-    <!-- 管理员查询 -->
-    <select id="findAllPosts" resultMap="BaseResultMap"> SELECT * FROM posts ORDER BY created_at
-        DESC LIMIT #{limit} OFFSET #{offset} </select>
+    <select id="countByStatusAndCategory" resultType="long"> SELECT count(*) FROM posts WHERE status
+        = #{status} AND category = #{category} </select>
 
-    <select id="findPostsForReview" resultType="com.fy.schoolwall.post.model.Post"> SELECT * FROM
-        posts WHERE status = 'DRAFT' ORDER BY created_at DESC LIMIT #{limit} OFFSET #{offset} </select>
-
-    <select id="countPostsForReview" resultType="long"> SELECT count(*) FROM posts WHERE status =
-        'DRAFT' </select>
-
+    <!-- 管理员专用：统计所有帖子 -->
     <select id="countAllPosts" resultType="long"> SELECT count(*) FROM posts </select>
 
+    <!-- 获取所有分类及其帖子数量统计 -->
     <select id="getCategoryStats" resultType="java.util.Map"> SELECT category, COUNT(*) as
         post_count FROM post WHERE status = 'PUBLISHED' GROUP BY category </select>
 

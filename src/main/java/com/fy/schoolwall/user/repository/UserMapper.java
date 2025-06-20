@@ -2,6 +2,8 @@ package com.fy.schoolwall.user.repository;
 
 import com.fy.schoolwall.user.model.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 @Mapper
@@ -19,6 +21,8 @@ public interface UserMapper {
     void updatePassword(Long userId, String passwordHash); // 更新密码
 
     void deleteById(Long id); // 硬删除
+
+    void softDeleteById1(@Param("userId") Long userId);
 
     void softDeleteById(Long id); // 软删除（设置is_enabled为false）
 

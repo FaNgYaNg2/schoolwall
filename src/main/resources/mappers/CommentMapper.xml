@@ -116,6 +116,28 @@
     <select id="existsAndNotDeleted" resultType="boolean"> SELECT COUNT(*) > 0 FROM comments WHERE
         id = #{commentId} AND is_deleted = false </select>
 
+    <!-- 获取对用户内容的评论（帖子被评论、评论被回复） -->
+    <select id="findCommentsForUser" resultMap="CommentResultMap"> (SELECT c.id, c.post_id,
+        c.user_id, c.content, c.parent_comment_id, c.created_at, c.updated_at, c.is_deleted,
+        u.username, u.avatar_url as user_avatar_url, p.title as post_title, NULL as
+        parent_comment_content FROM comments c JOIN users u ON c.user_id = u.id JOIN posts p ON
+        c.post_id = p.id WHERE p.author_id = #{userId} AND c.parent_comment_id IS NULL AND c.user_id
+        != #{userId} AND c.is_deleted = false ) UNION (SELECT c.id, c.post_id, c.user_id, c.content,
+        c.parent_comment_id, c.created_at, c.updated_at, c.is_deleted, u.username, u.avatar_url as
+        user_avatar_url, p.title as post_title, pc.content as parent_comment_content FROM comments c
+        JOIN users u ON c.user_id = u.id JOIN posts p ON c.post_id = p.id JOIN comments pc ON
+        c.parent_comment_id = pc.id WHERE c.parent_comment_id IN (SELECT id FROM comments WHERE
+        user_id = #{userId}) AND c.user_id != #{userId} AND c.is_deleted = false ) ORDER BY
+        created_at DESC LIMIT #{limit} OFFSET #{offset} </select>
+
+    <!-- 统计对用户内容的评论数 -->
+    <select id="countCommentsForUser" resultType="long"> SELECT COUNT(*) FROM ( ( SELECT c.id FROM
+        comments c JOIN posts p ON c.post_id = p.id WHERE p.author_id = #{userId} AND
+        c.parent_comment_id IS NULL AND c.user_id != #{userId} AND c.is_deleted = false ) UNION (
+        SELECT c.id FROM comments c WHERE c.parent_comment_id IN (SELECT id FROM comments WHERE
+        user_id = #{userId}) AND c.user_id != #{userId} AND c.is_deleted = false ) ) as
+        combined_comments </select>
+
     <!-- 批量软删除 -->
     <update id="batchSoftDelete"> UPDATE comments SET is_deleted = true, updated_at = NOW() WHERE id
         IN <foreach collection="commentIds" item="id" open="(" separator="," close=")"> #{id} </foreach>

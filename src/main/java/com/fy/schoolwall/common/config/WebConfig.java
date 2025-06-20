@@ -27,10 +27,10 @@ public class WebConfig implements WebMvcConfigurer {
                 // 统一为 /api/** 添加CORS配置
                 registry.addMapping("/api/**")
                                 .allowedOriginPatterns("*")
-                                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                                .allowedHeaders("*")
-                                .allowCredentials(true)
-                                .maxAge(3600);
+                                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // 允许的HTTP方法
+                                .allowedHeaders("*") // 允许所有请求头
+                                .allowCredentials(true) // 允许携带凭证
+                                .maxAge(3600); // 预检请求缓存时间为1小时
         }
 
         /**

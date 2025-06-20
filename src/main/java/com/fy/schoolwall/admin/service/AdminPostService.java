@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Set;
 
 @Service
 public class AdminPostService {
@@ -26,6 +27,9 @@ public class AdminPostService {
     private final PostMapper postMapper;
     private final CommentMapper commentMapper;
     private final UserService userService;
+
+    private static final Set<String> ALLOWED_SORT_COLUMNS = Set.of(
+            "created_at", "updated_at", "view_count", "comment_count");
 
     public AdminPostService(PostMapper postMapper, CommentMapper commentMapper, UserService userService) {
         this.postMapper = postMapper;
@@ -41,13 +45,26 @@ public class AdminPostService {
         userService.validateUserRole(currentUser, UserRole.ADMIN);
     }
 
+    private String getValidatedSortColumn(String sortColumn) {
+        if (sortColumn == null || sortColumn.trim().isEmpty()) {
+            return "created_at"; // 默认排序字段
+        }
+        if (!ALLOWED_SORT_COLUMNS.contains(sortColumn)) {
+            throw new IllegalArgumentException("Invalid sort parameter. Allowed values are: " + ALLOWED_SORT_COLUMNS);
+        }
+        return sortColumn;
+    }
+
     /**
      * 获取所有帖子（分页）
      */
     public PaginationUtil.PageResponse<PostDto> getAllPosts(PaginationUtil.PageRequest pageRequest) {
         validateAdminAccess();
 
-        List<Post> posts = postMapper.findAllPosts(pageRequest.getOffset(), pageRequest.getLimit());
+        String sort = getValidatedSortColumn(pageRequest.getSort());
+        String direction = pageRequest.getDirection();
+
+        List<Post> posts = postMapper.findAllPosts(pageRequest.getOffset(), pageRequest.getLimit(), sort, direction);
         List<PostDto> postDtos = posts.stream()
                 .map(this::convertToPostDto)
                 .collect(Collectors.toList());
@@ -63,17 +80,47 @@ public class AdminPostService {
             PaginationUtil.PageRequest pageRequest) {
         validateAdminAccess();
 
-        // 验证状态是否有效
         if (!isValidPostStatus(status)) {
             throw new RuntimeException("Invalid post status: " + status);
         }
 
-        List<Post> posts = postMapper.findPostsByStatus(status, pageRequest.getOffset(), pageRequest.getLimit());
+        String sort = getValidatedSortColumn(pageRequest.getSort());
+        String direction = pageRequest.getDirection();
+
+        List<Post> posts = postMapper.findPostsByStatus(status, pageRequest.getOffset(), pageRequest.getLimit(), sort,
+                direction);
         List<PostDto> postDtos = posts.stream()
                 .map(this::convertToPostDto)
                 .collect(Collectors.toList());
 
         long totalElements = postMapper.countByStatus(status);
+        return PaginationUtil.createPageResponse(postDtos, pageRequest, totalElements);
+    }
+
+    /**
+     * 根据状态和分类获取帖子
+     */
+    public PaginationUtil.PageResponse<PostDto> getPostsByStatusAndCategory(String status, PostCategory category,
+            PaginationUtil.PageRequest pageRequest) {
+        validateAdminAccess();
+
+        if (!isValidPostStatus(status)) {
+            throw new RuntimeException("Invalid post status: " + status);
+        }
+        if (category == null) {
+            throw new RuntimeException("Category is required");
+        }
+
+        String sort = getValidatedSortColumn(pageRequest.getSort());
+        String direction = pageRequest.getDirection();
+
+        List<Post> posts = postMapper.findPostsByStatusAndCategory(status, category.getCode(),
+                pageRequest.getOffset(), pageRequest.getLimit(), sort, direction);
+        List<PostDto> postDtos = posts.stream()
+                .map(this::convertToPostDto)
+                .collect(Collectors.toList());
+
+        long totalElements = postMapper.countByStatusAndCategory(status, category.getCode());
         return PaginationUtil.createPageResponse(postDtos, pageRequest, totalElements);
     }
 
@@ -88,7 +135,11 @@ public class AdminPostService {
             throw new RuntimeException("Category is required");
         }
 
-        List<Post> posts = postMapper.findPostsByCategory(category.getCode(), pageRequest.getOffset(), pageRequest.getLimit());
+        String sort = getValidatedSortColumn(pageRequest.getSort());
+        String direction = pageRequest.getDirection();
+
+        List<Post> posts = postMapper.adminFindPostsByCategory(category.getCode(), pageRequest.getOffset(),
+                pageRequest.getLimit(), sort, direction);
         List<PostDto> postDtos = posts.stream()
                 .map(this::convertToPostDto)
                 .collect(Collectors.toList());
@@ -247,7 +298,7 @@ public class AdminPostService {
                         post.setUpdatedAt(LocalDateTime.now());
                         postMapper.update(post);
                     }
-                    
+
                     postMapper.updateStatus(postId, status);
                     successCount++;
                 }
@@ -257,7 +308,7 @@ public class AdminPostService {
             }
         }
 
-        System.out.println("Batch status update (" + status + ") completed. " + successCount + 
+        System.out.println("Batch status update (" + status + ") completed. " + successCount +
                 " out of " + postIds.size() + " posts updated by admin ID: " + currentUser.getId());
     }
 
@@ -297,8 +348,8 @@ public class AdminPostService {
         // 记录操作原因
         if (request.getReason() != null && !request.getReason().trim().isEmpty()) {
             User currentUser = userService.getCurrentAuthenticatedUser();
-            System.out.println("Admin action reason - Action: " + request.getAction() + 
-                    ", Post ID: " + postId + ", Reason: " + request.getReason() + 
+            System.out.println("Admin action reason - Action: " + request.getAction() +
+                    ", Post ID: " + postId + ", Reason: " + request.getReason() +
                     ", Admin ID: " + currentUser.getId());
         }
     }
@@ -320,9 +371,9 @@ public class AdminPostService {
      * 验证帖子状态是否有效
      */
     private boolean isValidPostStatus(String status) {
-        return status != null && 
-               ("DRAFT".equals(status) || "PUBLISHED".equals(status) || 
-                "HIDDEN".equals(status) || "DELETED".equals(status));
+        return status != null &&
+                ("DRAFT".equals(status) || "PUBLISHED".equals(status) ||
+                        "HIDDEN".equals(status) || "DELETED".equals(status));
     }
 
     /**
@@ -337,7 +388,7 @@ public class AdminPostService {
         dto.setAuthorId(post.getAuthorId());
         dto.setAuthorUsername(post.getAuthorUsername());
         dto.setStatus(post.getStatus());
-        
+
         // 正确处理分类枚举
         PostCategory categoryEnum = post.getCategoryEnum();
         if (categoryEnum != null) {
@@ -347,7 +398,7 @@ public class AdminPostService {
             dto.setCategory(post.getCategory());
             dto.setCategoryDisplayName(post.getCategory());
         }
-        
+
         dto.setTags(post.getTags());
         dto.setCoverImage(post.getCoverImage());
         dto.setViewCount(post.getViewCount());

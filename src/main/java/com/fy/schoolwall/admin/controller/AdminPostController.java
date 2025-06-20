@@ -29,7 +29,7 @@ public class AdminPostController {
 
     /**
      * 获取所有帖子（分页）
-     * GET /api/admin/posts?page=0&size=10&status=PUBLISHED&category=TECH_SHARING
+     * GET /api/admin/posts?page=0&size=10&status=PUBLISHED&category=academic
      */
     @GetMapping
     public ResponseEntity<PaginationUtil.PageResponse<PostDto>> getAllPosts(
@@ -44,18 +44,24 @@ public class AdminPostController {
 
         PaginationUtil.PageResponse<PostDto> posts;
         if (status != null && category != null) {
-            // 同时按状态和分类筛选 - 这里需要在PostMapper中添加相应方法
+            // 同时按状态和分类筛选
             PostCategory categoryEnum = PostCategory.fromCode(category);
             if (categoryEnum == null) {
-                throw new RuntimeException("Invalid category: " + category);
+                categoryEnum = PostCategory.fromDisplayName(category); // 尝试按显示名称匹配
+                if (categoryEnum == null) {
+                    throw new RuntimeException("Invalid category: " + category);
+                }
             }
-            posts = adminPostService.getPostsByCategory(categoryEnum, pageRequest);
+            posts = adminPostService.getPostsByStatusAndCategory(status, categoryEnum, pageRequest);
         } else if (status != null) {
             posts = adminPostService.getPostsByStatus(status, pageRequest);
         } else if (category != null) {
             PostCategory categoryEnum = PostCategory.fromCode(category);
             if (categoryEnum == null) {
-                throw new RuntimeException("Invalid category: " + category);
+                categoryEnum = PostCategory.fromDisplayName(category); // 尝试按显示名称匹配
+                if (categoryEnum == null) {
+                    throw new RuntimeException("Invalid category: " + category);
+                }
             }
             posts = adminPostService.getPostsByCategory(categoryEnum, pageRequest);
         } else {

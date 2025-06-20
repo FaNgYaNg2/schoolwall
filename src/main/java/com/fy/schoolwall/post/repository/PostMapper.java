@@ -37,7 +37,11 @@ public interface PostMapper {
                         @Param("limit") int limit);
 
         List<Post> findPostsByStatus(@Param("status") String status, @Param("offset") int offset,
-                        @Param("limit") int limit);
+                        @Param("limit") int limit, @Param("sort") String sort, @Param("direction") String direction);
+
+        List<Post> findPostsByStatusAndCategory(@Param("status") String status, @Param("category") String category,
+                        @Param("offset") int offset, @Param("limit") int limit, @Param("sort") String sort,
+                        @Param("direction") String direction);
 
         List<Post> findTopPosts(@Param("limit") int limit);
 
@@ -53,13 +57,19 @@ public interface PostMapper {
 
         long countByCategory(@Param("category") String category);
 
+        long countByStatusAndCategory(@Param("status") String status, @Param("category") String category);
+
         // 获取所有分类及其帖子数量统计
         List<Map<String, Object>> getCategoryStats();
 
         // 管理员专用
-        List<Post> findAllPosts(@Param("offset") int offset, @Param("limit") int limit);
+        List<Post> findAllPosts(@Param("offset") int offset, @Param("limit") int limit, @Param("sort") String sort,
+                        @Param("direction") String direction);
 
         List<Post> findPostsForReview(@Param("offset") int offset, @Param("limit") int limit);
+
+        List<Post> adminFindPostsByCategory(@Param("category") String category, @Param("offset") int offset,
+                        @Param("limit") int limit, @Param("sort") String sort, @Param("direction") String direction);
 
         void setTopStatus(@Param("id") Long id, @Param("isTop") boolean isTop);
 
@@ -69,12 +79,4 @@ public interface PostMapper {
         long countAllPosts();
 
         long countPostsForReview();
-
-        // 按状态和分类同时筛选的方法
-        List<Post> findPostsByStatusAndCategory(@Param("status") String status,
-                        @Param("category") String category,
-                        @Param("offset") int offset,
-                        @Param("limit") int limit);
-
-        long countByStatusAndCategory(@Param("status") String status, @Param("category") String category);
 }

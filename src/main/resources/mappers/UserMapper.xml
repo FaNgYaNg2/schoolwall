@@ -46,7 +46,11 @@
     <!-- 硬删除用户 -->
     <delete id="deleteById"> DELETE FROM users WHERE id = #{id} </delete>
 
-    <!-- 软删除用户（设置为禁用状态） -->
+    <!-- 软删除用户 -->
+    <update id="softDeleteById1" parameterType="long"> UPDATE users SET is_locked = true, updated_at
+        = NOW() WHERE id = #{userId} </update>
+
+    <!-- 禁用用户 -->
     <update id="softDeleteById"> UPDATE users SET is_enabled = false, updated_at = NOW() WHERE id =
         #{id} </update>
 

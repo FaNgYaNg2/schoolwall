@@ -115,6 +115,20 @@ public class CommentController {
     }
 
     /**
+     * 获取对我有意义的评论（我的帖子被评论，我的评论被回复）
+     * GET /api/comments/for-me
+     */
+    @GetMapping("/for-me")
+    public ResponseEntity<PaginationUtil.PageResponse<CommentDto>> getCommentsForMe(
+            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "10") Integer size) {
+        // SQL中已定义排序，此处无需指定
+        PaginationUtil.PageRequest pageRequest = PaginationUtil.validatePageRequest(page, size, null, "DESC");
+        PaginationUtil.PageResponse<CommentDto> comments = commentService.getCommentsForMe(pageRequest);
+        return ResponseEntity.ok(comments);
+    }
+
+    /**
      * 获取指定用户的评论
      * GET /api/comments/users/{userId}
      */
